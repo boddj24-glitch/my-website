@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHAWON TV - Live Streaming</title>
-    <!-- Hls.js লাইব্রেরি যুক্ত করা হলো যাতে ব্রাউজারে স্মুথলি লাইভ স্ট্রিম চলে -->
+    <!-- Hls.js লাইব্রেরি যুক্ত করা হলো -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
         * { box-sizing: border-box; }
@@ -59,8 +59,8 @@
     </div>
 
     <script>
-        // সঠিক লাইভ প্রক্সি লিংক ব্যবহার করা হয়েছে
-        fetch('/api/proxy')
+        // সরাসরি গিটহাবের র-লিংক থেকে M3U ডাটা ফেচ করা
+        fetch('https://raw.githubusercontent.com/boddj24-glitch/my-website/refs/heads/main/smart%2020tv')
             .then(response => response.text())
             .then(data => {
                 const lines = data.split('\n');
@@ -105,7 +105,6 @@
                         
                         const video = document.getElementById('videoElement');
 
-                        // Hls.js দিয়ে স্ট্রিম হ্যান্ডেল করা
                         if (Hls.isSupported()) {
                             const hls = new Hls();
                             hls.loadSource(url);
@@ -114,7 +113,6 @@
                                 video.play();
                             });
                         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                            // সাফারি ব্রাউজারের নেটিভ সাপোর্টের জন্য
                             video.src = url;
                             video.addEventListener('loadedmetadata', function() {
                                 video.play();
