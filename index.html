@@ -216,7 +216,7 @@
             justify-content: center;
             gap: 8px;
             width: 100%;
-            height: 95px;
+            height: 95px; /* বক্সের উচ্চতা বাড়ানো হয়েছে যাতে পুরো ঘর জুড়ে থাকে */
             box-sizing: border-box;
         }
         
@@ -226,7 +226,7 @@
         }
         
         .ch-btn img { 
-            width: 50px; 
+            width: 50px; /* লোগোর সাইজ বড় করা হয়েছে */
             height: 50px; 
             object-fit: contain; 
             pointer-events: none;
@@ -281,7 +281,7 @@
                 <div class="logo-header">SHAWON TV</div>
                 
                 <div id="serverSwitcherBox" class="header-server-switcher">
-                    <div class="server-title" id="activeChannelName">চ্যানেল সিলেক্ট করুন</div>
+                    <div class="server-title" id="activeChannelName">T Sports - সার্ভার পরিবর্তন করুন</div>
                     <div class="server-buttons-wrap" id="serverButtonsContainer"></div>
                 </div>
             </div>
@@ -302,9 +302,7 @@
             </div>
         </div>
 
-        <div class="channel-list" id="channelContainer">
-            <p style="text-align: center; color: #888; grid-column: span 4;">চ্যানেল লোড হচ্ছে...</p>
-        </div>
+        <div class="channel-list" id="channelContainer"></div>
     </div>
 
     <div class="input-box">
@@ -357,7 +355,7 @@
         })();
 
         // ==========================================
-        // PLAYER LOGIC & M3U PARSER
+        // PLAYER LOGIC
         // ==========================================
         const videoEl = document.getElementById('my-video');
         const iframe = document.getElementById('custom-iframe');
@@ -455,7 +453,7 @@
             }
         }
 
-        // Fetch playlist.m3u dynamically and populate channels
+        // Fetch playlist.m3u dynamically and populate channels (Keeping exact format)
         fetch('https://raw.githubusercontent.com/boddj24-glitch/my-website/refs/heads/main/playlist.m3u')
             .then(response => response.text())
             .then(data => {
