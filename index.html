@@ -281,7 +281,7 @@
                 <div class="logo-header">SHAWON TV</div>
                 
                 <div id="serverSwitcherBox" class="header-server-switcher">
-                    <div class="server-title" id="activeChannelName">A Sports HD - সার্ভার পরিবর্তন করুন</div>
+                    <div class="server-title" id="activeChannelName">T Sports - সার্ভার পরিবর্তন করুন</div>
                     <div class="server-buttons-wrap" id="serverButtonsContainer"></div>
                 </div>
             </div>
@@ -355,7 +355,7 @@
         })();
 
         // ==========================================
-        // PLAYER LOGIC & FULL CHANNELS ARRAY
+        // PLAYER LOGIC & CHANNELS DATA
         // ==========================================
         const videoEl = document.getElementById('my-video');
         const iframe = document.getElementById('custom-iframe');
@@ -372,12 +372,11 @@
             }
         }
 
-        // আপনার সম্পূর্ণ চ্যানেল লিস্ট (স্ক্রিনশট অনুযায়ী সবগুলো চ্যানেল এখানে যুক্ত করা হলো)
         const channels = [
+            { name: "T Sports", logo: "https://i.ibb.co.com/6D38G6f/tsports.png", url: ["https://tsports-live.t-sports.com/index.m3u8"] },
             { name: "A Sports HD", logo: "https://i.ibb.co.com/84X499z/asports.png", url: ["https://m-live.asports.pk/live/asports/index.m3u8"] },
             { name: "Star Sports 1 HD", logo: "https://i.ibb.co.com/5hJ7q59/starsports1.png", url: [""] },
             { name: "Star Sports HD2", logo: "https://i.ibb.co.com/5hJ7q59/starsports1.png", url: [""] },
-            { name: "T Sports", logo: "https://i.ibb.co.com/6D38G6f/tsports.png", url: ["https://tsports-live.t-sports.com/index.m3u8"] },
             { name: "Willow sports TV", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
             { name: "Willow tv", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
             { name: "Ten cricket", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
@@ -405,7 +404,6 @@
             { name: "BTV News", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
             { name: "Boishakhi", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
             { name: "Ekushe TV", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Banglavision", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
             { name: "Rajdhani", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
             { name: "Enter TV", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
             { name: "G TV", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
@@ -440,9 +438,7 @@
                 buttonsContainer.appendChild(sBtn);
             });
 
-            if(urls[0]) {
-                loadChannelUrl(urls[0], currentMode);
-            }
+            loadChannelUrl(urls[0], currentMode);
         }
 
         function loadChannelUrl(url, mode) {
@@ -462,8 +458,6 @@
             html5El.pause();
             html5El.src = "";
             iframe.src = "about:blank";
-
-            if (!url) return;
 
             if (mode === 'iframe') {
                 iframe.src = url;
@@ -498,10 +492,7 @@
             }
         }
 
-        // Render Channels Grid
         const container = document.getElementById('channelContainer');
-        container.innerHTML = '';
-
         channels.forEach(ch => {
             const btn = document.createElement('div');
             btn.className = 'ch-btn';
