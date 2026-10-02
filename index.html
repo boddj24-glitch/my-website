@@ -355,7 +355,7 @@
         })();
 
         // ==========================================
-        // PLAYER LOGIC & CHANNELS DATA
+        // PLAYER LOGIC & CHANNELS ARRAY (ORIGINAL STYLE)
         // ==========================================
         const videoEl = document.getElementById('my-video');
         const iframe = document.getElementById('custom-iframe');
@@ -372,43 +372,32 @@
             }
         }
 
+        // আপনার আসল স্ট্যাটিক চ্যানেল লিস্ট (এখানে প্রয়োজনমতো চ্যানেল যোগ/পরিবর্তন করতে পারবেন)
         const channels = [
-            { name: "T Sports", logo: "https://i.ibb.co.com/6D38G6f/tsports.png", url: ["https://tsports-live.t-sports.com/index.m3u8"] },
-            { name: "A Sports HD", logo: "https://i.ibb.co.com/84X499z/asports.png", url: ["https://m-live.asports.pk/live/asports/index.m3u8"] },
-            { name: "Star Sports 1 HD", logo: "https://i.ibb.co.com/5hJ7q59/starsports1.png", url: [""] },
-            { name: "Star Sports HD2", logo: "https://i.ibb.co.com/5hJ7q59/starsports1.png", url: [""] },
-            { name: "Willow sports TV", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Willow tv", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Ten cricket", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Sky sports", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "PTV Sports", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Cricket Gold", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "BTV", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Channel 1", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Somoy TV", logo: "https://i.ibb.co.com/9n2R95j/somoy.png", url: ["https://live.somoynews.tv/live/smsc/index.m3u8"] },
-            { name: "Jamuna TV", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Ekattor HD", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Independent TV", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Ekhon TV", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "DBC News HD", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "News 24 HD", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "ATN News", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Channel 24 HD", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Bangla Vision", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "NTV", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "ATN Bangla", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Channel i HD", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Deepto TV", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Maasranga TV", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Rtv", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "BTV News", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Boishakhi", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Ekushe TV", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Rajdhani", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Enter TV", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "G TV", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Mohona Tv", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] },
-            { name: "Channel 9", logo: "https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg", url: [""] }
+            {
+                name: "A Sports HD",
+                logo: "https://i.ibb.co.com/84X499z/asports.png",
+                url: [
+                    "https://m-live.asports.pk/live/asports/index.m3u8",
+                    "https://another-server.com/stream.m3u8"
+                ]
+            },
+            {
+                name: "T Sports",
+                logo: "https://i.ibb.co.com/6D38G6f/tsports.png",
+                url: "https://tsports-live.t-sports.com/index.m3u8"
+            },
+            {
+                name: "Star Sports 1 HD",
+                logo: "https://i.ibb.co.com/5hJ7q59/starsports1.png",
+                url: "https://example.com/starsports1.m3u8"
+            },
+            {
+                name: "Somoy TV",
+                logo: "https://i.ibb.co.com/9n2R95j/somoy.png",
+                url: "https://live.somoynews.tv/live/smsc/index.m3u8"
+            }
+            // আপনার বাকি চ্যানেলগুলো এখানে যোগ করে নিতে পারবেন
         ];
 
         function switchMode(mode) {
@@ -492,7 +481,10 @@
             }
         }
 
+        // Render Channels Grid
         const container = document.getElementById('channelContainer');
+        container.innerHTML = '';
+
         channels.forEach(ch => {
             const btn = document.createElement('div');
             btn.className = 'ch-btn';
