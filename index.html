@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
     <!-- Google Search Console Verification Tag -->
-    <meta name="google-site-verification" content="4Wrkrkzr9ugDKvZi_NlCh9fztvhJWFl_4s5BlLBHyhM" />
+  <meta name="google-site-verification" content="4Wrkrkzr9ugDKvZi_NlCh9fztvhJWFl_4s5BlLBHyhM" />
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,8 +29,8 @@
     <meta name="twitter:description" content="Watch live TV streaming, sports channels like T Sports, A Sports, Star Sports, and local news channels for free.">
     <meta name="twitter:image" content="https://i.postimg.cc/W1z5BGPZ/20240823_024712.png">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg">
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg">
 
     <!-- Video.js -->
     <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
@@ -372,6 +372,8 @@
             }
         }
 
+        let channels = [];
+
         function switchMode(mode) {
             if (currentUrl) loadChannelUrl(currentUrl, mode);
         }
@@ -453,12 +455,11 @@
             }
         }
 
-        // Fetch playlist.m3u dynamically and populate channels (Keeping exact format)
+        // Fetch playlist.m3u dynamically and populate channels
         fetch('https://raw.githubusercontent.com/boddj24-glitch/my-website/refs/heads/main/playlist.m3u')
             .then(response => response.text())
             .then(data => {
                 const lines = data.split(/\r?\n/);
-                let channels = [];
                 let currentLogo = 'https://i.postimg.cc/W1z5BGPZ/20240823_024712.png';
                 let currentTitle = '';
                 
@@ -490,32 +491,30 @@
                 const container = document.getElementById('channelContainer');
                 container.innerHTML = '';
 
-                if (channels.length > 0) {
-                    channels.forEach(ch => {
-                        const btn = document.createElement('div');
-                        btn.className = 'ch-btn';
-                        
-                        let img = document.createElement('img');
-                        img.src = ch.logo;
-                        img.onerror = () => { img.src = "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png"; };
-                        
-                        let strong = document.createElement('strong');
-                        strong.innerText = ch.name;
-                        
-                        btn.appendChild(img);
-                        btn.appendChild(strong);
-                        
-                        btn.onclick = () => loadChannel(ch);
-                        container.appendChild(btn);
-                    });
+                channels.forEach(ch => {
+                    const btn = document.createElement('div');
+                    btn.className = 'ch-btn';
+                    
+                    let img = document.createElement('img');
+                    img.src = ch.logo || "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png";
+                    img.onerror = () => { img.src = "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png"; };
+                    
+                    let strong = document.createElement('strong');
+                    strong.innerText = ch.name;
+                    
+                    btn.appendChild(img);
+                    btn.appendChild(strong);
+                    
+                    btn.onclick = () => loadChannel(ch);
+                    container.appendChild(btn);
+                });
 
+                if(channels.length > 0) {
                     loadChannel(channels[0]);
-                } else {
-                    container.innerHTML = '<p style="text-align: center; color: red; grid-column: span 4;">কোনো চ্যানেল পাওয়া যায়নি।</p>';
                 }
             })
             .catch(error => {
-                document.getElementById('channelContainer').innerHTML = '<p style="text-align: center; color: red; grid-column: span 4;">চ্যানেল লিস্ট লোড করতে সমস্যা হয়েছে।</p>';
+                console.error('Error loading playlist:', error);
             });
     </script>
 </body>
