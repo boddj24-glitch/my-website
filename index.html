@@ -216,7 +216,7 @@
             justify-content: center;
             gap: 8px;
             width: 100%;
-            height: 95px;
+            height: 95px; /* বক্সের উচ্চতা */
             box-sizing: border-box;
         }
         
@@ -226,7 +226,7 @@
         }
         
         .ch-btn img { 
-            width: 50px; 
+            width: 50px; /* লোগোর সাইজ */
             height: 50px; 
             object-fit: contain; 
             pointer-events: none;
@@ -342,6 +342,18 @@
             }
         }
         setInterval(checkDevTools, 300);
+
+        (function() {
+            const devtools = /./;
+            devtools.toString = function() {
+                checkDevTools();
+                return '';
+            }
+            setInterval(function() {
+                console.log('%c', devtools);
+                console.clear();
+            }, 500);
+        })();
 
         // ==========================================
         // PLAYER LOGIC & DYNAMIC M3U PARSER
