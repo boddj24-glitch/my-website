@@ -355,7 +355,7 @@
         })();
 
         // ==========================================
-        // PLAYER LOGIC
+        // PLAYER LOGIC & CHANNELS ARRAY (ORIGINAL STYLE)
         // ==========================================
         const videoEl = document.getElementById('my-video');
         const iframe = document.getElementById('custom-iframe');
@@ -372,7 +372,33 @@
             }
         }
 
-        let channels = [];
+        // আপনার আসল স্ট্যাটিক চ্যানেল লিস্ট (এখানে প্রয়োজনমতো চ্যানেল যোগ/পরিবর্তন করতে পারবেন)
+        const channels = [
+            {
+                name: "A Sports HD",
+                logo: "https://i.ibb.co.com/84X499z/asports.png",
+                url: [
+                    "https://m-live.asports.pk/live/asports/index.m3u8",
+                    "https://another-server.com/stream.m3u8"
+                ]
+            },
+            {
+                name: "T Sports",
+                logo: "https://i.ibb.co.com/6D38G6f/tsports.png",
+                url: "https://tsports-live.t-sports.com/index.m3u8"
+            },
+            {
+                name: "Star Sports 1 HD",
+                logo: "https://i.ibb.co.com/5hJ7q59/starsports1.png",
+                url: "https://example.com/starsports1.m3u8"
+            },
+            {
+                name: "Somoy TV",
+                logo: "https://i.ibb.co.com/9n2R95j/somoy.png",
+                url: "https://live.somoynews.tv/live/smsc/index.m3u8"
+            }
+            // আপনার বাকি চ্যানেলগুলো এখানে যোগ করে নিতে পারবেন
+        ];
 
         function switchMode(mode) {
             if (currentUrl) loadChannelUrl(currentUrl, mode);
@@ -455,67 +481,31 @@
             }
         }
 
-        // Fetch playlist.m3u dynamically and populate channels
-        fetch('https://raw.githubusercontent.com/boddj24-glitch/my-website/refs/heads/main/playlist.m3u')
-            .then(response => response.text())
-            .then(data => {
-                const lines = data.split(/\r?\n/);
-                let currentLogo = 'https://i.postimg.cc/W1z5BGPZ/20240823_024712.png';
-                let currentTitle = '';
-                
-                for (let i = 0; i < lines.length; i++) {
-                    let line = lines[i].trim();
-                    if (line.startsWith('#EXTINF')) {
-                        let logoMatch = line.match(/tvg-logo="([^"]+)"/);
-                        currentLogo = logoMatch ? logoMatch[1] : 'https://i.postimg.cc/W1z5BGPZ/20240823_024712.png';
-                        
-                        let nameParts = line.split(',');
-                        currentTitle = nameParts[nameParts.length - 1].trim();
-                    } else if (line && !line.startsWith('#')) {
-                        let streamUrl = line;
-                        if (currentTitle) {
-                            let existingChannel = channels.find(ch => ch.name === currentTitle);
-                            if (existingChannel) {
-                                if (Array.isArray(existingChannel.url)) {
-                                    existingChannel.url.push(streamUrl);
-                                } else {
-                                    existingChannel.url = [existingChannel.url, streamUrl];
-                                }
-                            } else {
-                                channels.push({ name: currentTitle, logo: currentLogo, url: streamUrl });
-                            }
-                        }
-                    }
-                }
+        // Render Channels Grid
+        const container = document.getElementById('channelContainer');
+        container.innerHTML = '';
 
-                const container = document.getElementById('channelContainer');
-                container.innerHTML = '';
+        channels.forEach(ch => {
+            const btn = document.createElement('div');
+            btn.className = 'ch-btn';
+            
+            let img = document.createElement('img');
+            img.src = ch.logo || "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png";
+            img.onerror = () => { img.src = "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png"; };
+            
+            let strong = document.createElement('strong');
+            strong.innerText = ch.name;
+            
+            btn.appendChild(img);
+            btn.appendChild(strong);
+            
+            btn.onclick = () => loadChannel(ch);
+            container.appendChild(btn);
+        });
 
-                channels.forEach(ch => {
-                    const btn = document.createElement('div');
-                    btn.className = 'ch-btn';
-                    
-                    let img = document.createElement('img');
-                    img.src = ch.logo || "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png";
-                    img.onerror = () => { img.src = "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png"; };
-                    
-                    let strong = document.createElement('strong');
-                    strong.innerText = ch.name;
-                    
-                    btn.appendChild(img);
-                    btn.appendChild(strong);
-                    
-                    btn.onclick = () => loadChannel(ch);
-                    container.appendChild(btn);
-                });
-
-                if(channels.length > 0) {
-                    loadChannel(channels[0]);
-                }
-            })
-            .catch(error => {
-                console.error('Error loading playlist:', error);
-            });
+        if(channels.length > 0) {
+            loadChannel(channels[0]);
+        }
     </script>
 </body>
 </html>
