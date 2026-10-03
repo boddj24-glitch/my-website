@@ -4,7 +4,7 @@
 const EXPIRE_CODE = "48436844"; 
 
 // মূল M3U প্লেলিস্ট URL
-const PLAYLIST_URL = 'https://raw.githubusercontent.com/boddj24-glitch/my-website/refs/heads/main/smart%2020tv';
+const PLAYLIST_URL = 'https://raw.githubusercontent.com/boddj24-glitch/my-website/refs/heads/main/playlist.m3u';
 // ===================================================
 
 export default async function handler(req, res) {
