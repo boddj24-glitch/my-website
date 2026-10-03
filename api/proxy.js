@@ -1,10 +1,11 @@
+
 // ===================================================
 // সিক্রেট আইডি (প্রয়োজনে পরিবর্তন করুন)
 // ===================================================
 const EXPIRE_CODE = "48436844"; 
 
 // মূল M3U প্লেলিস্ট URL
-const PLAYLIST_URL = 'https://raw.githubusercontent.com/boddj24-glitch/my-website/refs/heads/main/playlist.m3u';
+const PLAYLIST_URL = const PLAYLIST_URL = 'https://raw.githubusercontent.com/boddj24-glitch/my-website/refs/heads/main/playlist.m3u';
 // ===================================================
 
 export default async function handler(req, res) {
@@ -22,12 +23,12 @@ export default async function handler(req, res) {
   const requestUrl = req.url || '';
 
   // ---------------------------------------------------------
-  // ১. M3U প্লেলিস্ট রিকোয়েস্ট
+  // ১. M3U প্লেলিস্ট রিকোয়েস্ট (যেমন: /api/proxy/playlist-expire=48436844.m3u)
   // ---------------------------------------------------------
-  if (!req.query.url && (requestUrl.includes('.m3u') || requestUrl.includes('playlist-expire') || requestUrl === '/' || requestUrl === '/api/proxy')) {
+  if (!req.query.url && (requestUrl.includes('.m3u') || requestUrl.includes('playlist-expire'))) {
     
-    // সিকিউরিটি কোড যাচাইকরণ (যদি প্রয়োজন না হয় চাইলে এই চেক বাদও দিতে পারেন)
-    if (EXPIRE_CODE && !requestUrl.includes(EXPIRE_CODE) && requestUrl !== '/' && requestUrl !== '/api/proxy') {
+    // সিকিউরিটি কোড যাচাইকরণ
+    if (EXPIRE_CODE && !requestUrl.includes(EXPIRE_CODE)) {
       return res.status(403).json({ error: 'Access Denied: Invalid or Expired ID' });
     }
 
@@ -43,8 +44,9 @@ export default async function handler(req, res) {
       }
 
       const content = await response.text();
-      const baseUrl = response.url;
+      const baseUrl = response.url; // Redirect সামলানোর জন্য
 
+      // প্লেলিস্টের প্রতিটি চ্যানেলকে প্রক্সি লিংকে রূপান্তর
       const lines = content.split('\n');
       const rewrittenLines = lines.map(line => {
         const trimmed = line.trim();
@@ -59,7 +61,7 @@ export default async function handler(req, res) {
         return line;
       });
 
-      res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+      res.setHeader('Content-Type', 'application/vnd.apple.mpegurl; charset=utf-8');
       return res.status(200).send(rewrittenLines.join('\n'));
 
     } catch (error) {
@@ -93,6 +95,7 @@ export default async function handler(req, res) {
     const contentType = response.headers.get('content-type') || '';
     const finalUrl = response.url; 
 
+    // M3U8 বা সাব-প্লেলিস্ট চেক
     const isPlaylist = targetUrl.includes('.m3u') || 
                        contentType.includes('mpegurl') || 
                        contentType.includes('m3u') || 
@@ -107,6 +110,7 @@ export default async function handler(req, res) {
           const trimmed = line.trim();
           if (!trimmed) return line;
 
+          // #EXT-X-KEY (AES Encyption) ও #EXT-X-MEDIA ট্যাগের URI প্রক্সি রিরাইট
           if (trimmed.startsWith('#')) {
             if (trimmed.includes('URI=')) {
               return trimmed.replace(/URI=["']([^"']+)["']/g, (match, uri) => {
@@ -121,6 +125,7 @@ export default async function handler(req, res) {
             return line;
           }
 
+          // ভিডিও সেগমেন্ট (.ts) বা সাব-প্লেলিস্ট রিরাইট
           try {
             const abs = new URL(trimmed, finalUrl).href;
             return `${protocol}://${host}/api/proxy?url=${encodeURIComponent(abs)}`;
@@ -137,6 +142,7 @@ export default async function handler(req, res) {
       return res.status(200).send(text);
     }
 
+    // TS/AAC/MP4 ভিডিও সেগমেন্ট প্লেয়ারে পাঠানো
     const arrayBuffer = await response.arrayBuffer();
     res.setHeader('Content-Type', contentType || 'video/mp2t');
     res.setHeader('Cache-Control', 'public, max-age=3600');
