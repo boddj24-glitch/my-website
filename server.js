@@ -1,7 +1,6 @@
 const express = require('express');
-const http = require('http');
 const https = require('https');
-const url = require('url');
+const http = require('http');
 const app = express();
 
 app.get('/proxy', (req, res) => {
@@ -14,34 +13,24 @@ app.get('/proxy', (req, res) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', '*');
 
-    const parsedUrl = url.parse(targetUrl);
-    const client = parsedUrl.protocol === 'https:' ? https : http;
+    const client = targetUrl.startsWith('https') ? https : http;
 
     const options = {
-        hostname: parsedUrl.hostname,
-        port: parsedUrl.port || (parsedUrl.protocol === 'https:' ? 443 : 80),
-        path: parsedUrl.path,
-        method: 'GET',
         headers: {
             'User-Agent': 'VLC/3.0.16 LibVLC/3.0.16',
-            'Referer': `${parsedUrl.protocol}//${parsedUrl.hostname}`,
             'Accept': '*/*'
         }
     };
 
-    const proxyReq = client.request(options, (proxyRes) => {
+    client.get(targetUrl, options, (proxyRes) => {
         if (proxyRes.headers['content-type']) {
             res.setHeader('Content-Type', proxyRes.headers['content-type']);
         }
         res.writeHead(proxyRes.statusCode, proxyRes.headers);
         proxyRes.pipe(res);
-    });
-
-    proxyReq.on('error', (err) => {
+    }).on('error', (err) => {
         res.status(500).send('Proxy error: ' + err.message);
     });
-
-    proxyReq.end();
 });
 
 const PORT = process.env.PORT || 10000;
