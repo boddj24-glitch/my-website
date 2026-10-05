@@ -15,16 +15,20 @@ app.get('/proxy', (req, res) => {
 
     const client = targetUrl.startsWith('https') ? https : http;
 
-    // অরিজিনাল সার্ভার যাতে ব্লক না করে, সেজন্য ব্রাউজারের মতো ফেক হেডার পাঠানো
     const options = {
         headers: {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-            'Referer': targetUrl
+            'Referer': targetUrl,
+            'Accept': '*/*'
         }
     };
 
     client.get(targetUrl, options, (proxyRes) => {
-        res.writeHead(proxyRes.statusCode, proxyRes.headers);
+        // কন্টেন্ট টাইপ ঠিকমতো পাস করা যাতে ভিডিও প্লেয়ার বুঝতে পারে
+        if (proxyRes.headers['content-type']) {
+            res.setHeader('Content-Type', proxyRes.headers['content-type']);
+        }
+        res.writeHead(proxyRes.statusCode);
         proxyRes.pipe(res);
     }).on('error', (err) => {
         res.status(500).send('Proxy error: ' + err.message);
