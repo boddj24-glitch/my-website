@@ -9,6 +9,7 @@ app.get('/proxy', (req, res) => {
         return res.status(400).send('URL parameter is required');
     }
 
+    // CORS এবং সিকিউরিটি হেডার এলাউ করা
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', '*');
@@ -16,6 +17,7 @@ app.get('/proxy', (req, res) => {
     const client = targetUrl.startsWith('https') ? https : http;
 
     client.get(targetUrl, (proxyRes) => {
+        // অরিজিনাল স্ট্রিমিং সার্ভারের স্ট্যাটাস এবং হেডারগুলো হুবহু ফরোয়ার্ড করা
         res.writeHead(proxyRes.statusCode, proxyRes.headers);
         proxyRes.pipe(res);
     }).on('error', (err) => {
