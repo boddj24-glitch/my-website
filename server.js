@@ -1,14 +1,24 @@
 const express = require('express');
-const request = require('request');
+const http = require('http');
+const https = require('https');
 const app = express();
 
-app.get('/proxy', (f, res) => {
-    const targetUrl = f.query.url;
+app.get('/proxy', (req, res) => {
+    const targetUrl = req.query.url;
     if (!targetUrl) {
         return res.status(400).send('URL parameter is missing');
     }
+
     res.setHeader('Access-Control-Allow-Origin', '*');
-    req.pipe(request(targetUrl)).pipe(res);
+
+    const client = targetUrl.startsWith('https') ? https : http;
+
+    client.get(targetUrl, (proxyRes) => {
+        res.writeHead(proxyRes.statusCode, proxyRes.headers);
+        proxyRes.pipe(res);
+    }).on('error', (err) => {
+        res.status(500).send('Proxy error: ' + err.message);
+    });
 });
 
 const PORT = process.env.PORT || 3000;
