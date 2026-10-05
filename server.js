@@ -23,7 +23,7 @@ app.get('/proxy', (req, res) => {
         path: parsedUrl.path,
         method: 'GET',
         headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'User-Agent': 'VLC/3.0.16 LibVLC/3.0.16',
             'Referer': `${parsedUrl.protocol}//${parsedUrl.hostname}`,
             'Accept': '*/*'
         }
