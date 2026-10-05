@@ -1,19 +1,41 @@
-from flask import Flask, jsonify
-import json
-import os
+from http.server import BaseHTTPRequestHandler
+import urllib.parse
+import urllib.request
 
-app = Flask(__name__)
+class handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        # URL থেকে query parameters পার্স করা
+        parsed_path = urllib.parse.urlparse(self.path)
+        query_params = urllib.parse.parse_qs(parsed_path.query)
+        
+        target_url = query_params.get('url', [None])[0]
 
-@app.route('/api/channels', methods=['GET'])
-def get_channels():
-    try:
-        # প্রজেক্ট রুটে থাকা channels.json ফাইল পড়া
-        file_path = os.path.join(os.path.dirname(__file__), '..', 'channels.json')
-        with open(file_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-        return jsonify(data)
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        if not target_url:
+            self.send_response(400)
+            self.send_header('Content-type', 'text/plain')
+            self.end_headers()
+            self.wfile.write(b'URL parameter is missing')
+            return
 
-if __name__ == '__main__':
-    app.run(debug=True)
+        try:
+            # টার্গেট লিংকে রিকোয়েস্ট পাঠানোর জন্য ইউজার-এজেন্ট সেট করা
+            req = urllib.request.Request(
+                target_url,
+                headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
+            )
+            
+            with urllib.request.urlopen(req) as response:
+                content_type = response.headers.get('Content-Type', 'application/octet-stream')
+                body = response.read()
+
+                self.send_response(200)
+                self.send_header('Content-Type', content_type)
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(body)
+                
+        except Exception as e:
+            self.send_response(500)
+            self.send_header('Content-type', 'text/plain')
+            self.end_headers()
+            self.wfile.write(f'Proxy Error: {str(e)}'.encode('utf-8'))
