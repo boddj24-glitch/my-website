@@ -150,23 +150,52 @@
             border-color: var(--accent-color);
         }
 
+        .channel-sidebar {
+            flex: 2.1;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-color);
+            padding: 15px;
+            border-radius: 12px;
+            min-width: 300px;
+            max-width: 100%;
+        }
+
         .channel-list { 
-            flex: 2.1; 
             display: grid; 
             grid-template-columns: repeat(4, 1fr); 
             gap: 10px; 
-            height: 80vh; 
-            overflow-y: scroll; 
-            overflow-x: hidden;
-            scrollbar-gutter: stable; 
-            background: var(--bg-color); 
-            padding: 15px; 
-            border-radius: 12px; 
+            height: 73vh; 
+            overflow-y: auto; 
+            overflow-x: hidden; 
             align-content: start; 
-            min-width: 300px;
-            max-width: 100%;
-            scrollbar-width: thin;
-            scrollbar-color: #484f58 var(--bg-color);
+            padding-right: 5px;
+        }
+
+        /* Scroll Buttons Container */
+        .scroll-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .scroll-btn {
+            flex: 1;
+            background: #21262d;
+            color: var(--accent-color);
+            border: 1px solid #30363d;
+            padding: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            text-align: center;
+            transition: 0.2s;
+        }
+
+        .scroll-btn:hover {
+            background: var(--accent-color);
+            color: #000;
         }
 
         .video-box { 
@@ -288,7 +317,7 @@
         @media (max-width: 768px) {
             .channel-list {
                 grid-template-columns: repeat(3, 1fr);
-                height: 60vh;
+                height: 55vh;
             }
         }
 
@@ -298,20 +327,8 @@
             }
         }
 
-        /* Custom Scrollbar - পরিষ্কারভাবে দৃশ্যমান ও সুন্দর রাখার জন্য */
-        ::-webkit-scrollbar { 
-            width: 8px; 
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb { 
-            background: #484f58; 
-            border-radius: 4px; 
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-color);
-        }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -344,8 +361,15 @@
             </div>
         </div>
 
-        <div class="channel-list" id="channelContainer">
-            <p style="text-align: center; color: #888; grid-column: span 4;">চ্যানেল লোড হচ্ছে...</p>
+        <div class="channel-sidebar">
+            <div class="channel-list" id="channelContainer">
+                <p style="text-align: center; color: #888; grid-column: span 4;">চ্যানেল লোড হচ্ছে...</p>
+            </div>
+            <!-- নিচের স্ক্রল বাটন দুটি -->
+            <div class="scroll-controls">
+                <button class="scroll-btn" onclick="scrollList('up')">▲ উপরে যান</button>
+                <button class="scroll-btn" onclick="scrollList('down')">নিচে যান ▼</button>
+            </div>
         </div>
     </div>
 
@@ -417,6 +441,16 @@
 
         function switchMode(mode) {
             if (currentUrl) loadChannelUrl(currentUrl, mode);
+        }
+
+        // Channel list smooth scroll function
+        function scrollList(direction) {
+            const container = document.getElementById('channelContainer');
+            const scrollAmount = 200;
+            container.scrollBy({
+                top: direction === 'up' ? -scrollAmount : scrollAmount,
+                behavior: 'smooth'
+            });
         }
 
         function loadChannel(ch) {
