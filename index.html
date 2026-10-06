@@ -164,6 +164,8 @@
             align-content: start; 
             min-width: 300px;
             max-width: 100%;
+            scrollbar-width: thin; /* Firefox এর জন্য */
+            scrollbar-color: #30363d var(--bg-color);
         }
 
         .video-box { 
@@ -295,8 +297,21 @@
             }
         }
 
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 10px; }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { 
+            width: 6px; 
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb { 
+            background: #30363d; 
+            border-radius: 10px; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color);
+        }
     </style>
 </head>
 <body>
