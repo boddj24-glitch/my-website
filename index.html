@@ -64,7 +64,8 @@
             max-width: 1800px; 
             margin: auto; 
             flex-wrap: wrap; 
-            justify-content: center; 
+            justify-content: space-between; 
+            align-items: flex-start;
         }
 
         .player-section { 
@@ -144,7 +145,7 @@
             border-color: var(--accent-color);
         }
 
-        /* এখানে চ্যানেল লিস্টের লেআউট এবং প্যাডিং পারফেক্ট করা হয়েছে */
+        /* পারফেক্ট গ্রিড এবং লেআউট ফিক্স */
         .channel-list { 
             flex: 2.1; 
             display: grid; 
@@ -158,7 +159,8 @@
             border-radius: 12px; 
             align-content: start; 
             box-sizing: border-box; 
-            direction: ltr; /* বাম দিক থেকে সাজানো নিশ্চিত করতে */
+            direction: ltr;
+            margin-right: 0;
         }
 
         .video-box { 
