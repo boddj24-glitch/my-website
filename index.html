@@ -7,9 +7,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- PWA Manifest Link -->
-    <link rel="manifest" href="/manifest.json">
-
     <!-- Primary SEO Meta Tags -->
     <title>SHAWON TV PALASHBARI - Live TV Streaming, Sports, News & Bangla Channels</title>
     <meta name="title" content="SHAWON TV PALASHBARI - Live TV Streaming, Sports, News & Bangla Channels">
@@ -17,7 +14,7 @@
     <meta name="keywords" content="SHAWON TV PALASHBARI, Live TV, T Sports live, A Sports HD, Bangladeshi TV channels online, Watch live sports, Free streaming website">
     <meta name="author" content="SHAWON TV PALASHBARI">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph / Facebook Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://yourwebsite.com/">
@@ -313,22 +310,10 @@
         <button class="play-btn" onclick="playCustom()">প্লে করুন</button>
     </div>
 
-    <!-- Service Worker Registration Script -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then(reg => console.log('Service Worker registered!'))
-            .catch(err => console.log('Service Worker registration failed: ', err));
-        });
-      }
-    </script>
-
     <script>
         // ==========================================
         // ADVANCED HACK-PROOF SECURITY DEFENSE
         // ==========================================
-
         ['contextmenu', 'selectstart', 'copy', 'cut', 'dragstart'].forEach(eventType => {
             document.addEventListener(eventType, e => e.preventDefault());
         });
@@ -369,7 +354,7 @@
         })();
 
         // ==========================================
-        // PLAYER LOGIC
+        // PLAYER LOGIC & CHANNEL LIST
         // ==========================================
         const videoEl = document.getElementById('my-video');
         const iframe = document.getElementById('custom-iframe');
@@ -379,6 +364,23 @@
         let hls; 
         let currentMode = 'videojs';
         let currentUrl = '';
+
+        // আপনার চ্যানেলের লিস্ট এখানে যুক্ত করুন (একাধিক সার্ভার থাকলে অ্যারে আকারে দিতে পারেন)
+        const channels = [
+            {
+                name: "T Sports",
+                logo: "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png",
+                url: [
+                    "https://example.com/tsports-server1.m3u8",
+                    "https://example.com/tsports-server2.m3u8"
+                ]
+            },
+            {
+                name: "A Sports",
+                logo: "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png",
+                url: "https://example.com/asports.m3u8"
+            }
+        ];
 
         function togglePIP() {
             if (videoEl.style.display !== 'none' && document.pictureInPictureEnabled) {
@@ -465,6 +467,34 @@
                 document.getElementById('activeChannelName').innerText = "Custom URL - সার্ভার পরিবর্তন করুন";
                 loadChannelUrl(url, currentMode);
             }
+        }
+
+        // রেন্ডার চ্যানেল লিস্ট
+        const container = document.getElementById('channelContainer');
+        container.innerHTML = '';
+
+        if (channels.length > 0) {
+            channels.forEach(ch => {
+                const btn = document.createElement('div');
+                btn.className = 'ch-btn';
+                
+                let img = document.createElement('img');
+                img.src = ch.logo;
+                img.onerror = () => { img.src = "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png"; };
+                
+                let strong = document.createElement('strong');
+                strong.innerText = ch.name;
+                
+                btn.appendChild(img);
+                btn.appendChild(strong);
+                
+                btn.onclick = () => loadChannel(ch);
+                container.appendChild(btn);
+            });
+
+            loadChannel(channels[0]);
+        } else {
+            container.innerHTML = '<p style="text-align: center; color: red; grid-column: span 4;">কোনো চ্যানেল পাওয়া যায়নি।</p>';
         }
     </script>
 </body>
