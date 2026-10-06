@@ -395,49 +395,7 @@
                 return false;
             }
         });
-
-        function checkDevTools() {
-            const widthThreshold = window.outerWidth - window.innerWidth > 160;
-            const heightThreshold = window.outerHeight - window.innerHeight > 160;
-            
-            if (widthThreshold || heightThreshold) {
-                document.body.innerHTML = "<div style='background:black;height:100vh;display:flex;justify-content:center;align-items:center;'><h1 style='color:red;font-family:sans-serif;text-align:center;'>⛔ Security Alert: Developer Tools are blocked on this site!</h1></div>";
-                window.location.href = "about:blank";
-            }
-        }
-        setInterval(checkDevTools, 300);
-
-        (function() {
-            const devtools = /./;
-            devtools.toString = function() {
-                checkDevTools();
-                return '';
-            }
-            setInterval(function() {
-                console.log('%c', devtools);
-                console.clear();
-            }, 500);
-        })();
-
-        // ==========================================
-        // PLAYER LOGIC & DYNAMIC M3U PARSER
-        // ==========================================
-        const videoEl = document.getElementById('my-video');
-        const iframe = document.getElementById('custom-iframe');
-        const clapprEl = document.getElementById('clappr-container');
-        const html5El = document.getElementById('html5-video');
-        let clapprInstance;
-        let hls; 
-        let currentMode = 'videojs';
-        let currentUrl = '';
-
-        function togglePIP() {
-            if (videoEl.style.display !== 'none' && document.pictureInPictureEnabled) {
-                videoEl.requestPictureInPicture();
-            }
-        }
-
-        function switchMode(mode) {
+function switchMode(mode) {
             if (currentUrl) loadChannelUrl(currentUrl, mode);
         }
 
@@ -518,61 +476,28 @@
             }
         }
 
-        // Fetch playlist.m3u dynamically and populate channels
-        fetch('https://raw.githubusercontent.com/boddj24-glitch/my-website/refs/heads/main/playlist.m3u')
-            .then(response => response.text())
-            .then(data => {
-                const lines = data.split('\n');
-                let channels = [];
-                
-                for (let i = 0; i < lines.length; i++) {
-                    if (lines[i].startsWith('#EXTINF')) {
-                        let line = lines[i];
-                        
-                        let logoMatch = line.match(/tvg-logo="([^"]+)"/);
-                        let logo = logoMatch ? logoMatch[1] : 'https://i.postimg.cc/W1z5BGPZ/20240823_024712.png';
-                        
-                        let nameParts = line.split(',');
-                        let title = nameParts[nameParts.length - 1].trim();
-                        
-                        let streamUrl = lines[i + 1] ? lines[i + 1].trim() : '#';
-                        
-                        if (title && !title.startsWith('#')) {
-                            channels.push({ name: title, logo: logo, url: streamUrl });
-                        }
-                    }
-                }
+        const container = document.getElementById('channelContainer');
+        channels.forEach(ch => {
+            const btn = document.createElement('div');
+            btn.className = 'ch-btn';
+            
+            let img = document.createElement('img');
+            img.src = ch.logo || "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png";
+            img.onerror = () => { img.src = "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png"; };
+            
+            let strong = document.createElement('strong');
+            strong.innerText = ch.name;
+            
+            btn.appendChild(img);
+            btn.appendChild(strong);
+            
+            btn.onclick = () => loadChannel(ch);
+            container.appendChild(btn);
+        });
 
-                const container = document.getElementById('channelContainer');
-                container.innerHTML = '';
-
-                if (channels.length > 0) {
-                    channels.forEach(ch => {
-                        const btn = document.createElement('div');
-                        btn.className = 'ch-btn';
-                        
-                        let img = document.createElement('img');
-                        img.src = ch.logo;
-                        img.onerror = () => { img.src = "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png"; };
-                        
-                        let strong = document.createElement('strong');
-                        strong.innerText = ch.name;
-                        
-                        btn.appendChild(img);
-                        btn.appendChild(strong);
-                        
-                        btn.onclick = () => loadChannel(ch);
-                        container.appendChild(btn);
-                    });
-
-                    loadChannel(channels[0]);
-                } else {
-                    container.innerHTML = '<p style="text-align: center; color: red; grid-column: span 4;">কোনো চ্যানেল পাওয়া যায়নি।</p>';
-                }
-            })
-            .catch(error => {
-                document.getElementById('channelContainer').innerHTML = '<p style="text-align: center; color: red; grid-column: span 4;">চ্যানেল লিস্ট লোড করতে সমস্যা হয়েছে।</p>';
-            });
+        if(channels.length > 0) {
+            loadChannel(channels[0]);
+        }
     </script>
 </body>
 </html>
