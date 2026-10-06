@@ -7,12 +7,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- PWA Manifest Link -->
+    <link rel="manifest" href="/manifest.json">
+
     <!-- Primary SEO Meta Tags -->
-    <title>SHAWON TV - Live TV Streaming, Sports, News & Bangla Channels</title>
-    <meta name="title" content="SHAWON TV - Live TV Streaming, Sports, News & Bangla Channels">
-    <meta name="description" content="Watch live TV streaming, sports channels like T Sports, A Sports, Star Sports, and Bangladeshi, Indian news & entertainment channels for free on SHAWON TV.">
-    <meta name="keywords" content="SHAWON TV, Live TV, T Sports live, A Sports HD, Bangladeshi TV channels online, Watch live sports, Free streaming website">
-    <meta name="author" content="SHAWON TV">
+    <title>SHAWON TV PALASHBARI - Live TV Streaming, Sports, News & Bangla Channels</title>
+    <meta name="title" content="SHAWON TV PALASHBARI - Live TV Streaming, Sports, News & Bangla Channels">
+    <meta name="description" content="Watch live TV streaming, sports channels like T Sports, A Sports, Star Sports, and Bangladeshi, Indian news & entertainment channels for free on SHAWON TV PALASHBARI.">
+    <meta name="keywords" content="SHAWON TV PALASHBARI, Live TV, T Sports live, A Sports HD, Bangladeshi TV channels online, Watch live sports, Free streaming website">
+    <meta name="author" content="SHAWON TV PALASHBARI">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook Meta Tags -->
@@ -28,6 +31,17 @@
     <meta name="twitter:title" content="SHAWON TV - Live TV Streaming & Sports">
     <meta name="twitter:description" content="Watch live TV streaming, sports channels like T Sports, A Sports, Star Sports, and local news channels for free.">
     <meta name="twitter:image" content="https://i.postimg.cc/W1z5BGPZ/20240823_024712.png">
+
+    <!-- Service Worker Registration Script -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('Service Worker registered!'))
+            .catch(err => console.log('Service Worker registration failed: ', err));
+        });
+      }
+    </script>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://i.ibb.co.com/PvnVqbdS/cpt-1469868507562.jpg">
@@ -248,7 +262,7 @@
             display: flex; 
             gap: 10px; 
             max-width: 1800px; 
-            margin: 20px auto; 
+            margin: 20px auto 10px auto; 
         }
         
         #customUrlInput { 
@@ -367,29 +381,18 @@
 
     <!-- সোশ্যাল মিডিয়া লিংক সেকশন -->
     <div class="social-footer">
-        <a href="https://t.me/shawonpb" target="_blank" class="social-btn telegram-btn">
+        <a href="https://t.me/your_telegram_username" target="_blank" class="social-btn telegram-btn">
             📱 Join Telegram
         </a>
-        <a href="https://www.facebook.com/aribashawon6672/" target="_blank" class="social-btn facebook-btn">
+        <a href="https://facebook.com/your_facebook_page" target="_blank" class="social-btn facebook-btn">
             🌐 Follow Facebook
         </a>
-        <a href="https://wa.me/8801812895985" target="_blank" class="social-btn whatsapp-btn">
+        <a href="https://wa.me/your_whatsapp_number" target="_blank" class="social-btn whatsapp-btn">
             💬 Join WhatsApp
         </a>
     </div>
 
     <script>
-        // ==========================================
-        // SAMPLE CHANNELS (এখানে আপনার চ্যানেল লিস্ট দিতে পারেন)
-        // ==========================================
-        const channels = [
-            {
-                name: "T Sports",
-                logo: "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png",
-                url: "আপনার_স্ট্রিম_লিঙ্ক_এখানে"
-            }
-        ];
-
         // ==========================================
         // ADVANCED HACK-PROOF SECURITY DEFENSE
         // ==========================================
@@ -433,7 +436,7 @@
         })();
 
         // ==========================================
-        // PLAYER LOGIC
+        // PLAYER LOGIC & DYNAMIC M3U PARSER
         // ==========================================
         const videoEl = document.getElementById('my-video');
         const iframe = document.getElementById('custom-iframe');
@@ -529,31 +532,6 @@
                 document.getElementById('activeChannelName').innerText = "Custom URL - সার্ভার পরিবর্তন করুন";
                 loadChannelUrl(url, currentMode);
             }
-        }
-
-        const container = document.getElementById('channelContainer');
-        container.innerHTML = ""; // আগের লোডিং লেখা মুছে ফেলা হলো
-        
-        channels.forEach(ch => {
-            const btn = document.createElement('div');
-            btn.className = 'ch-btn';
-            
-            let img = document.createElement('img');
-            img.src = ch.logo || "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png";
-            img.onerror = () => { img.src = "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png"; };
-            
-            let strong = document.createElement('strong');
-            strong.innerText = ch.name;
-            
-            btn.appendChild(img);
-            btn.appendChild(strong);
-            
-            btn.onclick = () => loadChannel(ch);
-            container.appendChild(btn);
-        });
-
-        if(channels.length > 0) {
-            loadChannel(channels[0]);
         }
     </script>
 </body>
