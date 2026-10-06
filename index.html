@@ -158,7 +158,7 @@
             height: 80vh; 
             overflow-y: scroll; 
             overflow-x: hidden;
-            scrollbar-gutter: stable; /* Eta scroll-er karone layout chore jaoya rokhe */
+            scrollbar-gutter: stable; 
             background: var(--bg-color); 
             padding: 15px; 
             border-radius: 12px; 
@@ -166,7 +166,7 @@
             min-width: 300px;
             max-width: 100%;
             scrollbar-width: thin;
-            scrollbar-color: #30363d var(--bg-color);
+            scrollbar-color: var(--accent-color) #21262d;
         }
 
         .video-box { 
@@ -298,20 +298,21 @@
             }
         }
 
-        /* Custom Scrollbar */
+        /* Custom Scrollbar - স্পষ্ট ও দৃশ্যমান করার জন্য ডিজাইন আপডেট করা হয়েছে */
         ::-webkit-scrollbar { 
-            width: 6px; 
+            width: 10px; 
         }
         ::-webkit-scrollbar-track {
-            background: var(--bg-color);
+            background: #0d1117;
             border-radius: 10px;
+            border: 1px solid #30363d;
         }
         ::-webkit-scrollbar-thumb { 
-            background: #30363d; 
+            background: var(--accent-color); 
             border-radius: 10px; 
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-color);
+            background: #d4a753;
         }
     </style>
 </head>
