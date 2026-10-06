@@ -156,15 +156,16 @@
             grid-template-columns: repeat(4, 1fr); 
             gap: 10px; 
             height: 80vh; 
-            overflow-y: auto; 
+            overflow-y: scroll; 
             overflow-x: hidden;
+            scrollbar-gutter: stable; /* Eta scroll-er karone layout chore jaoya rokhe */
             background: var(--bg-color); 
             padding: 15px; 
             border-radius: 12px; 
             align-content: start; 
             min-width: 300px;
             max-width: 100%;
-            scrollbar-width: thin; /* Firefox এর জন্য */
+            scrollbar-width: thin;
             scrollbar-color: #30363d var(--bg-color);
         }
 
