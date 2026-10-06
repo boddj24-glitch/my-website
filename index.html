@@ -151,7 +151,7 @@
             gap: 10px; 
             height: 80vh; 
             overflow-y: auto; 
-            overflow-x: hidden; /* ডানে-বামে স্ক্রোল বা ওভারফ্লো বন্ধ করতে */
+            overflow-x: hidden;
             background: var(--bg-color); 
             padding: 15px; 
             border-radius: 12px; 
@@ -248,7 +248,7 @@
             display: flex; 
             gap: 10px; 
             max-width: 1800px; 
-            margin: 20px auto; 
+            margin: 20px auto 10px auto; 
         }
         
         #customUrlInput { 
@@ -268,6 +268,48 @@
             cursor: pointer; 
             font-weight: bold; 
             color: #000; 
+        }
+
+        /* সোশ্যাল মিডিয়া বাটন সেকশন ডিজাইন */
+        .social-footer {
+            display: flex;
+            gap: 15px;
+            max-width: 1800px;
+            margin: 0 auto 20px auto;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            color: #fff;
+            transition: 0.3s;
+            border: 1px solid #30363d;
+        }
+
+        .telegram-btn {
+            background: #0088cc;
+        }
+
+        .telegram-btn:hover {
+            background: #0077b5;
+            border-color: #fff;
+        }
+
+        .facebook-btn {
+            background: #1877f2;
+        }
+
+        .facebook-btn:hover {
+            background: #145dbf;
+            border-color: #fff;
         }
 
         ::-webkit-scrollbar { width: 5px; }
@@ -312,6 +354,16 @@
     <div class="input-box">
         <input type="text" id="customUrlInput" placeholder="লিঙ্ক এখানে দিন (M3U8 বা URL)...">
         <button class="play-btn" onclick="playCustom()">প্লে করুন</button>
+    </div>
+
+    <!-- সোশ্যাল মিডিয়া লিংক সেকশন -->
+    <div class="social-footer">
+        <a href="https://t.me/your_telegram_username" target="_blank" class="social-btn telegram-btn">
+            📱 Join Telegram Channel
+        </a>
+        <a href="https://facebook.com/your_facebook_page" target="_blank" class="social-btn facebook-btn">
+            🌐 Follow on Facebook
+        </a>
     </div>
 
     <script>
