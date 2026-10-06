@@ -166,7 +166,7 @@
             min-width: 300px;
             max-width: 100%;
             scrollbar-width: thin;
-            scrollbar-color: var(--accent-color) #21262d;
+            scrollbar-color: #484f58 var(--bg-color);
         }
 
         .video-box { 
@@ -298,21 +298,19 @@
             }
         }
 
-        /* Custom Scrollbar - স্পষ্ট ও দৃশ্যমান করার জন্য ডিজাইন আপডেট করা হয়েছে */
+        /* Custom Scrollbar - পরিষ্কারভাবে দৃশ্যমান ও সুন্দর রাখার জন্য */
         ::-webkit-scrollbar { 
-            width: 10px; 
+            width: 8px; 
         }
         ::-webkit-scrollbar-track {
-            background: #0d1117;
-            border-radius: 10px;
-            border: 1px solid #30363d;
+            background: transparent;
         }
         ::-webkit-scrollbar-thumb { 
-            background: var(--accent-color); 
-            border-radius: 10px; 
+            background: #484f58; 
+            border-radius: 4px; 
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #d4a753;
+            background: var(--accent-color);
         }
     </style>
 </head>
