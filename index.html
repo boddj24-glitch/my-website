@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Primary SEO Meta Tags -->
-    <title>SHAWON TV PALASHBARI - Live TV Streaming, Sports, News & Bangla Channels</title>
-    <meta name="title" content="SHAWON TV PALASHBARI - Live TV Streaming, Sports, News & Bangla Channels">
-    <meta name="description" content="Watch live TV streaming, sports channels like T Sports, A Sports, Star Sports, and Bangladeshi, Indian news & entertainment channels for free on SHAWON TV PALASHBARI.">
-    <meta name="keywords" content="SHAWON TV PALASHBARI, Live TV, T Sports live, A Sports HD, Bangladeshi TV channels online, Watch live sports, Free streaming website">
-    <meta name="author" content="SHAWON TV PALASHBARI">
+    <title>SHAWON TV - Live TV Streaming, Sports, News & Bangla Channels</title>
+    <meta name="title" content="SHAWON TV - Live TV Streaming, Sports, News & Bangla Channels">
+    <meta name="description" content="Watch live TV streaming, sports channels like T Sports, A Sports, Star Sports, and Bangladeshi, Indian news & entertainment channels for free on SHAWON TV.">
+    <meta name="keywords" content="SHAWON TV, Live TV, T Sports live, A Sports HD, Bangladeshi TV channels online, Watch live sports, Free streaming website">
+    <meta name="author" content="SHAWON TV">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook Meta Tags -->
@@ -46,12 +46,17 @@
             --accent-color: #e5b860; 
         }
 
+        * {
+            box-sizing: border-box;
+        }
+
         body { 
             background: #0b0e14; 
             color: #fff; 
             font-family: 'Segoe UI', sans-serif; 
             margin: 0; 
-            padding: 20px; 
+            padding: 15px; 
+            overflow-x: hidden;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -60,8 +65,8 @@
 
         .main-container { 
             display: flex; 
-            gap: 20px; 
-            max-width: 1800px; 
+            gap: 15px; 
+            max-width: 100%; 
             margin: auto; 
             flex-wrap: wrap; 
             justify-content: center; 
@@ -69,9 +74,10 @@
 
         .player-section { 
             flex: 3.7; 
-            min-width: 320px; 
+            min-width: 300px; 
+            max-width: 100%;
             background: var(--bg-color); 
-            padding: 20px; 
+            padding: 15px; 
             border-radius: 12px; 
         } 
         
@@ -85,7 +91,7 @@
         }
 
         .logo-header { 
-            font-size: 26px; 
+            font-size: 24px; 
             font-weight: 800; 
             color: var(--accent-color); 
             letter-spacing: 2px; 
@@ -97,7 +103,7 @@
 
         .header-server-switcher {
             flex-grow: 1;
-            min-width: 250px;
+            min-width: 220px;
             background: #0d1117;
             padding: 8px 12px;
             border-radius: 8px;
@@ -151,10 +157,13 @@
             gap: 10px; 
             height: 80vh; 
             overflow-y: auto; 
+            overflow-x: hidden;
             background: var(--bg-color); 
             padding: 15px; 
             border-radius: 12px; 
             align-content: start; 
+            min-width: 300px;
+            max-width: 100%;
         }
 
         .video-box { 
@@ -188,9 +197,10 @@
             background: #333; 
             color: #fff; 
             border: none; 
-            padding: 10px 20px; 
+            padding: 10px 15px; 
             border-radius: 6px; 
             cursor: pointer; 
+            font-size: 13px;
         }
         
         .btn:hover { 
@@ -204,7 +214,7 @@
         
         .ch-btn { 
             background: #21262d; 
-            padding: 10px; 
+            padding: 8px; 
             border-radius: 8px; 
             cursor: pointer; 
             text-align: center; 
@@ -214,10 +224,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             width: 100%;
             height: 95px; 
             box-sizing: border-box;
+            overflow: hidden;
         }
         
         .ch-btn:hover { 
@@ -226,14 +237,14 @@
         }
         
         .ch-btn img { 
-            width: 50px; 
-            height: 50px; 
+            width: 45px; 
+            height: 45px; 
             object-fit: contain; 
             pointer-events: none;
         }
         
         .ch-btn strong { 
-            font-size: 13.2px; 
+            font-size: 12px; 
             font-weight: bold; 
             color: var(--accent-color);
             white-space: nowrap;
@@ -245,27 +256,43 @@
         .input-box { 
             display: flex; 
             gap: 10px; 
-            max-width: 1800px; 
-            margin: 20px auto; 
+            max-width: 100%; 
+            margin: 20px auto 0 auto; 
         }
         
         #customUrlInput { 
             flex: 1; 
-            padding: 15px; 
+            padding: 12px 15px; 
             background: var(--bg-color); 
             border: 1px solid #30363d; 
             color: white; 
             border-radius: 6px; 
+            min-width: 0;
         }
         
         .play-btn { 
             background: var(--accent-color); 
             border: none; 
-            padding: 15px 30px; 
+            padding: 12px 25px; 
             border-radius: 6px; 
             cursor: pointer; 
             font-weight: bold; 
             color: #000; 
+            white-space: nowrap;
+        }
+
+        /* Responsive for mobile screens */
+        @media (max-width: 768px) {
+            .channel-list {
+                grid-template-columns: repeat(3, 1fr);
+                height: 60vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .channel-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         ::-webkit-scrollbar { width: 5px; }
@@ -281,7 +308,7 @@
                 <div class="logo-header">SHAWON TV</div>
                 
                 <div id="serverSwitcherBox" class="header-server-switcher">
-                    <div class="server-title" id="activeChannelName">T Sports - সার্ভার পরিবর্তন করুন</div>
+                    <div class="server-title" id="activeChannelName">চ্যানেল সিলেক্ট করুন</div>
                     <div class="server-buttons-wrap" id="serverButtonsContainer"></div>
                 </div>
             </div>
@@ -302,7 +329,9 @@
             </div>
         </div>
 
-        <div class="channel-list" id="channelContainer"></div>
+        <div class="channel-list" id="channelContainer">
+            <p style="text-align: center; color: #888; grid-column: span 4;">চ্যানেল লোড হচ্ছে...</p>
+        </div>
     </div>
 
     <div class="input-box">
@@ -354,7 +383,7 @@
         })();
 
         // ==========================================
-        // PLAYER LOGIC & CHANNEL LIST
+        // PLAYER LOGIC & DYNAMIC M3U PARSER
         // ==========================================
         const videoEl = document.getElementById('my-video');
         const iframe = document.getElementById('custom-iframe');
@@ -364,23 +393,6 @@
         let hls; 
         let currentMode = 'videojs';
         let currentUrl = '';
-
-        // আপনার চ্যানেলের লিস্ট এখানে যুক্ত করুন (একাধিক সার্ভার থাকলে অ্যারে আকারে দিতে পারেন)
-        const channels = [
-            {
-                name: "T Sports",
-                logo: "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png",
-                url: [
-                    "https://example.com/tsports-server1.m3u8",
-                    "https://example.com/tsports-server2.m3u8"
-                ]
-            },
-            {
-                name: "A Sports",
-                logo: "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png",
-                url: "https://example.com/asports.m3u8"
-            }
-        ];
 
         function togglePIP() {
             if (videoEl.style.display !== 'none' && document.pictureInPictureEnabled) {
@@ -469,33 +481,61 @@
             }
         }
 
-        // রেন্ডার চ্যানেল লিস্ট
-        const container = document.getElementById('channelContainer');
-        container.innerHTML = '';
+        // Fetch playlist.m3u dynamically and populate channels
+        fetch('https://raw.githubusercontent.com/boddj24-glitch/my-website/refs/heads/main/playlist.m3u')
+            .then(response => response.text())
+            .then(data => {
+                const lines = data.split('\n');
+                let channels = [];
+                
+                for (let i = 0; i < lines.length; i++) {
+                    if (lines[i].startsWith('#EXTINF')) {
+                        let line = lines[i];
+                        
+                        let logoMatch = line.match(/tvg-logo="([^"]+)"/);
+                        let logo = logoMatch ? logoMatch[1] : 'https://i.postimg.cc/W1z5BGPZ/20240823_024712.png';
+                        
+                        let nameParts = line.split(',');
+                        let title = nameParts[nameParts.length - 1].trim();
+                        
+                        let streamUrl = lines[i + 1] ? lines[i + 1].trim() : '#';
+                        
+                        if (title && !title.startsWith('#')) {
+                            channels.push({ name: title, logo: logo, url: streamUrl });
+                        }
+                    }
+                }
 
-        if (channels.length > 0) {
-            channels.forEach(ch => {
-                const btn = document.createElement('div');
-                btn.className = 'ch-btn';
-                
-                let img = document.createElement('img');
-                img.src = ch.logo;
-                img.onerror = () => { img.src = "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png"; };
-                
-                let strong = document.createElement('strong');
-                strong.innerText = ch.name;
-                
-                btn.appendChild(img);
-                btn.appendChild(strong);
-                
-                btn.onclick = () => loadChannel(ch);
-                container.appendChild(btn);
+                const container = document.getElementById('channelContainer');
+                container.innerHTML = '';
+
+                if (channels.length > 0) {
+                    channels.forEach(ch => {
+                        const btn = document.createElement('div');
+                        btn.className = 'ch-btn';
+                        
+                        let img = document.createElement('img');
+                        img.src = ch.logo;
+                        img.onerror = () => { img.src = "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png"; };
+                        
+                        let strong = document.createElement('strong');
+                        strong.innerText = ch.name;
+                        
+                        btn.appendChild(img);
+                        btn.appendChild(strong);
+                        
+                        btn.onclick = () => loadChannel(ch);
+                        container.appendChild(btn);
+                    });
+
+                    loadChannel(channels[0]);
+                } else {
+                    container.innerHTML = '<p style="text-align: center; color: red; grid-column: span 4;">কোনো চ্যানেল পাওয়া যায়নি।</p>';
+                }
+            })
+            .catch(error => {
+                document.getElementById('channelContainer').innerHTML = '<p style="text-align: center; color: red; grid-column: span 4;">চ্যানেল লিস্ট লোড করতে সমস্যা হয়েছে।</p>';
             });
-
-            loadChannel(channels[0]);
-        } else {
-            container.innerHTML = '<p style="text-align: center; color: red; grid-column: span 4;">কোনো চ্যানেল পাওয়া যায়নি।</p>';
-        }
     </script>
 </body>
 </html>
