@@ -227,18 +227,13 @@
             border-color: var(--accent-color); 
         }
         
-     .ch-btn img { 
-    width: 50px; 
-    height: 50px; 
-    object-fit: contain; 
-    background: transparent; /* ব্যাকগ্রাউন্ড সম্পূর্ণ ট্রান্সপারেন্ট থাকবে */
-    padding: 0;             /* কোনো এক্সট্রা প্যাডিং থাকবে না */
-    border-radius: 0;       /* স্কয়ার বক্স এফেক্ট দূর করার জন্য */
-    pointer-events: none;
-}
-
-
-     
+        .ch-btn img { 
+            width: 50px; 
+            height: 50px; 
+            object-fit: contain; 
+            pointer-events: none;
+        }
+        
         .ch-btn strong { 
             font-size: 13.2px; 
             font-weight: bold; 
@@ -299,14 +294,32 @@
             border: 1px solid #30363d;
         }
 
-        .telegram-btn { background: #0088cc; }
-        .telegram-btn:hover { background: #0077b5; border-color: #fff; }
+        .telegram-btn {
+            background: #0088cc;
+        }
 
-        .facebook-btn { background: #1877f2; }
-        .facebook-btn:hover { background: #145dbf; border-color: #fff; }
+        .telegram-btn:hover {
+            background: #0077b5;
+            border-color: #fff;
+        }
 
-        .whatsapp-btn { background: #25d366; }
-        .whatsapp-btn:hover { background: #1ebe5d; border-color: #fff; }
+        .facebook-btn {
+            background: #1877f2;
+        }
+
+        .facebook-btn:hover {
+            background: #145dbf;
+            border-color: #fff;
+        }
+
+        .whatsapp-btn {
+            background: #25d366;
+        }
+
+        .whatsapp-btn:hover {
+            background: #1ebe5d;
+            border-color: #fff;
+        }
 
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 10px; }
