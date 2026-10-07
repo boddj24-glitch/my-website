@@ -144,18 +144,19 @@
             border-color: var(--accent-color);
         }
 
-  .channel-list { 
-            flex: 2.1; 
-            display: grid; 
-            grid-template-columns: repeat(4, minmax(0, 1fr)); /* এটি কলামগুলোকে ফ্লেক্সিবল রাখবে */
-            gap: 10px; 
-            height: 80vh; 
-            overflow-y: auto; 
-            background: var(--bg-color); 
-            padding: 15px; 
-            padding-right: 10px /* প্যাডিং আরও একটু বাড়িয়ে দিন */
-            border-radius: 12px; 
-            align-content: start; 
+     .channel-list { 
+    flex: 2.1; 
+    display: grid; 
+    grid-template-columns: repeat(4, minmax(0, 1fr)); 
+    gap: 10px; 
+    height: 80vh; 
+    overflow-y: auto; /* স্ক্রল করার জন্য */
+    background: var(--bg-color); 
+    padding: 15px; 
+    padding-right: 10px /* এখানে একটি সেমিকোলন (;) মিসিং আছে এবং প্যাডিং ম্যানেজমেন্টে সমস্যা হতে পারে */
+    border-radius: 12px; 
+    align-content: start; 
+}
         }
 
         .video-box { 
