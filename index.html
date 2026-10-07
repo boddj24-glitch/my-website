@@ -144,16 +144,17 @@
             border-color: var(--accent-color);
         }
 
-         .channel-list {
+  .channel-list {
     flex: 2.1;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+    grid-template-columns: repeat(4, minmax(0, 1fr)); /* এটি কলামগুলোকে ফ্লেক্সিবল রাখবে */
+    gap: 12px; /* গ্যাপ সামান্য বাড়িয়ে দিন */
     height: 80vh;
     overflow-y: auto;
     overflow-x: hidden;
     background: var(--bg-color);
-    padding: 15px 20px 15px 15px; /* Top, Right, Bottom, Left - evabe padding din */
+    padding: 15px;
+    padding-right: 30px; /* প্যাডিং আরও একটু বাড়িয়ে দিন */
     border-radius: 12px;
     align-content: start;
     box-sizing: border-box;
