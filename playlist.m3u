@@ -2,6 +2,9 @@
 #EXTINF:-1 tvg-logo="https://static.wikia.nocookie.net/etv-gspn-bangla/images/6/6e/T_Sports_HD_logo_2021.png",T Sports
 https://my-website-hx91.onrender.com/proxy?url=http://103.151.60.162:2122/play/a030/index.m3u8
 
+#EXTINF:-1 tvg-logo="https://static.wikia.nocookie.net/etv-gspn-bangla/images/6/6e/T_Sports_HD_logo_2021.png",T Sports
+https://shawon-proxy.boddj24.workers.dev/?url=http://103.151.60.162:2122/play/a030/index.m3u8
+
 #EXTINF:-1 tvg-logo="https://tstatic.akash-go.com/cms-ui/images/custom-content/1778082545894.png",BTV
 https://s3.itcnbd.live/server-4/stream/aHR0cDovLzE3Mi4xOS4xNy4yMzA6ODA5MC9obHMvQlRWTmF0aW9uYWxIRC5tM3U4.m3u8
 
