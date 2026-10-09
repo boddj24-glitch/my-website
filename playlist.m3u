@@ -1,12 +1,12 @@
 #EXTM3U
 #EXTINF:-1 tvg-logo="https://static.wikia.nocookie.net/etv-gspn-bangla/images/6/6e/T_Sports_HD_logo_2021.png",T Sports
-http://103.151.60.162:2122/play/a030/index.m3u8
+https://palashbari-tv.vercel.app/api/proxy?url=http://103.151.60.162:2122/play/a030/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://static.wikia.nocookie.net/etv-gspn-bangla/images/6/6e/T_Sports_HD_logo_2021.png",T Sports
-https://shawon-proxy.boddj24.workers.dev/?url=http://103.151.60.162:2122/play/a030/index.m3u8
+https://palashbari-tv.vercel.app/api/proxy?url=http://103.151.60.162:2122/play/a030/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://tstatic.akash-go.com/cms-ui/images/custom-content/1778082545894.png",BTV
-https://s3.itcnbd.live/server-4/stream/aHR0cDovLzE3Mi4xOS4xNy4yMzA6ODA5MC9obHMvQlRWTmF0aW9uYWxIRC5tM3U4.m3u8
+https://palashbari-tv.vercel.app/api/proxy?urlhttps://s3.itcnbd.live/server-4/stream/aHR0cDovLzE3Mi4xOS4xNy4yMzA6ODA5MC9obHMvQlRWTmF0aW9uYWxIRC5tM3U4.m3u8
 
 #EXTINF:-1 tvg-logo="https://i.postimg.cc/Zqgx8hm1/20260430-184013.png",Channel 1
 https://drk6xq0vhn.gpcdn.net/live/channel_1_hd_abr/live/channel_1_hd_720/chunks.m3u8
@@ -347,19 +347,19 @@ https://bein-esp-xumo.amagi.tv/playlistR1080p.m3u8
 
 
 #EXTINF:-1 group-title="Sports" tvg-logo="https://i.postimg.cc/441hHtgZ/20250120_193746.png",Bein Sports 1
-https://my-website-hx91.onrender.com/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/6123/index.m3u8#skym3u.dev
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/6123/index.m3u8#skym3u.dev
 
 #EXTINF:-1 group-title="Sports" tvg-logo="https://i.postimg.cc/FzGdttZ1/20250120_193818.png",Bein Sports 2
-https://my-website-hx91.onrender.com/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/6128/index.m3u8#skym3u.dev
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/6128/index.m3u8#skym3u.dev
 
 #EXTINF:-1 group-title="Sports" tvg-logo="https://i.postimg.cc/B6TPgPPT/20250120_193903.png",Bein Sports 3
-https://my-website-hx91.onrender.com/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/6123/index.m3u8#skym3u.dev
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/6123/index.m3u8#skym3u.dev
 
 #EXTINF:-1 group-title="Sports" tvg-logo="https://i.postimg.cc/B6TPgPPT/20250120_193903.png",Bein Sports 4
-https://my-website-hx91.onrender.com/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/6125/index.m3u8#skym3u.dev
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/6125/index.m3u8#skym3u.dev
 
 #EXTINF:-1 group-title="Sports" tvg-logo="https://i.postimg.cc/B6TPgPPT/20250120_193903.png",Bein Sports 5
-https://my-website-hx91.onrender.com/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/6126/index.m3u8#skym3u.dev
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/6126/index.m3u8#skym3u.dev
 
 #EXTINF:-1 tvg-logo="https://i.postimg.cc/W1z5BGPZ/20240823_024712.png",A Sports HD
 https://tvsen6.aynaott.com/zv68oqPDu7MZZwmHhRxt/tracks-v1a1/mono.ts.m3u8
@@ -378,19 +378,19 @@ https://stream.ottplus.live/live/ten_5_hd_abr/live/ten_5_hd_720/index.m3u8
 
 
 #EXTINF:-1 tvg-logo="https://i.postimg.cc/DzDHjCJm/20240823_024249.png",Star Sports 1 HD
-https://my-website-hx91.onrender.com/proxy?url=https://flussonic.defineatoz.com/Starsports1/tracks-v1a1/mono.m3u8
+https://palashbari-tv.vercel.app/api/proxy?url=https://flussonic.defineatoz.com/Starsports1/tracks-v1a1/mono.m3u8
 
 #EXTINF:-1 tvg-logo="https://i.postimg.cc/zBgM9nK7/20240823_024306.png",Star Sports HD2
 https://tvsen7.aynaott.com/ssport2hd/index.m3u8
 
 #EXTINF:-1, Star Sports hd3
-https://my-website-hx91.onrender.com/proxy?url=http://198.195.239.50:8095/STAR-SPORTS.3/index.m3u8
+https://palashbari-tv.vercel.app/api/proxy?url=http://198.195.239.50:8095/STAR-SPORTS.3/index.m3u8
 
 #EXTINF:-1 group-title="SPORTS" tvg-logo="https://fcnchbd.xyz/iptv/logo/spsss1.png",STAR SPORTS SEL 1HD
-https://my-website-hx91.onrender.com/proxy?url=https://flussonic.defineatoz.com/starsportsselect1/tracks-v1/mono.m3u8
+https://palashbari-tv.vercel.app/api/proxy?url=https://flussonic.defineatoz.com/starsportsselect1/tracks-v1/mono.m3u8
 
 #EXTINF:-1 group-title="SPORTS" tvg-logo="https://fcnchbd.xyz/iptv/logo/spsss2.png",STAR SPORTS SEL 2HD
-https://my-website-hx91.onrender.com/proxy?url=https://flussonic.defineatoz.com/starsportsselect2sw/index.m3u8
+https://palashbari-tv.vercel.app/api/proxy?url=https://flussonic.defineatoz.com/starsportsselect2sw/index.m3u8
 
 
 #EXTINF:-1 tvg-logo="https://i.postimg.cc/HntSg3xw/20240823_024624.png",Willow sports TV
@@ -407,17 +407,17 @@ https://drk6xq0vhn.gpcdn.net/live/ten_cricket_hd_abr/live/ten_cricket_hd_720/chu
 https://robitv.com/lps/https://ml-pull-dvc-myco.io:2096/TENSPORTS_HD/mono.m3u8
 
 #EXTINF:-1 tvg-logo="https://abusaeeidx.github.io/Tv-Channel-Logo/CricHD/runded/9-by-xfireflix.png",Sky sports
-https://rmtv.akamaized.net/hls/live/2043154/rmtv-en-web/bitrate_3.m3u8
+https://palashbari-tv.vercel.app/api/proxy?urlhttps://rmtv.akamaized.net/hls/live/2043154/rmtv-en-web/bitrate_3.m3u8
 
 #EXTINF:-1 tvg-logo="https://abusaeeidx.github.io/Tv-Channel-Logo/CricHD/runded/20-by-xfireflix.png",PTV Sports
-https://my-website-hx91.onrender.com/proxy?url=http://198.195.239.50:8095/PTV-SPORTS-HD/tracks-v1a1/mono.m3u8
+https://palashbari-tv.vercel.app/api/proxy?url=http://198.195.239.50:8095/PTV-SPORTS-HD/tracks-v1a1/mono.m3u8
 
 #EXTINF:-1 tvg-logo="https://s3.aynaott.com/storage/7d20b575edc4e4b5276faa8c246e72a4",Cricket Gold
 https://streams2.sofast.tv/ptnr-yupptv/title-cricketgold/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/b2048bb8-1686-4432-aa50-647245383e0c/bfc6a36e-c250-4afe-b6c9-2bc57855bb7d/4.m3u8
 
 
 #EXTINF:-1  tvg-logo="https://tinyurl.com/y8s5kvty",sky sport criket
-https://my-website-hx91.onrender.com/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/9258/index.m3u8#skym3u.dev
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/9258/index.m3u8#skym3u.dev
 
 #EXTINF:-1  tvg-logo="https://tinyurl.com/y8s5kvty",TSN 2
 https://tvsen7.aynascope.net/tsn2/index.m3u8
@@ -429,28 +429,28 @@ https://tvsen7.aynascope.net/tsn3/index.m3u8
 https://a62dad94.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X0ZJRkFQbHVzRW5nbGlzaF9ITFM/playlist.m3u8
 
 #EXTINF:-1,united
-https://my-website-hx91.onrender.com/proxy?url=http://103.114.11.37:8081/Unite8-sports-1/index.m3u8
+https://palashbari-tv.vercel.app/api/proxy?url=http://103.114.11.37:8081/Unite8-sports-1/index.m3u8
 
 #EXTINF:-1,TNT 
-https://my-website-hx91.onrender.com/proxy?url=http://6zirt9yx.otttv.pw/iptv/HEGN4VXXQQSYCA/2505/index.m3u8#skym3u.dev
+https://palashbari-tv.vercel.app/api/proxy?url=http://6zirt9yx.otttv.pw/iptv/HEGN4VXXQQSYCA/2505/index.m3u8#skym3u.dev
 
 #EXTINF:-1,TNT 2
-https://my-website-hx91.onrender.com/proxy?url=http://6zirt9yx.otttv.pw/iptv/HEGN4VXXQQSYCA/2506/index.m3u8#skym3u.dev
+https://palashbari-tv.vercel.app/api/proxy?url=http://6zirt9yx.otttv.pw/iptv/HEGN4VXXQQSYCA/2506/index.m3u8#skym3u.dev
 
 #EXTINF:-1,TNT 3
-https://my-website-hx91.onrender.com/proxy?url=http://6zirt9yx.otttv.pw/iptv/HEGN4VXXQQSYCA/6564/index.m3u8#skym3u.dev
+https://palashbari-tv.vercel.app/api/proxy?url=http://6zirt9yx.otttv.pw/iptv/HEGN4VXXQQSYCA/6564/index.m3u8#skym3u.dev
 
 #EXTINF:-1,Dazan 1
-https://my-website-hx91.onrender.com/proxy?url=http://6zirt9yx.otttv.pw/iptv/HEGN4VXXQQSYCA/2531/index.m3u8#skym3u.dev
+https://palashbari-tv.vercel.app/api/proxy?url=http://6zirt9yx.otttv.pw/iptv/HEGN4VXXQQSYCA/2531/index.m3u8#skym3u.dev
 
 #EXTINF:-1,Dazan 2
-https://my-website-hx91.onrender.com/proxy?url=http://23.237.104.106:8080/DAZN_2/index.m3u8#skym3u.dev
+https://palashbari-tv.vercel.app/api/proxy?url=http://23.237.104.106:8080/DAZN_2/index.m3u8#skym3u.dev
 
 #EXTINF:-1,Dazan  3
-https://my-website-hx91.onrender.com/proxy?url=http://6zirt9yx.otttv.pw/iptv/HEGN4VXXQQSYCA/2533/index.m3u8#skym3u.dev
+https://palashbari-tv.vercel.app/api/proxy?url=http://6zirt9yx.otttv.pw/iptv/HEGN4VXXQQSYCA/2533/index.m3u8#skym3u.dev
 
 #EXTINF:-1,Dazan 4
-https://my-website-hx91.onrender.com/proxy?url=http://23.237.104.106:8080/DAZN_4/index.m3u8#skym3u.dev
+https://palashbari-tv.vercel.app/api/proxy?url=http://23.237.104.106:8080/DAZN_4/index.m3u8#skym3u.dev
 
 
 
