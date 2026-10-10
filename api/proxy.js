@@ -1,4 +1,3 @@
-
 // ===================================================
 // সিক্রেট আইডি (প্রয়োজনে পরিবর্তন করুন)
 // ===================================================
@@ -78,13 +77,13 @@ export default async function handler(req, res) {
   }
 
   try {
-    const targetOrigin = new URL(targetUrl).origin;
-
+    // ক্লাউডফ্লাওয়ার ওয়ার্কারের ব্লক এড়ਾਉਣ জন্য এখানে নির্দিষ্ট অরিজিন সেট করা হলো
     const response = await fetch(targetUrl, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-        'Referer': targetOrigin + '/',
-        'Origin': targetOrigin
+        'Origin': 'https://public.iptv-channels.workers.dev',
+        'Referer': 'https://public.iptv-channels.workers.dev/',
+        'Accept': '*/*'
       }
     });
 
@@ -142,7 +141,7 @@ export default async function handler(req, res) {
       return res.status(200).send(text);
     }
 
-    // TS/AAC/MP4 ভিডিও সেগমেন্ট প্লেয়ারে পাঠানো
+    // TS/AAC/MP4 ভিডিও সেগমেন্ট প্লেয়ারে পাঠানো
     const arrayBuffer = await response.arrayBuffer();
     res.setHeader('Content-Type', contentType || 'video/mp2t');
     res.setHeader('Cache-Control', 'public, max-age=3600');
