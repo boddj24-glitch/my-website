@@ -320,7 +320,13 @@ https://english-livebkali.cgtn.com/live/doccgtn_1.m3u8
 https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/discoverpakistan.stream/playlist.m3u8
 
 #EXTINF:-1 group-title="𝐃𝐨𝐜𝐮𝐦**e**ntor**y**"tvg-logo="https://i.postimg.cc/43NXkFx5/20240823_023458.png",Animal Planet
-https://stream.ottplus.bd/live/animal_planet_hd_abr/live/animal_planet_hd/chunks.m3u8
+https://drk6xq0vhn.gpcdn.net/live/animal_planet_hd_abr/live/animal_planet_hd/chunks.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="Documentary",Discover 
+https://drk6xq0vhn.gpcdn.net/live/discovery_hd_abr/index.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="Documentary scienc
+https://drk6xq0vhn.gpcdn.net/live/discovery_science_abr/index.m3u8
 
 #EXTINF:-1 group-title="Sports" tvg-logo="",Gol TV
 https://d1jzu95oc8fgt3.cloudfront.net/FOX_Sports1080p.m3u8
