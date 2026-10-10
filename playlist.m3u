@@ -406,8 +406,12 @@ https://drk6xq0vhn.gpcdn.net/live/ten_cricket_hd_abr/live/ten_cricket_hd_720/chu
 #EXTINF:-1 tvg-logo="https://abusaeeidx.github.io/Tv-Channel-Logo/CricHD/runded/10-by-xfireflix.png",TEN SPORTS
 https://robitv.com/lps/https://ml-pull-dvc-myco.io:2096/TENSPORTS_HD/mono.m3u8
 
-#EXTINF:-1 tvg-logo="https://abusaeeidx.github.io/Tv-Channel-Logo/CricHD/runded/9-by-xfireflix.png",Sky sports
-https://palashbari-tv.vercel.app/api/proxy?url=https://rmtv.akamaized.net/hls/live/2043154/rmtv-en-web/bitrate_3.m3u8
+#EXTINF:-1 tvg-logo="https://abusaeeidx.github.io/Tv-Channel-Logo/CricHD/runded/9-by-xfireflix.png",Sky sports Cricket
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/9258/index.m3u8
+
+
+#EXTINF:-1 tvg-logo="https://abusaeeidx.github.io/Tv-Channel-Logo/CricHD/runded/9-by-xfireflix.png",Sky sports football
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/9289/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://abusaeeidx.github.io/Tv-Channel-Logo/CricHD/runded/20-by-xfireflix.png",PTV Sports
 https://palashbari-tv.vercel.app/api/proxy?url=http://198.195.239.50:8095/PTV-SPORTS-HD/tracks-v1a1/mono.m3u8
@@ -415,47 +419,68 @@ https://palashbari-tv.vercel.app/api/proxy?url=http://198.195.239.50:8095/PTV-SP
 #EXTINF:-1 tvg-logo="https://s3.aynaott.com/storage/7d20b575edc4e4b5276faa8c246e72a4",Cricket Gold
 https://streams2.sofast.tv/ptnr-yupptv/title-cricketgold/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/b2048bb8-1686-4432-aa50-647245383e0c/bfc6a36e-c250-4afe-b6c9-2bc57855bb7d/4.m3u8
 
-
-#EXTINF:-1  tvg-logo="https://tinyurl.com/y8s5kvty",sky sport criket
-https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/9258/index.m3u8#skym3u.dev
-
-#EXTINF:-1  tvg-logo="https://tinyurl.com/y8s5kvty",sky sport football
-https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/9289/index.m3u8
-
-#EXTINF:-1  tvg-logo="https://tinyurl.com/y8s5kvty",TSN 2
-https://tvsen7.aynascope.net/tsn2/index.m3u8
-
-#EXTINF:-1  tvg-logo="https://tinyurl.com/y8s5kvty",TSN 3
-https://tvsen7.aynascope.net/tsn3/index.m3u8
-
 #EXTINF:-1,FIFA Plus English 1
 https://a62dad94.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X0ZJRkFQbHVzRW5nbGlzaF9ITFM/playlist.m3u8
 
 #EXTINF:-1,united
 https://palashbari-tv.vercel.app/api/proxy?url=http://103.114.11.37:8081/Unite8-sports-1/index.m3u8
 
-#EXTINF:-1,TNT 
-https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/6566/index.m3u8
+#EXTINF:-1, Real Madrid sport
+https://palashbari-tv.vercel.app/api/proxy?url=https://rmtv.akamaized.net/hls/live/2043154/rmtv-en-web/bitrate_3.m3u8
 
-#EXTINF:-1,TNT 2
-https://palashbari-tv.vercel.app/api/proxy?url=http://6zirt9yx.otttv.pw/iptv/HEGN4VXXQQSYCA/2506/index.m3u8#skym3u.dev
+#EXTINF:-1, TSN 2
+https://tvsen7.aynascope.net/tsn2/index.m3u8
 
-#EXTINF:-1,TNT 3
-https://palashbari-tv.vercel.app/api/proxy?url=http://6zirt9yx.otttv.pw/iptv/HEGN4VXXQQSYCA/6564/index.m3u8#skym3u.dev
+#EXTINF:-1, TSN 3
+https://tvsen7.aynascope.net/tsn3/index.m3u8
 
-#EXTINF:-1,Dazan 1
-https://palashbari-tv.vercel.app/api/proxy?url=http://6zirt9yx.otttv.pw/iptv/HEGN4VXXQQSYCA/2531/index.m3u8#skym3u.dev
 
 #EXTINF:-1,Dazan 2
 https://palashbari-tv.vercel.app/api/proxy?url=http://23.237.104.106:8080/DAZN_2/index.m3u8#skym3u.dev
 
-#EXTINF:-1,Dazan  3
-https://palashbari-tv.vercel.app/api/proxy?url=http://6zirt9yx.otttv.pw/iptv/HEGN4VXXQQSYCA/2533/index.m3u8#skym3u.dev
-
 #EXTINF:-1,Dazan 4
 https://palashbari-tv.vercel.app/api/proxy?url=http://23.237.104.106:8080/DAZN_4/index.m3u8#skym3u.dev
 
+#EXTINF:-1, 3 Football
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/522/index.m3u8
 
+#EXTINF:-1, Channel 2
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/530/index.m3u8
+
+#EXTINF:-1, Sport TV
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/2526/index.m3u8
+
+#EXTINF:-1, Spor Live
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/6530/index.m3u8
+
+#EXTINF:-1, Live Stream
+https://palashbari-tv.vercel.app/api/proxy?url=http://88.212.15.19/live/uatlmvixrr/index.m3u8
+
+
+#EXTINF:-1, English Movie
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/912/index.m3u8
+
+#EXTINF:-1, Channel 912
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/912/index.m3u8
+
+#EXTINF:-1, Channel 914
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/914/index.m3u8
+
+#EXTINF:-1, Channel 905
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/905/index.m3u8
+
+#EXTINF:-1, HBO
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/7005/index.m3u8
+
+
+#EXTINF:-1, Cartoon
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/921/index.m3u8
+
+#EXTINF:-1, Channel 9263
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/9263/index.m3u8
+
+#EXTINF:-1, Special Cartoon
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/10002/index.m3u8
 
 
 
