@@ -152,7 +152,7 @@ https://iptvlive-beta.vercel.app/jalsha-movies/index.m3u8
 #EXTINF:-1 tvg-logo="https://i.postimg.cc/Kc7BJRCy/20240823_020704.png",Sananda TV
 https://live.sanandatelevision.in/sananda/tracks-v1a1/mono.m3u8
 
-#EXTINF:-1 star maa movei
+#EXTINF:1, star maa movei
 https://da86m1sqpm3o0.cloudfront.net/28072023/smil:maamovies.smil/chunklist_b2628000.m3u8 
 
 #EXTINF:-1 tvg-logo="",Toffe Movie
