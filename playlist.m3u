@@ -304,10 +304,7 @@ https://amg00627-amg00627c29-rakuten-it-3989.playouts.now.amagi.tv/playlist/amg0
 https://stream.ottplus.live/live/sony_yay_abr/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://i.postimg.cc/k4mDbyJR/20240823_021424.png" group-title="𝐊𝐢𝐝𝐬",Cartoon Network HD
-https://stream.ottplus.bd/live/cn_hd_abr/index.m3u8
-
-#EXTINF:-1 tvg-logo="https://i.postimg.cc/k4mDbyJR/20240823_021424.png" group-title="𝐊𝐢𝐝𝐬",Cartoon Network
-https://stream.ottplus.bd/live/cn_sd_abr/index.m3u8
+https://drk6xq0vhn.gpcdn.net/live/cn_hd_abr/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://i.postimg.cc/wTvMLMp2/20240823_021706.png" group-title="𝐊𝐢𝐝𝐬",Discovery Kids
 https://stream.ottplus.live/live/discovery_kids_abr/index.m3u8
