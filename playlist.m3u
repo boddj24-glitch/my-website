@@ -2,7 +2,7 @@
 #EXTINF:-1 tvg-logo="https://static.wikia.nocookie.net/etv-gspn-bangla/images/6/6e/T_Sports_HD_logo_2021.png",T Sports
 https://palashbari-tv.vercel.app/api/proxy?url=http://103.151.60.162:2122/play/a030/index.m3u8
 
-#EXTINF:-1 tvg-logo=sky sports football
+#EXTINF:-1, sky sports football
 https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/9289/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://tstatic.akash-go.com/cms-ui/images/custom-content/1778082545894.png",BTV
