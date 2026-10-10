@@ -6,7 +6,7 @@ https://palashbari-tv.vercel.app/api/proxy?url=http://103.151.60.162:2122/play/a
 https://palashbari-tv.vercel.app/api/proxy?url=http://103.151.60.162:2122/play/a030/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://tstatic.akash-go.com/cms-ui/images/custom-content/1778082545894.png",BTV
-https://palashbari-tv.vercel.app/api/proxy?urlhttps://s3.itcnbd.live/server-4/stream/aHR0cDovLzE3Mi4xOS4xNy4yMzA6ODA5MC9obHMvQlRWTmF0aW9uYWxIRC5tM3U4.m3u8
+https://palashbari-tv.vercel.app/api/proxy?url=https://robitv.com/rn/http://livetv.akr4m.com:8080/bdtv/restrem/12.m3u8
 
 #EXTINF:-1 tvg-logo="https://i.postimg.cc/Zqgx8hm1/20260430-184013.png",Channel 1
 https://drk6xq0vhn.gpcdn.net/live/channel_1_hd_abr/live/channel_1_hd_720/chunks.m3u8
