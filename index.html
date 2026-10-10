@@ -480,11 +480,23 @@
             } else {
                 videoEl.style.display = 'block';
                 
-                // Check if URL is MPEG-DASH (.mpd)
+                // ==========================================
+                // MPEG-DASH (.mpd) & DRM / ECE Handling
+                // ==========================================
                 if (finalUrl.includes('.mpd') || finalUrl.includes('dash')) {
                     if (typeof dashjs !== 'undefined') {
                         dashPlayer = dashjs.MediaPlayer().create();
                         dashPlayer.initialize(videoEl, finalUrl, true);
+
+                        // যদি স্ট্রিমটিতে Widevine DRM / ECE প্রটেকশন থাকে, তবে কমেন্ট সরিয়ে লাইসেন্স URL দিন:
+                        /*
+                        const drmConfig = {
+                            "com.widevine.alpha": {
+                                "serverURL": "YOUR_LICENSE_SERVER_URL_HERE"
+                            }
+                        };
+                        dashPlayer.setProtectionData(drmConfig);
+                        */
                     } else {
                         videoEl.src = finalUrl;
                         videoEl.play();
