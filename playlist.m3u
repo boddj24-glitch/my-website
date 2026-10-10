@@ -390,10 +390,11 @@ https://tvsen7.aynaott.com/ssport2hd/index.m3u8
 https://palashbari-tv.vercel.app/api/proxy?url=http://198.195.239.50:8095/STAR-SPORTS.3/index.m3u8
 
 #EXTINF:-1 group-title="SPORTS" tvg-logo="https://fcnchbd.xyz/iptv/logo/spsss1.png",STAR SPORTS SEL 1HD
-https://palashbari-tv.vercel.app/api/proxy?url=https://flussonic.defineatoz.com/starsportsselect1/tracks-v1/mono.m3u8
+https://flussonic.defineatoz.com/starsportsselect1/tracks-v1/mono.m3u8
+
 
 #EXTINF:-1 group-title="SPORTS" tvg-logo="https://fcnchbd.xyz/iptv/logo/spsss2.png",STAR SPORTS SEL 2HD
-https://palashbari-tv.vercel.app/api/proxy?url=https://flussonic.defineatoz.com/starsportsselect2sw/index.m3u8
+https://flussonic.defineatoz.com/starsportsselect2sw/index.m3u8
 
 
 #EXTINF:-1 tvg-logo="https://i.postimg.cc/HntSg3xw/20240823_024624.png",Willow sports TV
