@@ -37,6 +37,8 @@
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
     <!-- HLS.js -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <!-- DASH.js (Added for .mpd support) -->
+    <script src="https://cdn.jsdelivr.net/npm/dashjs@latest/dist/dash.all.min.js"></script>
     <!-- Clappr -->
     <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
     
@@ -341,7 +343,7 @@
     </div>
 
     <div class="input-box">
-        <input type="text" id="customUrlInput" placeholder="লিঙ্ক এখানে দিন (M3U8 বা URL)...">
+        <input type="text" id="customUrlInput" placeholder="লিঙ্ক এখানে দিন (M3U8, MPD বা URL)...">
         <button class="play-btn" onclick="playCustom()">প্লে করুন</button>
     </div>
 
@@ -395,7 +397,7 @@
         })();
 
         // ==========================================
-        // PLAYER LOGIC & DYNAMIC M3U PARSER
+        // PLAYER LOGIC & DYNAMIC M3U / MPD PARSER
         // ==========================================
         const videoEl = document.getElementById('my-video');
         const iframe = document.getElementById('custom-iframe');
@@ -403,6 +405,7 @@
         const html5El = document.getElementById('html5-video');
         let clapprInstance;
         let hls; 
+        let dashPlayer;
         let currentMode = 'videojs';
         let currentUrl = '';
 
@@ -442,8 +445,6 @@
             loadChannelUrl(urls[0], currentMode);
         }
 
-        const workerUrl = 'https://shawon-proxy.boddj24.workers.dev/?url=';
-
         function loadChannelUrl(url, mode) {
             let finalUrl = url;
 
@@ -456,7 +457,9 @@
             html5El.style.display = 'none';
             
             if (hls) { hls.destroy(); hls = null; }
+            if (dashPlayer) { dashPlayer.reset(); dashPlayer = null; }
             if (clapprInstance) { clapprInstance.destroy(); clapprInstance = null; }
+            
             videoEl.pause();
             videoEl.src = "";
             videoEl.load();
@@ -476,7 +479,19 @@
                 html5El.play();
             } else {
                 videoEl.style.display = 'block';
-                if (Hls.isSupported()) {
+                
+                // Check if URL is MPEG-DASH (.mpd)
+                if (finalUrl.includes('.mpd') || finalUrl.includes('dash')) {
+                    if (typeof dashjs !== 'undefined') {
+                        dashPlayer = dashjs.MediaPlayer().create();
+                        dashPlayer.initialize(videoEl, finalUrl, true);
+                    } else {
+                        videoEl.src = finalUrl;
+                        videoEl.play();
+                    }
+                } 
+                // Otherwise treat as HLS (.m3u8) or standard stream
+                else if (Hls.isSupported()) {
                     hls = new Hls();
                     hls.loadSource(finalUrl);
                     hls.attachMedia(videoEl);
