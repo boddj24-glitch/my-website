@@ -77,12 +77,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    // ক্লাউডফ্লাওয়ার ওয়ার্কারের ব্লক এড়ਾਉਣ জন্য এখানে নির্দিষ্ট অরিজিন সেট করা হলো
+    // ডায়নামিকভাবে টার্গেট ইউআরএল-এর নিজস্ব অরিজিন বের করা
+    const parsedTarget = new URL(targetUrl);
+    const targetOrigin = parsedTarget.origin; // যেমন: http://198.195.239.50:8095 বা https://public.iptv-channels.workers.dev
+
     const response = await fetch(targetUrl, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-        'Origin': 'https://public.iptv-channels.workers.dev',
-        'Referer': 'https://public.iptv-channels.workers.dev/',
+        'Origin': targetOrigin,
+        'Referer': targetOrigin + '/',
         'Accept': '*/*'
       }
     });
@@ -94,7 +97,7 @@ export default async function handler(req, res) {
     const contentType = response.headers.get('content-type') || '';
     const finalUrl = response.url; 
 
-    // M3U8 বা সাব-প্লেলিস্ট চেক
+    // M3U8 বা সাব-플레이লিস্ট চেক
     const isPlaylist = targetUrl.includes('.m3u') || 
                        contentType.includes('mpegurl') || 
                        contentType.includes('m3u') || 
@@ -109,7 +112,7 @@ export default async function handler(req, res) {
           const trimmed = line.trim();
           if (!trimmed) return line;
 
-          // #EXT-X-KEY (AES Encyption) ও #EXT-X-MEDIA ট্যাগের URI প্রক্সি রিরাইট
+          // #EXT-X-KEY (AES Encryption) ও #EXT-X-MEDIA ট্যাগের URI প্রক্সি রিরাইট
           if (trimmed.startsWith('#')) {
             if (trimmed.includes('URI=')) {
               return trimmed.replace(/URI=["']([^"']+)["']/g, (match, uri) => {
