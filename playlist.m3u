@@ -457,6 +457,31 @@ https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7
 https://palashbari-tv.vercel.app/api/proxy?url=http://88.212.15.19/live/uatlmvixrr/index.m3u8
 
 
+#EXTINF:-1, FB TV HD
+https://palashbari-tv.vercel.app/api/proxy?url=http://1hskrdto.rocketcdn.com/fenerbahcetv.smil/playlist.m3u8
+
+#EXTINF:-1, Fox Deportes
+https://palashbari-tv.vercel.app/api/proxy?url=http://23.237.104.106:8080/USA_FOX_DEPORTES/index.m3u8
+
+#EXTINF:-1, Go3 Sport 1 Football
+https://palashbari-tv.vercel.app/api/proxy?url=http://stream.mcquack.net/416/index.m3u8
+
+#EXTINF:-1, Okko Futbol
+https://palashbari-tv.vercel.app/api/proxy?url=http://stream.mcquack.net/491/index.m3u8
+
+#EXTINF:-1, Okko Prajm Sport
+https://palashbari-tv.vercel.app/api/proxy?url=http://stream.mcquack.net/493/index.m3u8
+
+#EXTINF:-1, Setanta Sports 1 Eurasia
+https://palashbari-tv.vercel.app/api/proxy?url=http://stream.mcquack.net/234/index.m3u8
+
+#EXTINF:-1, Setanta Sports 2 Eurasia
+https://palashbari-tv.vercel.app/api/proxy?url=http://stream.mcquack.net/235/index.m3u8
+
+#EXTINF:-1, Spiler 2
+https://palashbari-tv.vercel.app/api/proxy?url=http://88.212.15.19/live/spiler2/index.m3u8
+
+
 #EXTINF:-1, English Movie
 https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/912/index.m3u8
 
@@ -480,7 +505,6 @@ https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7
 
 #EXTINF:-1, Special Cartoon
 https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/10002/index.m3u8
-
 
 
 
