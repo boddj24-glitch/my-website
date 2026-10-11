@@ -101,39 +101,43 @@
             flex-grow: 1;
             min-width: 250px;
             background: #0d1117;
-            padding: 8px 12px;
+            padding: 10px 14px;
             border-radius: 8px;
             border: 1px solid #30363d;
             text-align: center;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
         }
 
         .server-title-notice-row {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            overflow: hidden;
+            flex-direction: column;
+            gap: 6px;
+            align-items: stretch;
         }
 
         .server-title {
             font-size: 13px;
             color: var(--accent-color);
             font-weight: bold;
-            white-space: nowrap;
-            flex-shrink: 0;
+            text-align: left;
+        }
+
+        .server-stacked-notices {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
 
         .server-inline-notice {
-            flex-grow: 1;
             overflow: hidden;
             white-space: nowrap;
             background: rgba(229, 184, 96, 0.1);
             border-radius: 4px;
-            padding: 2px 6px;
+            padding: 3px 6px;
             border: 1px solid rgba(229, 184, 96, 0.2);
+            text-align: left;
         }
 
         .server-inline-notice marquee {
@@ -148,6 +152,7 @@
             gap: 8px;
             justify-content: center;
             flex-wrap: wrap;
+            margin-top: 4px;
         }
         
         .server-btn {
@@ -386,11 +391,18 @@
                     <div class="server-title-notice-row">
                         <div class="server-title" id="activeChannelName">চ্যানেল সিলেক্ট করুন</div>
                         
-                        <!-- Both notices included side-by-side in marquee -->
-                        <div class="server-inline-notice">
-                            <marquee behavior="scroll" direction="left" scrollamount="4">
-                                📢 কোনো ভিডিও প্লে না হলে HTML মোডে ট্রাই করে এক মিনিট অপেক্ষা করুন। &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💬 যেকোনো প্রয়োজনে নিচে টেলিগ্রাম, হোয়াটসঅ্যাপ, ফেসবুক যোগাযোগ করুন।
-                            </marquee>
+                        <!-- Stacked notices one below another -->
+                        <div class="server-stacked-notices">
+                            <div class="server-inline-notice">
+                                <marquee behavior="scroll" direction="left" scrollamount="4">
+                                    📢 কোনো ভিডিও প্লে না হলে HTML মোডে ট্রাই করে এক মিনিট অপেক্ষা করুন।
+                                </marquee>
+                            </div>
+                            <div class="server-inline-notice">
+                                <marquee behavior="scroll" direction="left" scrollamount="4">
+                                    💬 যেকোনো প্রয়োজনে নিচে টেলিগ্রাম, হোয়াটসঅ্যাপ, ফেসবুক যোগাযোগ করুন।
+                                </marquee>
+                            </div>
                         </div>
                     </div>
                     
