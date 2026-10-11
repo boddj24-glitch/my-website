@@ -283,16 +283,16 @@ https://wiselp.wiseplayout.com/9X_Jalwa/master.m3u8
 #EXTINF:-1 tvg-id="ThikanaTV" tvg-name="Thikana TV" group-title="International",Thikana TV
 https://5dd3981940faa.streamlock.net/thikanatv/thikanatv/chunklist_w1860781648.m3u8
 
-#EXTINF:-1 tvg-logo="https://i.postimg.cc/pdddb1bs/20250529_120025.png" group-title="𝐌𝐮𝐬𝐢𝐜",Sangeet Bangla
+#EXTINF:-1 group-title="Music" tvg-logo="https://imglink.cc/cdn/LmVOSdl3ku.png", Sangeet Bangla
 https://my-website-hx91.onrender.com/proxy?url=http://198.195.239.50:8095/sangeetBangla/index.m3u8
 
-#EXTINF:-1 tvg-name="Motu Patlu" group-title="CARTOON Drama",Motu Patlu
+#EXTINF:-1 group-title="Cartoon" tvg-logo="https://imglink.cc/cdn/TxPUulKGQh.jpg", Motu Patlu
 https://live20.bozztv.com/giatvplayout7/giatv-209622/tracks-v1a1/mono.ts.m3u8
 
-#EXTINF:-1 tvg-name="Tom & Jerry TV" group-title="CARTOON Drama",Tom & Jerry TV
+#EXTINF:-1 group-title="Cartoon" tvg-logo="https://imglink.cc/cdn/YkXRQgC4-_.jpg", Tom & Jerry TV
 https://live20.bozztv.com/giatvplayout7/giatv-208314/tracks-v1a1/mono.ts.m3u8
 
-#EXTINF:-1 tvg-name="Doraemon TV" group-title="CARTOON Drama",Doraemon TV
+#EXTINF:-1 group-title="Cartoon" tvg-logo="https://imglink.cc/cdn/rmNeL8f6NR.png", Doraemon TV
 https://live20.bozztv.com/giatvplayout7/giatv-209902/tracks-v1a1/mono.ts.m3u8
 
 #EXTINF:-1 tvg-name="Mr Bean Animated" group-title="CARTOON Drama",Mr Bean Animated
@@ -320,7 +320,7 @@ https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxI
 #EXTINF:-1 group-title="𝐃𝐨𝐜𝐮𝐦**e**ntor**y**"tvg-logo="https://i.postimg.cc/43NXkFx5/20240823_023458.png",Animal Planet
 https://drk6xq0vhn.gpcdn.net/live/animal_planet_hd_abr/live/animal_planet_hd/chunks.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="Documentary",Discover 
+#EXTINF:-1 group-title="Documentary" tvg-logo="https://imglink.cc/cdn/mv5xd7yy0d.png", Discovery 
 https://drk6xq0vhn.gpcdn.net/live/discovery_hd_abr/index.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="Documentary scienc
