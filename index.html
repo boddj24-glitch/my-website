@@ -589,7 +589,7 @@
             renderChannels();
         }
 
-        // Exact Filtering Algorithm for Channels
+        // Expanded Strict & Precise Categorization Engine
         fetch('https://raw.githubusercontent.com/boddj24-glitch/my-website/refs/heads/main/playlist.m3u')
             .then(response => response.text())
             .then(data => {
@@ -622,36 +622,93 @@
                             let detectedGroup = 'other';
 
                             // 1. SPORTS
-                            if (rawGroup === 'sports' || rawGroup.includes('sport') || lowerTitle.includes('sports') || lowerTitle.includes('cricket') || lowerTitle.includes('football') || lowerTitle.includes('willow') || lowerTitle.includes('ten') || lowerTitle.includes('bein') || lowerTitle.includes('ptv') || lowerTitle.includes('sky sports')) {
+                            if (
+                                rawGroup.includes('sport') || lowerTitle.includes('sport') || lowerTitle.includes('cricket') || 
+                                lowerTitle.includes('football') || lowerTitle.includes('willow') || lowerTitle.includes('ten') || 
+                                lowerTitle.includes('bein') || lowerTitle.includes('ptv') || lowerTitle.includes('dazan') || 
+                                lowerTitle.includes('spiler') || lowerTitle.includes('prajm') || lowerTitle.includes('goal tv') || 
+                                lowerTitle.includes('tsn') || lowerTitle.includes('tnt sport') || lowerTitle.includes('fifa') || 
+                                lowerTitle.includes('fb tv') || lowerTitle.includes('setanta') || lowerTitle.includes('unite 8') || 
+                                lowerTitle.includes('go 3') || lowerTitle.includes('fox')
+                            ) {
                                 detectedGroup = 'sports';
                             } 
-                            // 2. INDIAN BANGLA
-                            else if (rawGroup === 'indian_bangla' || rawGroup.includes('indian') || lowerTitle.includes('jalsha') || lowerTitle.includes('zee bangla') || lowerTitle.includes('colors bangla') || lowerTitle.includes('sun bangla') || lowerTitle.includes('sananda')) {
-                                detectedGroup = 'indian_bangla';
-                            } 
-                            // 3. HINDI
-                            else if (rawGroup === 'hindi' || lowerTitle.includes('star gold') || lowerTitle.includes('sony max') || lowerTitle.includes('zee tv') || lowerTitle.includes('zee cinema') || lowerTitle.includes('bollywood') || lowerTitle.includes('goldmines') || lowerTitle.includes('pictures') || lowerTitle.includes('&pictures') || lowerTitle.includes('shemaroo') || lowerTitle.includes('action hollywood')) {
-                                detectedGroup = 'hindi';
-                            }
-                            // 4. MUSIC
-                            else if (rawGroup === 'music' || lowerTitle.includes('music')) {
-                                detectedGroup = 'music';
-                            }
-                            // 5. CARTOON
-                            else if (rawGroup === 'cartoon' || lowerTitle.includes('cartoon') || lowerTitle.includes('duronto') || lowerTitle.includes('nick')) {
-                                detectedGroup = 'cartoon';
-                            }
-                            // 6. DOCUMENTARY
-                            else if (rawGroup === 'documentary' || rawGroup.includes('docu') || lowerTitle.includes('discovery') || lowerTitle.includes('nat geo') || lowerTitle.includes('animal planet')) {
+                            // 2. DOCUMENTARY
+                            else if (
+                                rawGroup.includes('docu') || lowerTitle.includes('documentary') || lowerTitle.includes('discovery') || 
+                                lowerTitle.includes('nat geo') || lowerTitle.includes('national geo') || lowerTitle.includes('animal planet') || 
+                                lowerTitle.includes('history') || lowerTitle.includes('science') || lowerTitle.includes('earth') || 
+                                lowerTitle.includes('wild') || lowerTitle.includes('investigation') || lowerTitle.includes('crime') || 
+                                lowerTitle.includes('turbo') || lowerTitle.includes('travel') || lowerTitle.includes('weather') || lowerTitle.includes('pikstan')
+                            ) {
                                 detectedGroup = 'documentary';
                             }
-                            // 7. BANGLADESHI CHANNELS ONLY
-                            else if (rawGroup === 'bangla' || lowerTitle.includes('btv') || lowerTitle.includes('somoy') || lowerTitle.includes('jamuna') || lowerTitle.includes('ekattor') || lowerTitle.includes('channel 24') || lowerTitle.includes('independent') || lowerTitle.includes('dbc') || lowerTitle.includes('atn') || lowerTitle.includes('rtv') || lowerTitle.includes('ntv') || lowerTitle.includes('banglavision') || lowerTitle.includes('maasranga') || lowerTitle.includes('nagorik') || lowerTitle.includes('gazi') || lowerTitle.includes('deepto') || lowerTitle.includes('ekhon') || lowerTitle.includes('bijoy') || lowerTitle.includes('channel i') || lowerTitle.includes('desh tv') || lowerTitle.includes('asian tv') || lowerTitle.includes('my tv') || lowerTitle.includes('global tv') || lowerTitle.includes('mohana') || lowerTitle.includes('boishakhi') || lowerTitle.includes('channel 1') || lowerTitle.includes('channel 9') || lowerTitle.includes('sa tv') || lowerTitle.includes('bangla tv') || lowerTitle.includes('srk tv') || lowerTitle.includes('ananda tv') || lowerTitle.includes('green tv') || lowerTitle.includes('channel 52') || lowerTitle.includes('zb cinema') || lowerTitle.includes('drama 24') || lowerTitle.includes('rongeen tv')) {
+                            // 3. CARTOON / KIDS
+                            else if (
+                                rawGroup.includes('cartoon') || rawGroup.includes('kids') || lowerTitle.includes('cartoon') || 
+                                lowerTitle.includes('duronto') || lowerTitle.includes('nick') || lowerTitle.includes('pogo') || 
+                                lowerTitle.includes('hungama') || lowerTitle.includes('disney') || lowerTitle.includes('motu patlu') || 
+                                lowerTitle.includes('tom & jerry') || lowerTitle.includes('doraemon') || lowerTitle.includes('mr bean') || 
+                                lowerTitle.includes('sony yay') || lowerTitle.includes('rongeen')
+                            ) {
+                                detectedGroup = 'cartoon';
+                            }
+                            // 4. MUSIC
+                            else if (
+                                rawGroup.includes('music') || lowerTitle.includes('music') || lowerTitle.includes('9xm') || 
+                                lowerTitle.includes('9x') || lowerTitle.includes('m tv') || lowerTitle.includes('zing') || 
+                                lowerTitle.includes('mastiii') || lowerTitle.includes('sangeet')
+                            ) {
+                                detectedGroup = 'music';
+                            }
+                            // 5. INDIAN BANGLA
+                            else if (
+                                rawGroup.includes('indian_bangla') || rawGroup.includes('indian') || lowerTitle.includes('jalsha') || 
+                                lowerTitle.includes('zee bangla') || lowerTitle.includes('colors bangla') || lowerTitle.includes('sun bangla') || 
+                                lowerTitle.includes('sananda') || lowerTitle.includes('zb cinema')
+                            ) {
+                                detectedGroup = 'indian_bangla';
+                            }
+                            // 6. HINDI & MOVIES (Includes English Movies, HBO, Sony Movies)
+                            else if (
+                                rawGroup.includes('hindi') || rawGroup.includes('movies') || rawGroup.includes('movie club') || 
+                                lowerTitle.includes('star gold') || lowerTitle.includes('sony max') || lowerTitle.includes('zee tv') || 
+                                lowerTitle.includes('zee cinema') || lowerTitle.includes('bollywood') || lowerTitle.includes('goldmines') || 
+                                lowerTitle.includes('gold mines') || lowerTitle.includes('pictures') || lowerTitle.includes('&pictures') || 
+                                lowerTitle.includes('shemaroo') || lowerTitle.includes('action hollywood') || lowerTitle.includes('b4u') || 
+                                lowerTitle.includes('star maa') || lowerTitle.includes('roja') || lowerTitle.includes('south indian') || 
+                                lowerTitle.includes('hbo') || lowerTitle.includes('cineplex') || lowerTitle.includes('cinema') || 
+                                lowerTitle.includes('rishtey') || lowerTitle.includes('colors hindi') || lowerTitle.includes('dhinchaak') || 
+                                lowerTitle.includes('enterr10') || lowerTitle.includes('manoranjan') || lowerTitle.includes('classic 24') || 
+                                lowerTitle.includes('sony sab') || lowerTitle.includes('sony pal') || lowerTitle.includes('star plus') || 
+                                lowerTitle.includes('star bharat') || lowerTitle.includes('utv') || lowerTitle.includes('bhojpuri') || 
+                                lowerTitle.includes('pitaara') || lowerTitle.includes('movie club') || lowerTitle.includes('english movie') || 
+                                lowerTitle.includes('channel movei') || lowerTitle.includes('sony movies')
+                            ) {
+                                detectedGroup = 'hindi';
+                            }
+                            // 7. BANGLADESH LOCAL CHANNELS ONLY
+                            else if (
+                                rawGroup.includes('bangla') || rawGroup.includes('bangladeshi') || rawGroup.includes('toffee') || 
+                                lowerTitle.includes('btv') || lowerTitle.includes('somoy') || lowerTitle.includes('jamuna') || 
+                                lowerTitle.includes('ekattor') || lowerTitle.includes('channel 24') || lowerTitle.includes('independent') || 
+                                lowerTitle.includes('dbc') || lowerTitle.includes('atn bangla') || lowerTitle.includes('rtv') || 
+                                lowerTitle.includes('ntv') || lowerTitle.includes('banglavision') || lowerTitle.includes('maasranga') || 
+                                lowerTitle.includes('nagorik') || lowerTitle.includes('gazi') || lowerTitle.includes('deepto') || 
+                                lowerTitle.includes('ekhon') || lowerTitle.includes('bijoy') || lowerTitle.includes('channel i') || 
+                                lowerTitle.includes('desh tv') || lowerTitle.includes('asian tv') || lowerTitle.includes('my tv') || 
+                                lowerTitle.includes('global tv') || lowerTitle.includes('thikana') || lowerTitle.includes('drama 24') || 
+                                lowerTitle.includes('bangla plus') || lowerTitle.includes('mohana') || lowerTitle.includes('boishakhi') || 
+                                lowerTitle.includes('channel 9') || lowerTitle.includes('sa tv') || lowerTitle.includes('ananda tv') || 
+                                lowerTitle.includes('green tv') || lowerTitle.includes('nexus tv') || lowerTitle.includes('matri bhumi') || 
+                                lowerTitle.includes('entertv') || lowerTitle.includes('channel s') || lowerTitle.includes('rajdhani') || 
+                                lowerTitle.includes('movie bangla') || lowerTitle.includes('channel 52') || lowerTitle.includes('toffee')
+                            ) {
                                 detectedGroup = 'bangla';
                             }
-                            // Fallback (Other)
+                            // Default Fallback
                             else {
-                                detectedGroup = 'other';
+                                detectedGroup = rawGroup || 'other';
                             }
 
                             allChannels.push({ name: title, logo: logo, url: streamUrl, group: detectedGroup });
