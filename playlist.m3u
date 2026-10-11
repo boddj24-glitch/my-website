@@ -475,7 +475,8 @@ https://palashbari-tv.vercel.app/api/proxy?url=http://88.212.15.19/live/uatlmvix
 #EXTINF:-1, FB TV HD
 https://palashbari-tv.vercel.app/api/proxy?url=http://1hskrdto.rocketcdn.com/fenerbahcetv.smil/playlist.m3u8
 
-#EXTINF:-1, Fox Deportes
+
+#EXTINF:-1 tvg-id="019de785-39cc-73df-9b76-41868981948e" tvg-name="Fox Sports 1" tvg-logo="https://s3.aynaott.com/storage/75d182d517bbae0af248c5ee1a67f4d4" group-title="Sports",Fox Sports 
 https://palashbari-tv.vercel.app/api/proxy?url=http://23.237.104.106:8080/USA_FOX_DEPORTES/index.m3u8
 
 #EXTINF:-1 group-title="Sports" tvg-logo="https://imglink.cc/cdn/RY7jBwPKAr.jpg", Go 3 Sports 1
