@@ -556,7 +556,7 @@
 
             let filteredChannels = allChannels.filter(ch => {
                 if (currentFilter === 'all') return true;
-                return ch.group && ch.group.toLowerCase().includes(currentFilter.toLowerCase());
+                return ch.group && ch.group.toLowerCase() === currentFilter.toLowerCase();
             });
 
             if (filteredChannels.length > 0) {
@@ -589,7 +589,7 @@
             renderChannels();
         }
 
-        // Load Playlist with Smart Category Auto-Detection
+        // Strict & Precise Category Filtering Algorithm
         fetch('https://raw.githubusercontent.com/boddj24-glitch/my-website/refs/heads/main/playlist.m3u')
             .then(response => response.text())
             .then(data => {
@@ -618,26 +618,35 @@
                         }
                         
                         if (title) {
-                            // Smart Auto-Categorization Fallback if group-title is missing or general
                             let lowerTitle = title.toLowerCase();
-                            if (!group || group === 'other' || group === 'channels' || group === 'live') {
-                                if (lowerTitle.includes('sports') || lowerTitle.includes('t sports') || lowerTitle.includes('willow') || lowerTitle.includes('cricket') || lowerTitle.includes('football') || lowerTitle.includes('ten')) {
-                                    group = 'sports';
-                                } else if (lowerTitle.includes('jalsha') || lowerTitle.includes('zee bangla') || lowerTitle.includes('colors bangla') || lowerTitle.includes('sun bangla')) {
-                                    group = 'indian_bangla';
-                                } else if (lowerTitle.includes('somoy') || lowerTitle.includes('jamuna') || lowerTitle.includes('btv') || lowerTitle.includes('news') || lowerTitle.includes('tv') || lowerTitle.includes('bangla')) {
-                                    group = 'bangla';
-                                } else if (lowerTitle.includes('star gold') || lowerTitle.includes('max') || lowerTitle.includes('cinema') || lowerTitle.includes('bollywood') || lowerTitle.includes('gold mines')) {
-                                    group = 'hindi';
-                                } else if (lowerTitle.includes('music')) {
-                                    group = 'music';
-                                } else if (lowerTitle.includes('cartoon') || lowerTitle.includes('duronto')) {
-                                    group = 'cartoon';
-                                } else if (lowerTitle.includes('discovery') || lowerTitle.includes('documentary') || lowerTitle.includes('nat geo')) {
-                                    group = 'documentary';
-                                } else {
-                                    group = 'bangla'; // Default fallback
-                                }
+
+                            // Priority 1: Check Sports First
+                            if (group.includes('sport') || lowerTitle.includes('sports') || lowerTitle.includes('cricket') || lowerTitle.includes('football') || lowerTitle.includes('willow') || lowerTitle.includes('ten sports') || lowerTitle.includes('bein') || lowerTitle.includes('ptv sports')) {
+                                group = 'sports';
+                            } 
+                            // Priority 2: Check Indian Bangla
+                            else if (group.includes('indian') || lowerTitle.includes('jalsha') || lowerTitle.includes('zee bangla') || lowerTitle.includes('colors bangla') || lowerTitle.includes('sun bangla') || lowerTitle.includes('sananda')) {
+                                group = 'indian_bangla';
+                            } 
+                            // Priority 3: Check Hindi Channels
+                            else if (group.includes('hindi') || lowerTitle.includes('star gold') || lowerTitle.includes('sony max') || lowerTitle.includes('zee tv') || lowerTitle.includes('zee cinema') || lowerTitle.includes('bollywood') || lowerTitle.includes('goldmines') || lowerTitle.includes('pictures')) {
+                                group = 'hindi';
+                            }
+                            // Priority 4: Check Music
+                            else if (group.includes('music') || lowerTitle.includes('music') || lowerTitle.includes('b4u music')) {
+                                group = 'music';
+                            }
+                            // Priority 5: Check Cartoon
+                            else if (group.includes('cartoon') || lowerTitle.includes('cartoon') || lowerTitle.includes('duronto') || lowerTitle.includes('nick')) {
+                                group = 'cartoon';
+                            }
+                            // Priority 6: Check Documentary
+                            else if (group.includes('docu') || lowerTitle.includes('discovery') || lowerTitle.includes('nat geo') || lowerTitle.includes('animal planet')) {
+                                group = 'documentary';
+                            }
+                            // Priority 7: Pure Bangladeshi Bangla Channels
+                            else {
+                                group = 'bangla';
                             }
 
                             allChannels.push({ name: title, logo: logo, url: streamUrl, group: group });
