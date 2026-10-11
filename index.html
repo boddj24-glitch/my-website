@@ -77,15 +77,6 @@
             border-radius: 12px; 
         } 
         
-        .header-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-
         .logo-header { 
             font-size: 26px; 
             font-weight: 800; 
@@ -93,18 +84,16 @@
             letter-spacing: 2px; 
             text-transform: uppercase;
             text-shadow: 0 0 10px rgba(229, 184, 96, 0.3);
-            margin: 0;
-            white-space: nowrap;
+            margin: 0 0 15px 0;
         }
 
-        .header-server-switcher {
-            flex-grow: 1;
-            min-width: 250px;
+        /* Bottom Server Switcher Box (Moved below player) */
+        .bottom-server-switcher {
             background: #0d1117;
-            padding: 10px 14px;
+            padding: 12px 15px;
             border-radius: 8px;
             border: 1px solid #30363d;
-            text-align: center;
+            margin-top: 15px;
             display: flex;
             flex-direction: column;
             gap: 8px;
@@ -112,9 +101,11 @@
 
         .server-title-notice-row {
             display: flex;
-            flex-direction: column;
-            gap: 6px;
-            align-items: stretch;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            overflow: hidden;
+            flex-wrap: wrap;
         }
 
         .server-title {
@@ -124,8 +115,14 @@
             text-align: left;
         }
 
+        .server-stacked-notices {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex-grow: 1;
+        }
+
         .server-inline-notice {
-            max-width: 100%;
             overflow: hidden;
             white-space: nowrap;
             background: rgba(229, 184, 96, 0.1);
@@ -145,7 +142,7 @@
         .server-buttons-wrap {
             display: flex;
             gap: 8px;
-            justify-content: center;
+            justify-content: flex-start;
             flex-wrap: wrap;
             margin-top: 4px;
         }
@@ -234,7 +231,6 @@
             border-radius: 8px; 
             overflow: hidden; 
             position: relative; 
-            margin-top: 15px;
         }
         
         #my-video, #clappr-container, #html5-video, #custom-iframe { 
@@ -379,24 +375,7 @@
     <div class="main-container">
         <div class="player-section">
             
-            <div class="header-wrapper">
-                <div class="logo-header">SHAWON TV</div>
-                
-                <div id="serverSwitcherBox" class="header-server-switcher">
-                    <div class="server-title-notice-row">
-                        <div class="server-title" id="activeChannelName">চ্যানেল সিলেক্ট করুন</div>
-                        
-                        <!-- Single small notice box containing both messages sequentially -->
-                        <div class="server-inline-notice">
-                            <marquee behavior="scroll" direction="left" scrollamount="4">
-                                📢 কোনো ভিডিও প্লে না হলে HTML মোডে ট্রাই করে এক মিনিট অপেক্ষা করুন। &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💬 যেকোনো প্রয়োজনে নিচে টেলিগ্রাম, হোয়াটসঅ্যাপ, ফেসবুক যোগাযোগ করুন।
-                            </marquee>
-                        </div>
-                    </div>
-                    
-                    <div class="server-buttons-wrap" id="serverButtonsContainer"></div>
-                </div>
-            </div>
+            <div class="logo-header">SHAWON TV</div>
 
             <div class="video-box">
                 <video id="my-video" class="video-js vjs-big-play-centered" controls></video>
@@ -412,6 +391,29 @@
                 <button class="btn" onclick="switchMode('iframe')">Iframe</button>
                 <button class="btn pip-btn" onclick="togglePIP()">PIP Mode</button>
             </div>
+
+            <!-- Server Switcher & Notice Box Moved Here (Below Player) -->
+            <div id="serverSwitcherBox" class="bottom-server-switcher">
+                <div class="server-title-notice-row">
+                    <div class="server-title" id="activeChannelName">চ্যানেল সিলেক্ট করুন</div>
+                    
+                    <div class="server-stacked-notices">
+                        <div class="server-inline-notice">
+                            <marquee behavior="scroll" direction="left" scrollamount="4">
+                                📢 কোনো ভিডিও প্লে না হলে HTML মোডে ট্রাই করে এক মিনিট অপেক্ষা করুন।
+                            </marquee>
+                        </div>
+                        <div class="server-inline-notice">
+                            <marquee behavior="scroll" direction="left" scrollamount="4">
+                                💬 যেকোনো প্রয়োজনে নিচে টেলিগ্রাম, হোয়াটসঅ্যাপ, ফেসবুক যোগাযোগ করুন।
+                            </marquee>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="server-buttons-wrap" id="serverButtonsContainer"></div>
+            </div>
+
         </div>
 
         <div class="channel-list-container">
