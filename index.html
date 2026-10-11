@@ -589,7 +589,7 @@
             renderChannels();
         }
 
-        // Accurate Categorization Engine
+        // Exact Filtering Algorithm for Channels
         fetch('https://raw.githubusercontent.com/boddj24-glitch/my-website/refs/heads/main/playlist.m3u')
             .then(response => response.text())
             .then(data => {
@@ -622,7 +622,7 @@
                             let detectedGroup = 'other';
 
                             // 1. SPORTS
-                            if (rawGroup === 'sports' || rawGroup.includes('sport') || lowerTitle.includes('sports') || lowerTitle.includes('cricket') || lowerTitle.includes('football') || lowerTitle.includes('willow') || lowerTitle.includes('ten sports') || lowerTitle.includes('bein') || lowerTitle.includes('ptv sports') || lowerTitle.includes('sky sports')) {
+                            if (rawGroup === 'sports' || rawGroup.includes('sport') || lowerTitle.includes('sports') || lowerTitle.includes('cricket') || lowerTitle.includes('football') || lowerTitle.includes('willow') || lowerTitle.includes('ten') || lowerTitle.includes('bein') || lowerTitle.includes('ptv') || lowerTitle.includes('sky sports')) {
                                 detectedGroup = 'sports';
                             } 
                             // 2. INDIAN BANGLA
@@ -630,11 +630,11 @@
                                 detectedGroup = 'indian_bangla';
                             } 
                             // 3. HINDI
-                            else if (rawGroup === 'hindi' || lowerTitle.includes('star gold') || lowerTitle.includes('sony max') || lowerTitle.includes('zee tv') || lowerTitle.includes('zee cinema') || lowerTitle.includes('bollywood') || lowerTitle.includes('goldmines') || lowerTitle.includes('pictures') || lowerTitle.includes('&pictures') || lowerTitle.includes('shemaroo')) {
+                            else if (rawGroup === 'hindi' || lowerTitle.includes('star gold') || lowerTitle.includes('sony max') || lowerTitle.includes('zee tv') || lowerTitle.includes('zee cinema') || lowerTitle.includes('bollywood') || lowerTitle.includes('goldmines') || lowerTitle.includes('pictures') || lowerTitle.includes('&pictures') || lowerTitle.includes('shemaroo') || lowerTitle.includes('action hollywood')) {
                                 detectedGroup = 'hindi';
                             }
                             // 4. MUSIC
-                            else if (rawGroup === 'music' || lowerTitle.includes('music') || lowerTitle.includes('b4u music')) {
+                            else if (rawGroup === 'music' || lowerTitle.includes('music')) {
                                 detectedGroup = 'music';
                             }
                             // 5. CARTOON
@@ -646,12 +646,12 @@
                                 detectedGroup = 'documentary';
                             }
                             // 7. BANGLADESHI CHANNELS ONLY
-                            else if (rawGroup === 'bangla' || lowerTitle.includes('btv') || lowerTitle.includes('somoy') || lowerTitle.includes('jamuna') || lowerTitle.includes('ekattor') || lowerTitle.includes('channel 24') || lowerTitle.includes('independent') || lowerTitle.includes('dbc') || lowerTitle.includes('atn') || lowerTitle.includes('rtv') || lowerTitle.includes('ntv') || lowerTitle.includes('banglavision') || lowerTitle.includes('maasranga') || lowerTitle.includes('nagorik') || lowerTitle.includes('gazi') || lowerTitle.includes('deepto') || lowerTitle.includes('ekhon') || lowerTitle.includes('bijoy') || lowerTitle.includes('channel i') || lowerTitle.includes('desh tv') || lowerTitle.includes('asian tv') || lowerTitle.includes('my tv') || lowerTitle.includes('global tv')) {
+                            else if (rawGroup === 'bangla' || lowerTitle.includes('btv') || lowerTitle.includes('somoy') || lowerTitle.includes('jamuna') || lowerTitle.includes('ekattor') || lowerTitle.includes('channel 24') || lowerTitle.includes('independent') || lowerTitle.includes('dbc') || lowerTitle.includes('atn') || lowerTitle.includes('rtv') || lowerTitle.includes('ntv') || lowerTitle.includes('banglavision') || lowerTitle.includes('maasranga') || lowerTitle.includes('nagorik') || lowerTitle.includes('gazi') || lowerTitle.includes('deepto') || lowerTitle.includes('ekhon') || lowerTitle.includes('bijoy') || lowerTitle.includes('channel i') || lowerTitle.includes('desh tv') || lowerTitle.includes('asian tv') || lowerTitle.includes('my tv') || lowerTitle.includes('global tv') || lowerTitle.includes('mohana') || lowerTitle.includes('boishakhi') || lowerTitle.includes('channel 1') || lowerTitle.includes('channel 9') || lowerTitle.includes('sa tv') || lowerTitle.includes('bangla tv') || lowerTitle.includes('srk tv') || lowerTitle.includes('ananda tv') || lowerTitle.includes('green tv') || lowerTitle.includes('channel 52') || lowerTitle.includes('zb cinema') || lowerTitle.includes('drama 24') || lowerTitle.includes('rongeen tv')) {
                                 detectedGroup = 'bangla';
                             }
-                            // If completely unmatched, assign according to playlist group or default
+                            // Fallback (Other)
                             else {
-                                detectedGroup = rawGroup || 'bangla';
+                                detectedGroup = 'other';
                             }
 
                             allChannels.push({ name: title, logo: logo, url: streamUrl, group: detectedGroup });
