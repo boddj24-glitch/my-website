@@ -32,7 +32,7 @@ https://amg26268-amg26268c14-freelivesports-emea-10267.playouts.now.amagi.tv/ts-
 #EXTINF:-1 tvg-logo="https://i.postimg.cc/v8JPQjFK/laliga.png" group-title="𝐒𝐩𝐨𝐫𝐭𝐬",Laliga HD
 https://palashbari-tv.vercel.app/api/proxy?url=https://rmtv.akamaized.net/hls/live/2043154/rmtv-en-web/bitrate_3.m3u8
 
-#EXTINF:-1, Okko Fotball
+#EXTINF:-1, Okko Football
 https://palashbari-tv.vercel.app/api/proxy?url=http://stream.mcquack.net/491/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://tstatic.akash-go.com/cms-ui/images/custom-content/1778082545894.png",BTV National
@@ -524,6 +524,9 @@ https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7
 #EXTINF:-1, Special Cartoon
 https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/10002/index.m3u8
 
-
+#EXTINF:-1 tvg-id="ESPN.us" tvg-name="ESPN [Backup 1]" tvg-logo="https://web.aynaott.com/storage/019dd92f-107c-7056-9e79-e5233f6e51d9/uploads/images/2026-07-09/images_aa4e43db11b3d698b78989797debf18c_playmist_espn400x400.jpg" tvg-chno="547" group-title="Sports",ESPN [Backup 1]
+http://181.78.197.59:8000/play/a07z/index.m3u8
+#EXTINF:-1 tvg-id="ESPN.us" tvg-name="ESPN [Backup 2]" tvg-logo="https://web.aynaott.com/storage/019dd92f-107c-7056-9e79-e5233f6e51d9/uploads/images/2026-07-09/images_aa4e43db11b3d698b78989797debf18c_playmist_espn400x400.jpg" tvg-chno="548" group-title="Sports",ESPN [Backup 2]
+https://tvsen7.aynaott.com/espn/index.m3u8
 
 
