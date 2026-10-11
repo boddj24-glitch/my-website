@@ -87,7 +87,6 @@
             margin: 0 0 15px 0;
         }
 
-        /* Bottom Server Switcher Box (Moved below player) */
         .bottom-server-switcher {
             background: #0d1117;
             padding: 12px 15px;
@@ -215,14 +214,49 @@
             display: grid; 
             grid-template-columns: repeat(4, minmax(0, 1fr)); 
             gap: 10px; 
-            height: 73vh; 
+            height: 64vh; 
             overflow-y: auto;
             background: var(--bg-color); 
             padding: 15px; 
             padding-right: 10px;
-            border-radius: 12px; 
+            border-radius: 12px 12px 0 0; 
             align-content: start; 
         }
+
+        /* Social Footer placed right below channel list container */
+        .social-footer {
+            display: flex;
+            gap: 10px;
+            background: var(--bg-color);
+            padding: 12px 15px;
+            border-radius: 0 0 12px 12px;
+            border-top: 1px solid #30363d;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 13px;
+            color: #fff;
+            transition: 0.3s;
+            border: 1px solid #30363d;
+        }
+
+        .telegram-btn { background: #0088cc; }
+        .telegram-btn:hover { background: #0077b5; border-color: #fff; }
+
+        .facebook-btn { background: #1877f2; }
+        .facebook-btn:hover { background: #145dbf; border-color: #fff; }
+
+        .whatsapp-btn { background: #25d366; }
+        .whatsapp-btn:hover { background: #1ebe5d; border-color: #fff; }
 
         .video-box { 
             width: 100%; 
@@ -334,38 +368,6 @@
             color: #000; 
         }
 
-        .social-footer {
-            display: flex;
-            gap: 15px;
-            max-width: 1800px;
-            margin: 0 auto 20px auto;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .social-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-            color: #fff;
-            transition: 0.3s;
-            border: 1px solid #30363d;
-        }
-
-        .telegram-btn { background: #0088cc; }
-        .telegram-btn:hover { background: #0077b5; border-color: #fff; }
-
-        .facebook-btn { background: #1877f2; }
-        .facebook-btn:hover { background: #145dbf; border-color: #fff; }
-
-        .whatsapp-btn { background: #25d366; }
-        .whatsapp-btn:hover { background: #1ebe5d; border-color: #fff; }
-
         ::-webkit-scrollbar { width: 5px; height: 5px; }
         ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 10px; }
     </style>
@@ -392,7 +394,7 @@
                 <button class="btn pip-btn" onclick="togglePIP()">PIP Mode</button>
             </div>
 
-            <!-- Server Switcher & Notice Box Moved Here (Below Player) -->
+            <!-- Server Switcher & Notice Box -->
             <div id="serverSwitcherBox" class="bottom-server-switcher">
                 <div class="server-title-notice-row">
                     <div class="server-title" id="activeChannelName">চ্যানেল সিলেক্ট করুন</div>
@@ -432,18 +434,19 @@
             <div class="channel-list" id="channelContainer">
                 <p style="text-align: center; color: #888; grid-column: span 4;">চ্যানেল লোড হচ্ছে...</p>
             </div>
+
+            <!-- Social Links moved right below the channel list -->
+            <div class="social-footer">
+                <a href="https://t.me/shawonpb" target="_blank" class="social-btn telegram-btn">📱 Telegram</a>
+                <a href="https://www.facebook.com/aribashawon6672" target="_blank" class="social-btn facebook-btn">🌐 Facebook</a>
+                <a href="https://wa.me/8801812895985" target="_blank" class="social-btn whatsapp-btn">💬 WhatsApp</a>
+            </div>
         </div>
     </div>
 
     <div class="input-box">
         <input type="text" id="customUrlInput" placeholder="লিঙ্ক এখানে দিন (M3U8, MPD বা URL)...">
         <button class="play-btn" onclick="playCustom()">প্লে করুন</button>
-    </div>
-
-    <div class="social-footer">
-        <a href="https://t.me/shawonpb" target="_blank" class="social-btn telegram-btn">📱 Join Telegram</a>
-        <a href="https://www.facebook.com/aribashawon6672" target="_blank" class="social-btn facebook-btn">🌐 Follow Facebook</a>
-        <a href="https://wa.me/8801812895985" target="_blank" class="social-btn whatsapp-btn">💬 Join WhatsApp</a>
     </div>
 
     <script>
