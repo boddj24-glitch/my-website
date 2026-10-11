@@ -238,9 +238,6 @@ https://live20.bozztv.com/giatvplayout7/giatv-209593/tracks-v1a1/mono.ts.m3u8
 #EXTINF:-1 tvg-logo="https://i.ibb.co/KjjqnRH/Picsart-23-06-30-21-35-20-283.png",Shemaroo Bollywood
 https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg00864-shemarooenterta-shemabollywood-ono/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="https://assets-prod.services.toffeelive.com/f_png,w_300,q_85/PS6F-JQBv9knK3AHqjVz/posters/0f83ee72-be0f-4861-94df-30b158d3df8d.webp",B4U Music
-https://amg00877-b4unew-amg00877c3-xiaomi-in-5474.playouts.now.amagi.tv/1080p/index.m3u8
-
 #EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKyMNNb_SRC2dnm7IW84llAJ9aO5Zb7V4jdjHaweOo58tzrc9pSsRv85-TZD1w4L57nc4&usqp=CAU",Music India
 https://jioplaylistdown.yecic62314.workers.dev/live.m3u8?id=250
 
@@ -249,7 +246,6 @@ https://cdn-apse1-prod.tsv2.amagi.tv/linear/amg01076-lightningintern-actionholly
 
 #EXTINF:-1 tvg-logo="",Movies HLS
 https://moviethls.wns.live/hls/stream.m3u8
-
 
 #EXTINF:-1 tvg-id="TheMovieClub.in@HD" group-title="Movie Club",The Movie Club
 https://sis-global.prod.samsungtv.plus/v1/tvpprd/sc-mp2ar4ca425xo.m3u8
@@ -275,8 +271,9 @@ https://tv.chitrabani24.com/proxy.php?url=https%3A%2F%2Flive-bhojpuri.akamaized.
 #EXTINF:-1 tvg-logo="" group-title="Movies",Movies HLS
 https://moviethls.wns.live/hls/stream.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="Music",Music Channel 2
-https://a-cdn.klowdtv.com/live1/smc_720p/chunks.m3u8
+#EXTINF:-1 tvg-logo="https://assets-prod.services.toffeelive.com/f_png,w_300,q_85/PS6F-JQBv9knK3AHqjVz/posters/0f83ee72-be0f-4861-94df-30b158d3df8d.webp",B4U Music
+https://amg00877-b4unew-amg00877c3-xiaomi-in-5474.playouts.now.amagi.tv/1080p/index.m3u8
+
 
 #EXTINF:-1 group-title="Music" tvg-logo="https://imglink.cc/cdn/IYDn_LwwiV.png", 9X Tashan
 https://wiselp.wiseplayout.com/9X_Tashan/master.m3u8
@@ -517,6 +514,9 @@ https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7
 
 #EXTINF:-1, Channel movei
 https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/905/index.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="Music",sony movies
+https://a-cdn.klowdtv.com/live1/smc_720p/chunks.m3u8
 
 #EXTINF:-1 tvg-id="" tvg-logo="https://static.wikia.nocookie.net/logopedia/images/7/7c/HBO_Movies_2025.svg",EN | HBO Movies 2
 https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/7005/index.m3u8
