@@ -559,11 +559,6 @@
                 return ch.group && ch.group.toLowerCase().includes(currentFilter.toLowerCase());
             });
 
-            // Fallback: If no channel is tagged under that specific category, show all channels so none disappear
-            if (filteredChannels.length === 0) {
-                filteredChannels = allChannels;
-            }
-
             if (filteredChannels.length > 0) {
                 filteredChannels.forEach(ch => {
                     const btn = document.createElement('div');
@@ -583,7 +578,7 @@
                     container.appendChild(btn);
                 });
             } else {
-                container.innerHTML = '<p style="text-align: center; color: #888; grid-column: span 4;">কোনো চ্যানেল পাওয়া যায়নি।</p>';
+                container.innerHTML = '<p style="text-align: center; color: #888; grid-column: span 4; padding: 20px;">এই ক্যাটাগরিতে কোনো চ্যানেল পাওয়া যায়নি।</p>';
             }
         }
 
@@ -594,7 +589,7 @@
             renderChannels();
         }
 
-        // Load Playlist
+        // Load Playlist with Smart Category Auto-Detection
         fetch('https://raw.githubusercontent.com/boddj24-glitch/my-website/refs/heads/main/playlist.m3u')
             .then(response => response.text())
             .then(data => {
@@ -608,7 +603,7 @@
                         let logo = logoMatch ? logoMatch[1] : 'https://i.postimg.cc/W1z5BGPZ/20240823_024712.png';
                         
                         let groupMatch = line.match(/group-title="([^"]+)"/);
-                        let group = groupMatch ? groupMatch[1].trim() : '';
+                        let group = groupMatch ? groupMatch[1].trim().toLowerCase() : '';
                         
                         let nameParts = line.split(',');
                         let title = nameParts[nameParts.length - 1].trim();
@@ -623,6 +618,28 @@
                         }
                         
                         if (title) {
+                            // Smart Auto-Categorization Fallback if group-title is missing or general
+                            let lowerTitle = title.toLowerCase();
+                            if (!group || group === 'other' || group === 'channels' || group === 'live') {
+                                if (lowerTitle.includes('sports') || lowerTitle.includes('t sports') || lowerTitle.includes('willow') || lowerTitle.includes('cricket') || lowerTitle.includes('football') || lowerTitle.includes('ten')) {
+                                    group = 'sports';
+                                } else if (lowerTitle.includes('jalsha') || lowerTitle.includes('zee bangla') || lowerTitle.includes('colors bangla') || lowerTitle.includes('sun bangla')) {
+                                    group = 'indian_bangla';
+                                } else if (lowerTitle.includes('somoy') || lowerTitle.includes('jamuna') || lowerTitle.includes('btv') || lowerTitle.includes('news') || lowerTitle.includes('tv') || lowerTitle.includes('bangla')) {
+                                    group = 'bangla';
+                                } else if (lowerTitle.includes('star gold') || lowerTitle.includes('max') || lowerTitle.includes('cinema') || lowerTitle.includes('bollywood') || lowerTitle.includes('gold mines')) {
+                                    group = 'hindi';
+                                } else if (lowerTitle.includes('music')) {
+                                    group = 'music';
+                                } else if (lowerTitle.includes('cartoon') || lowerTitle.includes('duronto')) {
+                                    group = 'cartoon';
+                                } else if (lowerTitle.includes('discovery') || lowerTitle.includes('documentary') || lowerTitle.includes('nat geo')) {
+                                    group = 'documentary';
+                                } else {
+                                    group = 'bangla'; // Default fallback
+                                }
+                            }
+
                             allChannels.push({ name: title, logo: logo, url: streamUrl, group: group });
                         }
                     }
