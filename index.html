@@ -37,7 +37,7 @@
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
     <!-- HLS.js -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <!-- DASH.js (Added for .mpd support) -->
+    <!-- DASH.js -->
     <script src="https://cdn.jsdelivr.net/npm/dashjs@latest/dist/dash.all.min.js"></script>
     <!-- Clappr -->
     <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
@@ -146,12 +146,54 @@
             border-color: var(--accent-color);
         }
 
+        /* Category Filter Bar */
+        .channel-list-container {
+            flex: 2.1;
+            display: flex;
+            flex-direction: column;
+            min-width: 300px;
+        }
+
+        .category-bar {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+            margin-bottom: 12px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+        }
+
+        .cat-btn {
+            background: #21262d;
+            color: #fff;
+            border: 1px solid #30363d;
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            transition: 0.2s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .cat-btn:hover {
+            border-color: var(--accent-color);
+        }
+
+        .cat-btn.active {
+            background: var(--accent-color);
+            color: #000;
+            border-color: var(--accent-color);
+        }
+
         .channel-list { 
-            flex: 2.1; 
             display: grid; 
             grid-template-columns: repeat(4, minmax(0, 1fr)); 
             gap: 10px; 
-            height: 80vh; 
+            height: 73vh; 
             overflow-y: auto;
             background: var(--bg-color); 
             padding: 15px; 
@@ -303,7 +345,7 @@
         .whatsapp-btn { background: #25d366; }
         .whatsapp-btn:hover { background: #1ebe5d; border-color: #fff; }
 
-        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
         ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 10px; }
     </style>
 </head>
@@ -337,8 +379,22 @@
             </div>
         </div>
 
-        <div class="channel-list" id="channelContainer">
-            <p style="text-align: center; color: #888; grid-column: span 4;">চ্যানেল লোড হচ্ছে...</p>
+        <div class="channel-list-container">
+            <!-- Category Filter Bar -->
+            <div class="category-bar">
+                <button class="cat-btn active" onclick="filterCategory('all', this)">All</button>
+                <button class="cat-btn" onclick="filterCategory('sports', this)">Sports</button>
+                <button class="cat-btn" onclick="filterCategory('bangla', this)">Bangla</button>
+                <button class="cat-btn" onclick="filterCategory('indian_bangla', this)">Indian Bangla</button>
+                <button class="cat-btn" onclick="filterCategory('hindi', this)">Hindi</button>
+                <button class="cat-btn" onclick="filterCategory('music', this)">Music</button>
+                <button class="cat-btn" onclick="filterCategory('documentary', this)">Documentary</button>
+                <button class="cat-btn" onclick="filterCategory('cartoon', this)">Cartoon</button>
+            </div>
+
+            <div class="channel-list" id="channelContainer">
+                <p style="text-align: center; color: #888; grid-column: span 4;">চ্যানেল লোড হচ্ছে...</p>
+            </div>
         </div>
     </div>
 
@@ -397,7 +453,7 @@
         })();
 
         // ==========================================
-        // PLAYER LOGIC & DYNAMIC M3U / MPD PARSER
+        // PLAYER LOGIC & DYNAMIC M3U PARSER
         // ==========================================
         const videoEl = document.getElementById('my-video');
         const iframe = document.getElementById('custom-iframe');
@@ -408,6 +464,8 @@
         let dashPlayer;
         let currentMode = 'videojs';
         let currentUrl = '';
+        let allChannels = [];
+        let currentFilter = 'all';
 
         function togglePIP() {
             if (videoEl.style.display !== 'none' && document.pictureInPictureEnabled) {
@@ -480,30 +538,15 @@
             } else {
                 videoEl.style.display = 'block';
                 
-                // ==========================================
-                // MPEG-DASH (.mpd) & DRM / ECE Handling
-                // ==========================================
                 if (finalUrl.includes('.mpd') || finalUrl.includes('dash')) {
                     if (typeof dashjs !== 'undefined') {
                         dashPlayer = dashjs.MediaPlayer().create();
                         dashPlayer.initialize(videoEl, finalUrl, true);
-
-                        // যদি স্ট্রিমটিতে Widevine DRM / ECE প্রটেকশন থাকে, তবে কমেন্ট সরিয়ে লাইসেন্স URL দিন:
-                        /*
-                        const drmConfig = {
-                            "com.widevine.alpha": {
-                                "serverURL": "YOUR_LICENSE_SERVER_URL_HERE"
-                            }
-                        };
-                        dashPlayer.setProtectionData(drmConfig);
-                        */
                     } else {
                         videoEl.src = finalUrl;
                         videoEl.play();
                     }
-                } 
-                // Otherwise treat as HLS (.m3u8) or standard stream
-                else if (Hls.isSupported()) {
+                } else if (Hls.isSupported()) {
                     hls = new Hls();
                     hls.loadSource(finalUrl);
                     hls.attachMedia(videoEl);
@@ -524,12 +567,51 @@
             }
         }
 
-        // Fetch playlist.m3u dynamically and populate channels
+        function renderChannels() {
+            const container = document.getElementById('channelContainer');
+            container.innerHTML = '';
+
+            const filteredChannels = allChannels.filter(ch => {
+                if (currentFilter === 'all') return true;
+                return ch.group === currentFilter;
+            });
+
+            if (filteredChannels.length > 0) {
+                filteredChannels.forEach(ch => {
+                    const btn = document.createElement('div');
+                    btn.className = 'ch-btn';
+                    
+                    let img = document.createElement('img');
+                    img.src = ch.logo;
+                    img.onerror = () => { img.src = "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png"; };
+                    
+                    let strong = document.createElement('strong');
+                    strong.innerText = ch.name;
+                    
+                    btn.appendChild(img);
+                    btn.appendChild(strong);
+                    
+                    btn.onclick = () => loadChannel(ch);
+                    container.appendChild(btn);
+                });
+            } else {
+                container.innerHTML = '<p style="text-align: center; color: #888; grid-column: span 4;">এই ক্যাটাগরিতে কোনো চ্যানেল নেই।</p>';
+            }
+        }
+
+        function filterCategory(category, btnElement) {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btnElement.classList.add('active');
+            currentFilter = category;
+            renderChannels();
+        }
+
+        // Fetch playlist.m3u dynamically and group channels
         fetch('https://raw.githubusercontent.com/boddj24-glitch/my-website/refs/heads/main/playlist.m3u')
             .then(response => response.text())
             .then(data => {
                 const lines = data.split('\n');
-                let channels = [];
+                allChannels = [];
                 
                 for (let i = 0; i < lines.length; i++) {
                     if (lines[i].startsWith('#EXTINF')) {
@@ -538,42 +620,25 @@
                         let logoMatch = line.match(/tvg-logo="([^"]+)"/);
                         let logo = logoMatch ? logoMatch[1] : 'https://i.postimg.cc/W1z5BGPZ/20240823_024712.png';
                         
+                        let groupMatch = line.match(/group-title="([^"]+)"/);
+                        let group = groupMatch ? groupMatch[1].toLowerCase().trim() : 'other';
+                        
                         let nameParts = line.split(',');
                         let title = nameParts[nameParts.length - 1].trim();
                         
                         let streamUrl = lines[i + 1] ? lines[i + 1].trim() : '#';
                         
                         if (title && !title.startsWith('#')) {
-                            channels.push({ name: title, logo: logo, url: streamUrl });
+                            allChannels.push({ name: title, logo: logo, url: streamUrl, group: group });
                         }
                     }
                 }
 
-                const container = document.getElementById('channelContainer');
-                container.innerHTML = '';
-
-                if (channels.length > 0) {
-                    channels.forEach(ch => {
-                        const btn = document.createElement('div');
-                        btn.className = 'ch-btn';
-                        
-                        let img = document.createElement('img');
-                        img.src = ch.logo;
-                        img.onerror = () => { img.src = "https://i.postimg.cc/W1z5BGPZ/20240823_024712.png"; };
-                        
-                        let strong = document.createElement('strong');
-                        strong.innerText = ch.name;
-                        
-                        btn.appendChild(img);
-                        btn.appendChild(strong);
-                        
-                        btn.onclick = () => loadChannel(ch);
-                        container.appendChild(btn);
-                    });
-
-                    loadChannel(channels[0]);
+                if (allChannels.length > 0) {
+                    renderChannels();
+                    loadChannel(allChannels[0]);
                 } else {
-                    container.innerHTML = '<p style="text-align: center; color: red; grid-column: span 4;">কোনো চ্যানেল পাওয়া যায়নি।</p>';
+                    document.getElementById('channelContainer').innerHTML = '<p style="text-align: center; color: red; grid-column: span 4;">কোনো চ্যানেল পাওয়া যায়নি।</p>';
                 }
             })
             .catch(error => {
