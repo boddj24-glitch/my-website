@@ -124,13 +124,8 @@
             text-align: left;
         }
 
-        .server-stacked-notices {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
         .server-inline-notice {
+            max-width: 100%;
             overflow: hidden;
             white-space: nowrap;
             background: rgba(229, 184, 96, 0.1);
@@ -391,18 +386,11 @@
                     <div class="server-title-notice-row">
                         <div class="server-title" id="activeChannelName">চ্যানেল সিলেক্ট করুন</div>
                         
-                        <!-- Stacked notices one below another -->
-                        <div class="server-stacked-notices">
-                            <div class="server-inline-notice">
-                                <marquee behavior="scroll" direction="left" scrollamount="4">
-                                    📢 কোনো ভিডিও প্লে না হলে HTML মোডে ট্রাই করে এক মিনিট অপেক্ষা করুন।
-                                </marquee>
-                            </div>
-                            <div class="server-inline-notice">
-                                <marquee behavior="scroll" direction="left" scrollamount="4">
-                                    💬 যেকোনো প্রয়োজনে নিচে টেলিগ্রাম, হোয়াটসঅ্যাপ, ফেসবুক যোগাযোগ করুন।
-                                </marquee>
-                            </div>
+                        <!-- Single small notice box containing both messages sequentially -->
+                        <div class="server-inline-notice">
+                            <marquee behavior="scroll" direction="left" scrollamount="4">
+                                📢 কোনো ভিডিও প্লে না হলে HTML মোডে ট্রাই করে এক মিনিট অপেক্ষা করুন। &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💬 যেকোনো প্রয়োজনে নিচে টেলিগ্রাম, হোয়াটসঅ্যাপ, ফেসবুক যোগাযোগ করুন।
+                            </marquee>
                         </div>
                     </div>
                     
