@@ -212,11 +212,12 @@
             border-color: var(--accent-color);
         }
 
+        /* Channel list height increased to fill the gap perfectly */
         .channel-list { 
             display: grid; 
             grid-template-columns: repeat(4, minmax(0, 1fr)); 
             gap: 10px; 
-            height: 64vh; 
+            height: 72vh; 
             overflow-y: auto;
             background: var(--bg-color); 
             padding: 15px; 
@@ -225,7 +226,7 @@
             align-content: start; 
         }
 
-        /* Social buttons right below channel list */
+        /* Social buttons attached right below channel list */
         .social-footer {
             display: flex;
             gap: 10px;
