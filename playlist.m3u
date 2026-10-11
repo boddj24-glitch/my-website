@@ -50,7 +50,7 @@ https://tvsen6.aynaott.com/FNHpYvGZ7FkCE10PwTHm/index.m3u8
 #EXTINF:-1 tvg-logo="https://tstatic.akash-go.com/cms-ui/images/custom-content/1773680325498.png",Maasranga TV
 https://mtv.sunplex.live/MAASRANGA/tracks-v1a1/mono.m3u8
 
-#EXTINF:-1 tvg-logo="https://fcnchbd.xyz/iptv/logo/rtv.png",Rtv
+#EXTINF:-1 group-title="Bangladesh" tvg-logo="https://imglink.cc/cdn/JZnibxXLfK.png",RTV Live
 https://tvsen5.aynaott.com/RtvHD/tracks-v1a1/mono.ts.m3u8
 
 #EXTINF:-1 tvg-logo="https://i.postimg.cc/rsDjtcFp/20240822-225424.png",Ekushey TV
@@ -62,7 +62,7 @@ https://tvsen6.aynaott.com/AkyX5dunzju4cpo26dr7/tracks-v1a1/mono.ts.m3u8
 #EXTINF:-1 tvg-logo="https://static.wikia.nocookie.net/etv-gspn-bangla/images/0/08/Boishakhi_TV_HD_logo_2022.png",Boishakhi TV
 https://playztv-apps.pages.dev/boishakhi-tv/index.m3u8
 
-#EXTINF:-1 tvg-logo="https://fcnchbd.xyz/iptv/logo/gazi.png",GAZI TV
+#EXTINF:-1 group-title="Bangladesh" tvg-logo="https://i.ibb.co.com/cc5rftrN/Gazi-TV.png",GTV
 https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/gazibdz.stream/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="https://fcnchbd.xyz/iptv/logo/nago.png",Nagorik TV
@@ -346,13 +346,13 @@ https://s2.bufaloweb.com/bufalo9/tracks-v4a1/mono.ts.m3u8
 https://bein-esp-xumo.amagi.tv/playlistR1080p.m3u8
 
 #EXTINF:-1 group-title="Sports" tvg-logo="https://i.postimg.cc/441hHtgZ/20250120_193746.png",Bein Sports 1
-https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/6123/index.m3u8#skym3u.dev
+https://palashbari-tv.vercel.app/api/proxy?url=http://27.124.71.27/beIN_Sports_1/index.m3u8
 
 #EXTINF:-1 group-title="Sports" tvg-logo="https://i.postimg.cc/FzGdttZ1/20250120_193818.png",Bein Sports 2
-https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/6128/index.m3u8#skym3u.dev
+https://palashbari-tv.vercel.app/api/proxy?url=http://27.124.71.27/beIN_Sports_2/index.m3u8
 
 #EXTINF:-1 group-title="Sports" tvg-logo="https://i.postimg.cc/B6TPgPPT/20250120_193903.png",Bein Sports 3
-https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/6123/index.m3u8#skym3u.dev
+https://palashbari-tv.vercel.app/api/proxy?url=http://27.124.71.27/beIN_Sports_3/index.m3u8
 
 #EXTINF:-1 group-title="Sports" tvg-logo="https://i.postimg.cc/B6TPgPPT/20250120_193903.png",Bein Sports 4
 https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/6125/index.m3u8#skym3u.dev
