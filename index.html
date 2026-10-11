@@ -105,16 +105,42 @@
             border-radius: 8px;
             border: 1px solid #30363d;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .server-title-notice-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            overflow: hidden;
         }
 
         .server-title {
-            font-size: 12px;
+            font-size: 13px;
             color: var(--accent-color);
-            margin-bottom: 6px;
             font-weight: bold;
             white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .server-inline-notice {
+            flex-grow: 1;
             overflow: hidden;
-            text-overflow: ellipsis;
+            white-space: nowrap;
+            background: rgba(229, 184, 96, 0.1);
+            border-radius: 4px;
+            padding: 2px 6px;
+            border: 1px solid rgba(229, 184, 96, 0.2);
+        }
+
+        .server-inline-notice marquee {
+            font-size: 11.5px;
+            color: #58a6ff;
+            font-weight: bold;
+            display: block;
         }
 
         .server-buttons-wrap {
@@ -357,7 +383,17 @@
                 <div class="logo-header">SHAWON TV</div>
                 
                 <div id="serverSwitcherBox" class="header-server-switcher">
-                    <div class="server-title" id="activeChannelName">চ্যানেল সিলেক্ট করুন</div>
+                    <div class="server-title-notice-row">
+                        <div class="server-title" id="activeChannelName">চ্যানেল সিলেক্ট করুন</div>
+                        
+                        <!-- Inline Notice right beside the channel name -->
+                        <div class="server-inline-notice">
+                            <marquee behavior="scroll" direction="left" scrollamount="4">
+                                📢 কোনো ভিডিও প্লে না হলে HTML মোডে ট্রাই করে এক মিনিট অপেক্ষা করুন।
+                            </marquee>
+                        </div>
+                    </div>
+                    
                     <div class="server-buttons-wrap" id="serverButtonsContainer"></div>
                 </div>
             </div>
@@ -589,7 +625,7 @@
             renderChannels();
         }
 
-        // Expanded Strict & Precise Categorization Engine
+        // Categorization Engine
         fetch('https://raw.githubusercontent.com/boddj24-glitch/my-website/refs/heads/main/playlist.m3u')
             .then(response => response.text())
             .then(data => {
@@ -621,7 +657,6 @@
                             let lowerTitle = title.toLowerCase();
                             let detectedGroup = 'other';
 
-                            // 1. SPORTS
                             if (
                                 rawGroup.includes('sport') || lowerTitle.includes('sport') || lowerTitle.includes('cricket') || 
                                 lowerTitle.includes('football') || lowerTitle.includes('willow') || lowerTitle.includes('ten') || 
@@ -633,7 +668,6 @@
                             ) {
                                 detectedGroup = 'sports';
                             } 
-                            // 2. DOCUMENTARY
                             else if (
                                 rawGroup.includes('docu') || lowerTitle.includes('documentary') || lowerTitle.includes('discovery') || 
                                 lowerTitle.includes('nat geo') || lowerTitle.includes('national geo') || lowerTitle.includes('animal planet') || 
@@ -643,7 +677,6 @@
                             ) {
                                 detectedGroup = 'documentary';
                             }
-                            // 3. CARTOON / KIDS
                             else if (
                                 rawGroup.includes('cartoon') || rawGroup.includes('kids') || lowerTitle.includes('cartoon') || 
                                 lowerTitle.includes('duronto') || lowerTitle.includes('nick') || lowerTitle.includes('pogo') || 
@@ -653,7 +686,6 @@
                             ) {
                                 detectedGroup = 'cartoon';
                             }
-                            // 4. MUSIC
                             else if (
                                 rawGroup.includes('music') || lowerTitle.includes('music') || lowerTitle.includes('9xm') || 
                                 lowerTitle.includes('9x') || lowerTitle.includes('m tv') || lowerTitle.includes('zing') || 
@@ -661,7 +693,6 @@
                             ) {
                                 detectedGroup = 'music';
                             }
-                            // 5. INDIAN BANGLA
                             else if (
                                 rawGroup.includes('indian_bangla') || rawGroup.includes('indian') || lowerTitle.includes('jalsha') || 
                                 lowerTitle.includes('zee bangla') || lowerTitle.includes('colors bangla') || lowerTitle.includes('sun bangla') || 
@@ -669,7 +700,6 @@
                             ) {
                                 detectedGroup = 'indian_bangla';
                             }
-                            // 6. HINDI & MOVIES (Includes English Movies, HBO, Sony Movies)
                             else if (
                                 rawGroup.includes('hindi') || rawGroup.includes('movies') || rawGroup.includes('movie club') || 
                                 lowerTitle.includes('star gold') || lowerTitle.includes('sony max') || lowerTitle.includes('zee tv') || 
@@ -687,7 +717,6 @@
                             ) {
                                 detectedGroup = 'hindi';
                             }
-                            // 7. BANGLADESH LOCAL CHANNELS ONLY
                             else if (
                                 rawGroup.includes('bangla') || rawGroup.includes('bangladeshi') || rawGroup.includes('toffee') || 
                                 lowerTitle.includes('btv') || lowerTitle.includes('somoy') || lowerTitle.includes('jamuna') || 
@@ -706,7 +735,6 @@
                             ) {
                                 detectedGroup = 'bangla';
                             }
-                            // Default Fallback
                             else {
                                 detectedGroup = rawGroup || 'other';
                             }
