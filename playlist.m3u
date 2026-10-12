@@ -328,6 +328,9 @@ https://5dd3981940faa.streamlock.net/thikanatv/thikanatv/chunklist_w1860781648.m
 #EXTINF:-1 group-title="Music" tvg-logo="https://imglink.cc/cdn/LmVOSdl3ku.png", Sangeet Bangla
 https://my-website-hx91.onrender.com/proxy?url=http://198.195.239.50:8095/sangeetBangla/index.m3u8
 
+#EXTINF:-1 tvg-logo="https://i.postimg.cc/wTvMLMp2/20240823_021706.png" group-title="𝐊𝐢𝐝𝐬", Kids cartoon  
+https://stream.ottplus.live/live/discovery_kids_abr/index.m3u8
+
 #EXTINF:-1 group-title="Cartoon" tvg-logo="https://imglink.cc/cdn/TxPUulKGQh.jpg", Motu Patlu
 https://live20.bozztv.com/giatvplayout7/giatv-209622/tracks-v1a1/mono.ts.m3u8
 
@@ -345,9 +348,6 @@ https://stream.ottplus.live/live/sony_yay_abr/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://i.postimg.cc/k4mDbyJR/20240823_021424.png" group-title="𝐊𝐢𝐝𝐬",Cartoon Network HD
 https://drk6xq0vhn.gpcdn.net/live/cn_hd_abr/index.m3u8
-
-#EXTINF:-1 tvg-logo="https://i.postimg.cc/wTvMLMp2/20240823_021706.png" group-title="𝐊𝐢𝐝𝐬", Kids cartoon
-https://stream.ottplus.live/live/discovery_kids_abr/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://i.postimg.cc/C1s5Hf5P/20240823_021444.png" group-title="𝐊𝐢𝐝𝐬",Pogo
 https://stream.ottplus.live/live/pogo_sd_abr/index.m3u8
@@ -431,13 +431,11 @@ https://flussonic.defineatoz.com/starsportsselect1/tracks-v1/mono.m3u8
 #EXTINF:-1 tvg-logo="https://i.postimg.cc/rmczbb8g/20240825_060019.png" group-title="𝐒𝐩𝐨𝐫𝐭𝐬",Star Sports SL 2
 https://flussonic.defineatoz.com/starsportsselect2sw/index.m3u8
 
-
 #EXTINF:-1 tvg-logo="https://abusaeeidx.github.io/Tv-Channel-Logo/CricHD/runded/10-by-xfireflix.png",TEN SPORTS
 https://robitv.com/lps/https://ml-pull-dvc-myco.io:2096/TENSPORTS_HD/mono.m3u8
 
 #EXTINF:-1 tvg-logo="https://abusaeeidx.github.io/Tv-Channel-Logo/CricHD/runded/9-by-xfireflix.png",Sky sports football
 https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/9289/index.m3u8
-
 
 #EXTINF:-1 tvg-logo="https://s3.aynaott.com/storage/7d20b575edc4e4b5276faa8c246e72a4",Cricket Gold
 https://streams2.sofast.tv/ptnr-yupptv/title-cricketgold/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/b2048bb8-1686-4432-aa50-647245383e0c/bfc6a36e-c250-4afe-b6c9-2bc57855bb7d/4.m3u8
@@ -471,7 +469,6 @@ https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7
 
 #EXTINF:-1, M4T4 Football 2
 https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/530/index.m3u8
-
 
 #EXTINF:-1 tvg-id="01a11291-2c1a-72fb-bf2d-bf03de6e974d" tvg-name="Sportv" tvg-logo="https://web.aynaott.com/storage/019dd92f-107c-7056-9e79-e5233f6e51d9/uploads/images/2026-10-06/images_6b43965cf8ff9e05973fde793d1ba4d2_playmist_sportv_logo_png_seeklogo_424355.png" group-title="Sports",Sportv
 https://tvsen7.aynaott.com/shagor-backup/index.m3u8
