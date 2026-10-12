@@ -346,7 +346,7 @@ https://stream.ottplus.live/live/sony_yay_abr/index.m3u8
 #EXTINF:-1 tvg-logo="https://i.postimg.cc/k4mDbyJR/20240823_021424.png" group-title="𝐊𝐢𝐝𝐬",Cartoon Network HD
 https://drk6xq0vhn.gpcdn.net/live/cn_hd_abr/index.m3u8
 
-#EXTINF:-1 tvg-logo="https://i.postimg.cc/wTvMLMp2/20240823_021706.png" group-title="𝐊𝐢𝐝𝐬",Discovery Kids cartoon
+#EXTINF:-1 tvg-logo="https://i.postimg.cc/wTvMLMp2/20240823_021706.png" group-title="𝐊𝐢𝐝𝐬", Kids cartoon
 https://stream.ottplus.live/live/discovery_kids_abr/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://i.postimg.cc/C1s5Hf5P/20240823_021444.png" group-title="𝐊𝐢𝐝𝐬",Pogo
