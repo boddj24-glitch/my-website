@@ -553,16 +553,32 @@
             html5El.src = "";
             iframe.src = "about:blank";
 
+            const safePlay = (mediaEl) => {
+                let playPromise = mediaEl.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(() => {
+                        mediaEl.muted = true;
+                        mediaEl.play();
+                    });
+                }
+            };
+
             if (mode === 'iframe') {
                 iframe.src = finalUrl;
                 iframe.style.display = 'block';
             } else if (mode === 'clappr') {
                 clapprEl.style.display = 'block';
-                clapprInstance = new Clappr.Player({source: finalUrl, parentId: "#clappr-container", width: '100%', height: '100%', autoPlay: true});
+                clapprInstance = new Clappr.Player({
+                    source: finalUrl, 
+                    parentId: "#clappr-container", 
+                    width: '100%', 
+                    height: '100%', 
+                    autoPlay: true
+                });
             } else if (mode === 'html5') {
                 html5El.style.display = 'block';
                 html5El.src = finalUrl;
-                html5El.play();
+                safePlay(html5El);
             } else {
                 videoEl.style.display = 'block';
                 
@@ -572,16 +588,16 @@
                         dashPlayer.initialize(videoEl, finalUrl, true);
                     } else {
                         videoEl.src = finalUrl;
-                        videoEl.play();
+                        safePlay(videoEl);
                     }
                 } else if (Hls.isSupported()) {
                     hls = new Hls();
                     hls.loadSource(finalUrl);
                     hls.attachMedia(videoEl);
-                    hls.on(Hls.Events.MANIFEST_PARSED, () => videoEl.play());
+                    hls.on(Hls.Events.MANIFEST_PARSED, () => safePlay(videoEl));
                 } else {
                     videoEl.src = finalUrl;
-                    videoEl.play();
+                    safePlay(videoEl);
                 }
             }
         }
@@ -660,7 +676,14 @@
                     } 
                     else if (line && !line.startsWith('#')) {
                         if (currentTitle) {
-                            let rawUrls = line.split(/\s+|,|\||\$/).map(u => u.trim()).filter(u => u.startsWith('http'));
+                            let rawUrls = [];
+                            let matches = line.match(/(https?:\/\/[^\s]+)/g);
+                            if (matches) {
+                                rawUrls = matches.map(u => u.trim());
+                            } else {
+                                rawUrls = [line];
+                            }
+
                             let lowerTitle = currentTitle.toLowerCase();
                             let detectedGroup = 'other';
 
@@ -754,6 +777,11 @@
                     }
                 }
                 renderChannels();
+
+                // পেজ লোড বা রিফ্রেশ হলে প্রথম চ্যানেল স্বয়ংক্রিয়ভাবে চালু করবে
+                if (allChannels.length > 0) {
+                    loadChannel(allChannels[0]);
+                }
             })
             .catch(err => {
                 console.error("Playlist load error:", err);
