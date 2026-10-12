@@ -487,6 +487,7 @@
         const iframe = document.getElementById('custom-iframe');
         const clapprEl = document.getElementById('clappr-container');
         const html5El = document.getElementById('html5-video');
+        let playerInstance = videojs('my-video'); // Video.js instance
         let clapprInstance;
         let hls; 
         let dashPlayer;
@@ -546,20 +547,30 @@
             if (dashPlayer) { dashPlayer.reset(); dashPlayer = null; }
             if (clapprInstance) { clapprInstance.destroy(); clapprInstance = null; }
             
-            videoEl.pause();
-            videoEl.src = "";
-            videoEl.load();
+            playerInstance.pause();
             html5El.pause();
             html5El.src = "";
             iframe.src = "about:blank";
 
-            const safePlay = (mediaEl) => {
-                let playPromise = mediaEl.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(() => {
-                        mediaEl.muted = true;
-                        mediaEl.play();
+            // ফুল ভলিউম এবং সাউন্ড নিশ্চিত করার ফাংশন
+            const setMaxVolumeAndPlay = (mediaObj, isVjs = false) => {
+                if (isVjs) {
+                    mediaObj.muted(false);
+                    mediaObj.volume(1.0); // 100% Volume
+                    mediaObj.play().catch(() => {
+                        mediaObj.muted(true); // ব্রাউজার ব্লক করলে মিউট করে প্লে করবে
+                        mediaObj.play();
                     });
+                } else {
+                    mediaObj.muted = false;
+                    mediaObj.volume = 1.0; // 100% Volume
+                    let playPromise = mediaObj.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(() => {
+                            mediaObj.muted = true;
+                            mediaObj.play();
+                        });
+                    }
                 }
             };
 
@@ -573,12 +584,13 @@
                     parentId: "#clappr-container", 
                     width: '100%', 
                     height: '100%', 
-                    autoPlay: true
+                    autoPlay: true,
+                    mute: false
                 });
             } else if (mode === 'html5') {
                 html5El.style.display = 'block';
                 html5El.src = finalUrl;
-                safePlay(html5El);
+                setMaxVolumeAndPlay(html5El, false);
             } else {
                 videoEl.style.display = 'block';
                 
@@ -586,18 +598,21 @@
                     if (typeof dashjs !== 'undefined') {
                         dashPlayer = dashjs.MediaPlayer().create();
                         dashPlayer.initialize(videoEl, finalUrl, true);
+                        setMaxVolumeAndPlay(playerInstance, true);
                     } else {
-                        videoEl.src = finalUrl;
-                        safePlay(videoEl);
+                        playerInstance.src({ src: finalUrl });
+                        setMaxVolumeAndPlay(playerInstance, true);
                     }
                 } else if (Hls.isSupported()) {
                     hls = new Hls();
                     hls.loadSource(finalUrl);
                     hls.attachMedia(videoEl);
-                    hls.on(Hls.Events.MANIFEST_PARSED, () => safePlay(videoEl));
+                    hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                        setMaxVolumeAndPlay(playerInstance, true);
+                    });
                 } else {
-                    videoEl.src = finalUrl;
-                    safePlay(videoEl);
+                    playerInstance.src({ src: finalUrl });
+                    setMaxVolumeAndPlay(playerInstance, true);
                 }
             }
         }
