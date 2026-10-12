@@ -545,5 +545,27 @@ https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7
 #EXTINF:-1 tvg-id="019de785-3a1e-7c94-91e5-6b6755d5ab6b" tvg-name="Disney Channel" tvg-logo="https://web.aynaott.com/storage/019dd92f-107c-7056-9e79-e5233f6e51d9/uploads/images/2026-07-16/images_92666995d4995d2bb46b92598d2b3e48_playmist_disney_channel_400x400.jpg" group-title="Kids",Disney Channel
 https://tvsen7.aynaott.com/disney/index.m3u8
 
+#EXTINF:-1 tvg-id="" tvg-name="Star Movies" tvg-logo="" group-title="Movies",Star Movies
+https://palashbari-tv.vercel.app/api/proxy?url=http://103.185.24.134:3001/Star-Movies/tracks-v1a1/mono.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-name="Star Movies HD" tvg-logo="" group-title="Movies",Star Movies HD
+https://palashbari-tv.vercel.app/api/proxy?url=http://103.185.24.134:3001/STAR-MOVIES-SEL-HD/tracks-v1a1/mono.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-name="Sony Pix HD" tvg-logo="" group-title="Movies",Sony Pix HD
+https://palashbari-tv.vercel.app/api/proxy?url=https://drk6xq0vhn.gpcdn.net/live/pix_hd_abr/live/sony_pix_hd_720/chunks.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-name="Star Plus " tvg-logo="" group-title="Entertainment",Star Plus india
+https://palashbari-tv.vercel.app/api/proxy?url=https://d1rc86nwwc9fag.cloudfront.net/260723/starplusuk_2500/chunklist.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-name="National Geographic HD" tvg-logo="" group-title="Documentary",National Geographic HD
+https://palashbari-tv.vercel.app/api/proxy?url=http://103.185.24.134:3001/NATGEO-HD/tracks-v1a1/mono.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-name="Ayna OTT Hindi Movies" tvg-logo="" group-title="Movies",Ayna OTT Hindi Movies
+https://palashbari-tv.vercel.app/api/proxy?url=https://vods2.aynaott.com/hindimovies/tracks-v1a1/mono.ts.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-name="Akcia TV" tvg-logo="" group-title="Documentary",National Geographic
+https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/7321/index.m3u8
+
+
 
 
