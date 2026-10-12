@@ -482,10 +482,10 @@ https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7
 #EXTINF:-1, group-title="Sports", Sport tv 3
 https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/6530/index.m3u8
 
-#EXTINF:-1, M4 sport
+#EXTINF:-1, #EXTINF:-1 tvg-url="https://raw.githubusercontent.com/personaliptv/paid-link-1/main/482243292_642826978446244_6712273032991625548_n.jpg" group-title="ALL SPORTS",M4 Sport 
 https://palashbari-tv.vercel.app/api/proxy?url=http://88.212.15.19/live/uatlmvixrr/index.m3u8
 
-#EXTINF:-1, FB TV HD
+#EXTINF:-1, #EXTINF:-1 tvg-url="https://raw.githubusercontent.com/personaliptv/paid-link-1/main/482243292_642826978446244_6712273032991625548_n.jpg" group-title="ALL SPORTS",FB TV
 https://palashbari-tv.vercel.app/api/proxy?url=http://1hskrdto.rocketcdn.com/fenerbahcetv.smil/playlist.m3u8
 
 #EXTINF:-1 tvg-id="019de785-39cc-73df-9b76-41868981948e" tvg-name="Fox Sports 1" tvg-logo="https://s3.aynaott.com/storage/75d182d517bbae0af248c5ee1a67f4d4" group-title="Sports",Fox Sports 
