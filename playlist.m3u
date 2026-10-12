@@ -1,6 +1,6 @@
 #EXTM3U
 #EXTINF:-1 tvg-logo="https://static.wikia.nocookie.net/etv-gspn-bangla/images/6/6e/T_Sports_HD_logo_2021.png",T Sports
-https://tvsen5.aynaott.com/TnMn5kZz8aLmjkl/index.m3u8   https://tvsen5.aynaott.com/TnMn5kZz8aLmjkl/tracks-v1a1/mono.ts.m3u8
+https://palashbari-tv.vercel.app/api/proxy?url=https://tvsen5.aynaott.com/TnMn5kZz8aLmjkl/index.m3u8    https://palashbari-tv.vercel.app/api/proxy?url=http://103.185.24.134:3001/TSportsHD/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://i.postimg.cc/W1z5BGPZ/20240823_024712.png" group-title="𝐒𝐩𝐨𝐫𝐭𝐬",A Sports HD
 https://tvsen6.aynaott.com/zv68oqPDu7MZZwmHhRxt/tracks-v1a1/mono.ts.m3u8
@@ -548,10 +548,10 @@ https://palashbari-tv.vercel.app/api/proxy?url=http://103.185.24.134:3001/Star-M
 #EXTINF:-1 tvg-id="" tvg-name="Star Movies HD" tvg-logo="" group-title="Movies",Star Movies HD
 https://palashbari-tv.vercel.app/api/proxy?url=http://103.185.24.134:3001/STAR-MOVIES-SEL-HD/tracks-v1a1/mono.m3u8
 
-#EXTINF:-1 tvg-id="" tvg-name="Sony Pix HD" tvg-logo="" group-title="Movies",Sony Pix HD
+#EXTINF:-1 tvg-name="Sony PIX HD" tvg-logo="https://assets-prod.services.toffeelive.com/Ly6C-JQBv9knK3AHOjXt/posters/252e64ca-8d99-46e7-a951-e10c1703c11d.webp" group-title="Toffee",Sony PIX HD
 https://palashbari-tv.vercel.app/api/proxy?url=https://drk6xq0vhn.gpcdn.net/live/pix_hd_abr/live/sony_pix_hd_720/chunks.m3u8
 
-#EXTINF:-1 tvg-id="" tvg-name="Star Plus " tvg-logo="" group-title="Entertainment",Star Plus india
+#EXTINF:-1 tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Star_Plus_HD.png" group-title="SM All TV",StarPlus
 https://palashbari-tv.vercel.app/api/proxy?url=https://d1rc86nwwc9fag.cloudfront.net/260723/starplusuk_2500/chunklist.m3u8
 
 #EXTINF:-1 tvg-id="019de785-3bac-72a7-b7ff-9d20d69bb27d" tvg-name="Nat Geo TV" tvg-logo="https://web.aynaott.com/storage/019dd92f-107c-7056-9e79-e5233f6e51d9/uploads/images/2026-07-15/images_25b786047244481532eb505dfba85580_playmist_nat_geo_tv_400x400.jpg" group-title="English",Nat Geo bangla
@@ -563,6 +563,20 @@ https://palashbari-tv.vercel.app/api/proxy?url=https://vods2.aynaott.com/hindimo
 #EXTINF:-1 tvg-id="" tvg-name="Akcia TV" tvg-logo="" group-title="Documentary",National Geographic
 https://palashbari-tv.vercel.app/api/proxy?url=http://2756d46c.akciatv.ru/iptv/7FRNF6CY9A9TG3/7321/index.m3u8
 
+#EXTINF:-1 tvg-name="Sony SAB HD" tvg-logo="https://assets-prod.services.toffeelive.com/ES55-JQBv9knK3AHNDWC/posters/13411be9-62b9-4a99-a062-b6e91dfb1099.webp" group-title="Toffee",Sony SAB HD
+https://palashbari-tv.vercel.app/api/proxy?url=http://czrb8vng.ottclub.xyz/iptv/AHMQNVLWUTM5PW/6571/index.m3u8
 
+#EXTINF:-1 tvg-id="DangalTV.in" tvg-logo="https://static.wikia.nocookie.net/logopedia/images/3/36/Dangalv2.png" group-title="SM All TV",ENT | Dangal TV
+https://live-dangal.akamaized.net/liveabr/pub-iodang10p4al/live_720p/chunks.m3u8
 
+#EXTINF:-1 tvg-id="DANGAL2" tvg-logo="https://static.wikia.nocookie.net/logopedia/images/a/ac/Dangal_2.png" group-title="SM All TV",ENT | DANGAL2
+https://live-dangal2.akamaized.net/liveabr/playlist.m3u8
 
+#EXTINF:-1 tvg-id="" tvg-logo="https://yt3.ggpht.com/ytc/AKedOLRD92lTNDFEe1iA-zJLoFb-mu28rBgjGIqs3qFS_w=s900-c-k-c0x00ffffff-no-rj" group-title="SM All TV",Music Mastii
+https://live20.bozztv.com/giatvplayout7/giatv-209592/tracks-v1a1/mono.ts.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-logo="https://bugsfreeweb.github.io/LiveTVCollector/BugsfreeLogo/default-logo.png" group-title="SM All TV",Hindi Movies 
+https://vods2.aynaott.com/hindimovies/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://assets-prod.services.toffeelive.com/f_png,w_300,q_85/ES55-JQBv9knK3AHNDWC/posters/13411be9-62b9-4a99-a062-b6e91dfb1099.webp" group-title="SM All TV",Sony Sab
+https://drk6xq0vhn.gpcdn.net/live/sub_hd_abr/index.m3u8
