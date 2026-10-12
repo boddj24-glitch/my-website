@@ -118,10 +118,12 @@
         }
 
         .server-title {
-            font-size: 13px;
+            font-size: 14px;
             color: var(--accent-color);
             font-weight: bold;
-            text-align: left;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 3px;
         }
 
         .server-inline-notice {
@@ -143,8 +145,8 @@
 
         .server-buttons-wrap {
             display: flex;
-            gap: 6px;
-            justify-content: flex-start;
+            gap: 8px;
+            justify-content: center;
             flex-wrap: wrap;
         }
         
@@ -152,10 +154,10 @@
             background: #21262d;
             color: #fff;
             border: 1px solid #30363d;
-            padding: 3px 12px;
+            padding: 4px 14px;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 11.5px;
+            font-size: 12px;
             font-weight: bold;
             transition: 0.2s;
         }
@@ -212,7 +214,6 @@
             border-color: var(--accent-color);
         }
 
-        /* Channel list height increased to fill the gap perfectly */
         .channel-list { 
             display: grid; 
             grid-template-columns: repeat(4, minmax(0, 1fr)); 
@@ -226,7 +227,6 @@
             align-content: start; 
         }
 
-        /* Social buttons attached right below channel list */
         .social-footer {
             display: flex;
             gap: 10px;
@@ -396,7 +396,7 @@
                             </div>
                             <div class="server-inline-notice">
                                 <marquee behavior="scroll" direction="left" scrollamount="4">
-                                    💬 যেকোনো প্রয়োজনে নিচে টেলিগ্রাম, হোয়াটসঅ্যাপ, ফেসবুক যোগাযোগ করুন।
+                                    💬 যেকোনো প্রয়োজনে নিচে টেলিগ্রাম, হোয়াটসঅ্যাপ, ফেসবুক যোগাযোগ করুন।
                                 </marquee>
                             </div>
                         </div>
@@ -634,40 +634,38 @@
             renderChannels();
         }
 
-        // Categorization Engine
+        // Categorization Engine & Multi-Server Parser
         fetch('https://raw.githubusercontent.com/boddj24-glitch/my-website/refs/heads/main/playlist.m3u')
             .then(response => response.text())
             .then(data => {
                 const lines = data.split(/\r?\n/);
                 allChannels = [];
                 
+                let currentTitle = '';
+                let currentLogo = 'https://i.postimg.cc/W1z5BGPZ/20240823_024712.png';
+                let currentGroup = '';
+
                 for (let i = 0; i < lines.length; i++) {
                     let line = lines[i].trim();
+
                     if (line.startsWith('#EXTINF')) {
                         let logoMatch = line.match(/tvg-logo="([^"]+)"/);
-                        let logo = logoMatch ? logoMatch[1] : 'https://i.postimg.cc/W1z5BGPZ/20240823_024712.png';
+                        currentLogo = logoMatch ? logoMatch[1] : 'https://i.postimg.cc/W1z5BGPZ/20240823_024712.png';
                         
                         let groupMatch = line.match(/group-title="([^"]+)"/);
-                        let rawGroup = groupMatch ? groupMatch[1].trim().toLowerCase() : '';
+                        currentGroup = groupMatch ? groupMatch[1].trim().toLowerCase() : '';
                         
                         let nameParts = line.split(',');
-                        let title = nameParts[nameParts.length - 1].trim();
-                        
-                        let streamUrl = '#';
-                        for (let j = i + 1; j < lines.length; j++) {
-                            let nextLine = lines[j].trim();
-                            if (nextLine && !nextLine.startsWith('#')) {
-                                streamUrl = nextLine;
-                                break;
-                            }
-                        }
-                        
-                        if (title) {
-                            let lowerTitle = title.toLowerCase();
+                        currentTitle = nameParts[nameParts.length - 1].trim();
+                    } 
+                    else if (line && !line.startsWith('#')) {
+                        if (currentTitle) {
+                            let rawUrls = line.split(/\s+|,|\||\$/).map(u => u.trim()).filter(u => u.startsWith('http'));
+                            let lowerTitle = currentTitle.toLowerCase();
                             let detectedGroup = 'other';
 
                             if (
-                                rawGroup.includes('sport') || lowerTitle.includes('sport') || lowerTitle.includes('cricket') || 
+                                currentGroup.includes('sport') || lowerTitle.includes('sport') || lowerTitle.includes('cricket') || 
                                 lowerTitle.includes('football') || lowerTitle.includes('willow') || lowerTitle.includes('ten') || 
                                 lowerTitle.includes('bein') || lowerTitle.includes('ptv') || lowerTitle.includes('dazan') || 
                                 lowerTitle.includes('spiler') || lowerTitle.includes('prajm') || lowerTitle.includes('goal tv') || 
@@ -678,7 +676,7 @@
                                 detectedGroup = 'sports';
                             } 
                             else if (
-                                rawGroup.includes('docu') || lowerTitle.includes('documentary') || lowerTitle.includes('discovery') || 
+                                currentGroup.includes('docu') || lowerTitle.includes('documentary') || lowerTitle.includes('discovery') || 
                                 lowerTitle.includes('nat geo') || lowerTitle.includes('national geo') || lowerTitle.includes('animal planet') || 
                                 lowerTitle.includes('history') || lowerTitle.includes('science') || lowerTitle.includes('earth') || 
                                 lowerTitle.includes('wild') || lowerTitle.includes('investigation') || lowerTitle.includes('crime') || 
@@ -687,7 +685,7 @@
                                 detectedGroup = 'documentary';
                             }
                             else if (
-                                rawGroup.includes('cartoon') || rawGroup.includes('kids') || lowerTitle.includes('cartoon') || 
+                                currentGroup.includes('cartoon') || currentGroup.includes('kids') || lowerTitle.includes('cartoon') || 
                                 lowerTitle.includes('duronto') || lowerTitle.includes('nick') || lowerTitle.includes('pogo') || 
                                 lowerTitle.includes('hungama') || lowerTitle.includes('disney') || lowerTitle.includes('motu patlu') || 
                                 lowerTitle.includes('tom & jerry') || lowerTitle.includes('doraemon') || lowerTitle.includes('mr bean') || 
@@ -696,21 +694,21 @@
                                 detectedGroup = 'cartoon';
                             }
                             else if (
-                                rawGroup.includes('music') || lowerTitle.includes('music') || lowerTitle.includes('9xm') || 
+                                currentGroup.includes('music') || lowerTitle.includes('music') || lowerTitle.includes('9xm') || 
                                 lowerTitle.includes('9x') || lowerTitle.includes('m tv') || lowerTitle.includes('zing') || 
                                 lowerTitle.includes('mastiii') || lowerTitle.includes('sangeet')
                             ) {
                                 detectedGroup = 'music';
                             }
                             else if (
-                                rawGroup.includes('indian_bangla') || rawGroup.includes('indian') || lowerTitle.includes('jalsha') || 
+                                currentGroup.includes('indian_bangla') || currentGroup.includes('indian') || lowerTitle.includes('jalsha') || 
                                 lowerTitle.includes('zee bangla') || lowerTitle.includes('colors bangla') || lowerTitle.includes('sun bangla') || 
                                 lowerTitle.includes('sananda') || lowerTitle.includes('zb cinema')
                             ) {
                                 detectedGroup = 'indian_bangla';
                             }
                             else if (
-                                rawGroup.includes('hindi') || rawGroup.includes('movies') || rawGroup.includes('movie club') || 
+                                currentGroup.includes('hindi') || currentGroup.includes('movies') || currentGroup.includes('movie club') || 
                                 lowerTitle.includes('star gold') || lowerTitle.includes('sony max') || lowerTitle.includes('zee tv') || 
                                 lowerTitle.includes('zee cinema') || lowerTitle.includes('bollywood') || lowerTitle.includes('goldmines') || 
                                 lowerTitle.includes('gold mines') || lowerTitle.includes('pictures') || lowerTitle.includes('&pictures') || 
@@ -721,13 +719,12 @@
                                 lowerTitle.includes('enterr10') || lowerTitle.includes('manoranjan') || lowerTitle.includes('classic 24') || 
                                 lowerTitle.includes('sony sab') || lowerTitle.includes('sony pal') || lowerTitle.includes('star plus') || 
                                 lowerTitle.includes('star bharat') || lowerTitle.includes('utv') || lowerTitle.includes('bhojpuri') || 
-                                lowerTitle.includes('pitaara') || lowerTitle.includes('movie club') || lowerTitle.includes('english movie') || 
-                                lowerTitle.includes('channel movei') || lowerTitle.includes('sony movies')
+                                lowerTitle.includes('pitaara') || lowerTitle.includes('english movie') || lowerTitle.includes('sony movies')
                             ) {
                                 detectedGroup = 'hindi';
                             }
                             else if (
-                                rawGroup.includes('bangla') || rawGroup.includes('bangladeshi') || rawGroup.includes('toffee') || 
+                                currentGroup.includes('bangla') || currentGroup.includes('bangladeshi') || currentGroup.includes('toffee') || 
                                 lowerTitle.includes('btv') || lowerTitle.includes('somoy') || lowerTitle.includes('jamuna') || 
                                 lowerTitle.includes('ekattor') || lowerTitle.includes('channel 24') || lowerTitle.includes('independent') || 
                                 lowerTitle.includes('dbc') || lowerTitle.includes('atn bangla') || lowerTitle.includes('rtv') || 
@@ -737,31 +734,30 @@
                                 lowerTitle.includes('desh tv') || lowerTitle.includes('asian tv') || lowerTitle.includes('my tv') || 
                                 lowerTitle.includes('global tv') || lowerTitle.includes('thikana') || lowerTitle.includes('drama 24') || 
                                 lowerTitle.includes('bangla plus') || lowerTitle.includes('mohana') || lowerTitle.includes('boishakhi') || 
-                                lowerTitle.includes('channel 9') || lowerTitle.includes('sa tv') || lowerTitle.includes('ananda tv') || 
-                                lowerTitle.includes('green tv') || lowerTitle.includes('nexus tv') || lowerTitle.includes('matri bhumi') || 
-                                lowerTitle.includes('entertv') || lowerTitle.includes('channel s') || lowerTitle.includes('rajdhani') || 
-                                lowerTitle.includes('movie bangla') || lowerTitle.includes('channel 52') || lowerTitle.includes('toffee')
+                                lowerTitle.includes('channel 9') || lowerTitle.includes('sa tv')
                             ) {
                                 detectedGroup = 'bangla';
                             }
-                            else {
-                                detectedGroup = rawGroup || 'other';
-                            }
 
-                            allChannels.push({ name: title, logo: logo, url: streamUrl, group: detectedGroup });
+                            let existingChannel = allChannels.find(c => c.name.toLowerCase() === currentTitle.toLowerCase());
+                            if (existingChannel) {
+                                existingChannel.url = existingChannel.url.concat(rawUrls);
+                            } else {
+                                allChannels.push({
+                                    name: currentTitle,
+                                    logo: currentLogo,
+                                    group: detectedGroup,
+                                    url: rawUrls
+                                });
+                            }
                         }
                     }
                 }
-
-                if (allChannels.length > 0) {
-                    renderChannels();
-                    loadChannel(allChannels[0]);
-                } else {
-                    document.getElementById('channelContainer').innerHTML = '<p style="text-align: center; color: red; grid-column: span 4;">কোনো চ্যানেল পাওয়া যায়নি।</p>';
-                }
+                renderChannels();
             })
-            .catch(error => {
-                document.getElementById('channelContainer').innerHTML = '<p style="text-align: center; color: red; grid-column: span 4;">চ্যানেল লিস্ট লোড করতে সমস্যা হয়েছে।</p>';
+            .catch(err => {
+                console.error("Playlist load error:", err);
+                document.getElementById('channelContainer').innerHTML = '<p style="text-align: center; color: #ff4757; grid-column: span 4; padding: 20px;">প্লেলিস্ট লোড করতে সমস্যা হয়েছে!</p>';
             });
     </script>
 </body>
