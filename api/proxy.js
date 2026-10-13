@@ -77,15 +77,20 @@ export default async function handler(req, res) {
   }
 
   try {
-    // ডায়নামিকভাবে টার্গেট ইউআরএল-এর নিজস্ব অরিজিন বের করা
-    const parsedTarget = new URL(targetUrl);
-    const targetOrigin = parsedTarget.origin; // যেমন: http://198.195.239.50:8095 বা https://public.iptv-channels.workers.dev
+    let reqOrigin = 'https://tv.moviemasti.net';
+    let reqReferer = 'https://tv.moviemasti.net/';
+
+    if (!targetUrl.includes('moviemasti.net')) {
+      const parsedTarget = new URL(targetUrl);
+      reqOrigin = parsedTarget.origin;
+      reqReferer = parsedTarget.origin + '/';
+    }
 
     const response = await fetch(targetUrl, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-        'Origin': targetOrigin,
-        'Referer': targetOrigin + '/',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36',
+        'Origin': reqOrigin,
+        'Referer': reqReferer,
         'Accept': '*/*'
       }
     });
@@ -97,7 +102,7 @@ export default async function handler(req, res) {
     const contentType = response.headers.get('content-type') || '';
     const finalUrl = response.url; 
 
-    // M3U8 বা সাব-플레이লিস্ট চেক
+    // M3U8 বা সাব-প্লেলিস্ট চেক
     const isPlaylist = targetUrl.includes('.m3u') || 
                        contentType.includes('mpegurl') || 
                        contentType.includes('m3u') || 
