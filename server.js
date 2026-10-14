@@ -1,72 +1,156 @@
-const express = require('express');
-const http = require('http');
-const https = require('https');
-const app = express();
+// ===================================================
+// সিক্রেট আইডি (প্রয়োজনে পরিবর্তন করুন)
+// ===================================================
+const EXPIRE_CODE = "48436844"; 
 
-app.get('/proxy', (req, res) => {
-    const targetUrl = req.query.url;
-    if (!targetUrl) {
-        return res.status(400).send('URL parameter is required');
+// মূল M3U প্লেলিস্ট URL
+const PLAYLIST_URL = 'https://raw.githubusercontent.com/boddj24-glitch/my-website/refs/heads/main/playlist.m3u';
+// ===================================================
+
+export default async function handler(req, res) {
+  // CORS হেডার
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', '*');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  const host = req.headers.host;
+  const protocol = req.headers['x-forwarded-proto'] || 'https';
+  const requestUrl = req.url || '';
+
+  // ---------------------------------------------------------
+  // ১. M3U প্লেলিস্ট রিকোয়েস্ট (যেমন: /api/proxy/playlist-expire=48436844.m3u)
+  // ---------------------------------------------------------
+  if (!req.query.url && (requestUrl.includes('.m3u') || requestUrl.includes('playlist-expire'))) {
+    
+    // সিকিউরিটি কোড যাচাইকরণ
+    if (EXPIRE_CODE && !requestUrl.includes(EXPIRE_CODE)) {
+      return res.status(403).json({ error: 'Access Denied: Invalid or Expired ID' });
     }
 
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', '*');
-
-    const client = targetUrl.startsWith('https') ? https : http;
-
-    const options = {
+    try {
+      const response = await fetch(PLAYLIST_URL, {
         headers: {
-            'User-Agent': 'VLC/3.0.16 LibVLC/3.0.16',
-            'Accept': '*/*'
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
         }
-    };
+      });
 
-    client.get(targetUrl, options, (proxyRes) => {
-        let contentType = proxyRes.headers['content-type'] || '';
-        
-        // যদি ফাইলটি m3u8 বা প্লেলিস্ট হয়, তবে ভেতরের লিংকগুলো রিডাইরেক্ট বা রিরাইট করতে হবে
-        if (targetUrl.includes('.m3u8') || contentType.includes('mpegurl') || contentType.includes('application/vnd.apple.mpegurl')) {
-            let data = '';
-            proxyRes.on('data', chunk => { data += chunk; });
-            proxyRes.on('end', () => {
-                const parsedTarget = new URL(targetUrl);
-                const baseUrl = `${parsedTarget.protocol}//${parsedTarget.host}${parsedTarget.pathname.substring(0, parsedTarget.pathname.lastIndexOf('/') + 1)}`;
-                
-                const lines = data.split('\n');
-                const rewrittenLines = lines.map(line => {
-                    let trimmed = line.trim();
-                    if (trimmed && !trimmed.startsWith('#')) {
-                        let absoluteUrl;
-                        if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
-                            absoluteUrl = trimmed;
-                        } else if (trimmed.startsWith('/')) {
-                            absoluteUrl = `${parsedTarget.protocol}//${parsedTarget.host}${trimmed}`;
-                        } else {
-                            absoluteUrl = `${baseUrl}${trimmed}`;
-                        }
-                        return `/proxy?url=${encodeURIComponent(absoluteUrl)}`;
-                    }
-                    return line;
-                });
+      if (!response.ok) {
+        return res.status(response.status).json({ error: 'Failed to fetch playlist' });
+      }
 
-                res.setHeader('Content-Type', 'application/vnd.apple.mpegurl');
-                res.send(rewrittenLines.join('\n'));
-            });
-        } else {
-            // অন্য ফাইল বা .ts সেগমেন্টগুলোর জন্য নরমাল পাইপ চলবে
-            if (proxyRes.headers['content-type']) {
-                res.setHeader('Content-Type', proxyRes.headers['content-type']);
-            }
-            res.writeHead(proxyRes.statusCode, proxyRes.headers);
-            proxyRes.pipe(res);
+      const content = await response.text();
+      const baseUrl = response.url; // Redirect সামলানোর জন্য
+
+      // প্লেলিস্টের প্রতিটি চ্যানেলকে প্রক্সি লিংকে রূপান্তর
+      const lines = content.split('\n');
+      const rewrittenLines = lines.map(line => {
+        const trimmed = line.trim();
+        if (trimmed && !trimmed.startsWith('#')) {
+          try {
+            const absUrl = new URL(trimmed, baseUrl).href;
+            return `${protocol}://${host}/api/proxy?url=${encodeURIComponent(absUrl)}`;
+          } catch (e) {
+            return line;
+          }
         }
-    }).on('error', (err) => {
-        res.status(500).send('Proxy error: ' + err.message);
+        return line;
+      });
+
+      res.setHeader('Content-Type', 'application/vnd.apple.mpegurl; charset=utf-8');
+      return res.status(200).send(rewrittenLines.join('\n'));
+
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
+
+  // ---------------------------------------------------------
+  // ২. নির্দিষ্ট চ্যানেল ও ভিডিও স্ট্রিম ফেচিং
+  // ---------------------------------------------------------
+  const targetUrl = req.query.url;
+  if (!targetUrl) {
+    return res.status(400).json({ error: 'No URL provided' });
+  }
+
+  try {
+    // ডায়নামিকভাবে টার্গেট ইউআরএল-এর নিজস্ব অরিজিন বের করা
+    const parsedTarget = new URL(targetUrl);
+    const targetOrigin = parsedTarget.origin; // যেমন: http://198.195.239.50:8095 বা https://public.iptv-channels.workers.dev
+
+    const response = await fetch(targetUrl, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+        'Origin': targetOrigin,
+        'Referer': targetOrigin + '/',
+        'Accept': '*/*'
+      }
     });
-});
 
-const PORT = process.env.PORT || 10000;
-app.listen(PORT, () => {
-    console.log(`Proxy server is running on port ${PORT}`);
-});
+    if (!response.ok) {
+      return res.status(response.status).json({ error: `Stream failed (${response.status})` });
+    }
+
+    const contentType = response.headers.get('content-type') || '';
+    const finalUrl = response.url; 
+
+    // M3U8 বা সাব-플레이লিস্ট চেক
+    const isPlaylist = targetUrl.includes('.m3u') || 
+                       contentType.includes('mpegurl') || 
+                       contentType.includes('m3u') || 
+                       contentType.includes('text/plain');
+
+    if (isPlaylist) {
+      const text = await response.text();
+
+      if (text.trim().startsWith('#EXTM3U') || targetUrl.includes('.m3u8')) {
+        const lines = text.split('\n');
+        const rewrittenLines = lines.map(line => {
+          const trimmed = line.trim();
+          if (!trimmed) return line;
+
+          // #EXT-X-KEY (AES Encryption) ও #EXT-X-MEDIA ট্যাগের URI প্রক্সি রিরাইট
+          if (trimmed.startsWith('#')) {
+            if (trimmed.includes('URI=')) {
+              return trimmed.replace(/URI=["']([^"']+)["']/g, (match, uri) => {
+                try {
+                  const abs = new URL(uri, finalUrl).href;
+                  return `URI="${protocol}://${host}/api/proxy?url=${encodeURIComponent(abs)}"`;
+                } catch (e) {
+                  return match;
+                }
+              });
+            }
+            return line;
+          }
+
+          // ভিডিও সেগমেন্ট (.ts) বা সাব-প্লেলিস্ট রিরাইট
+          try {
+            const abs = new URL(trimmed, finalUrl).href;
+            return `${protocol}://${host}/api/proxy?url=${encodeURIComponent(abs)}`;
+          } catch (e) {
+            return line;
+          }
+        });
+
+        res.setHeader('Content-Type', 'application/vnd.apple.mpegurl; charset=utf-8');
+        return res.status(200).send(rewrittenLines.join('\n'));
+      }
+
+      res.setHeader('Content-Type', contentType || 'text/plain');
+      return res.status(200).send(text);
+    }
+
+    // TS/AAC/MP4 ভিডিও সেগমেন্ট প্লেয়ারে পাঠানো
+    const arrayBuffer = await response.arrayBuffer();
+    res.setHeader('Content-Type', contentType || 'video/mp2t');
+    res.setHeader('Cache-Control', 'public, max-age=3600');
+    return res.status(200).send(Buffer.from(arrayBuffer));
+
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+}
